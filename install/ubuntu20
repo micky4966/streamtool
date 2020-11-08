@@ -1,0 +1,90 @@
+#!/bin/bash
+cd /opt/
+
+apt-get update -y; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y
+apt-get install -y curl nano wget zip unzip git lsof iftop htop ca-certificates apt-transport-https software-properties-common net-tools
+apt-get install -y php7.4 php7.4-cgi php7.4-bcmath php7.4-bz2 php7.4-cli php7.4-common php7.4-curl php7.4-dba php7.4-dev php7.4-enchant php7.4-fpm php7.4-gd php7.4-gmp php7.4-imap php7.4-interbase php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-odbc php7.4-opcache php7.4-pgsql php7.4-phpdbg php7.4-pspell php7.4-readline php7.4-snmp php7.4-soap php7.4-sqlite3 php7.4-sybase php7.4-tidy php7.4-xml php7.4-xmlrpc php7.4-xsl php7.4-zip #php7.4-recode
+apt-get install -y libqdbm14 libxdmcp6 libxml2 libxslt1.1 libxpm4 libcurl4 libmhash2 libpcre3 libpopt0 libpq5 librecode0 libsensors-config libsm6 libpng libfreetype6 libc6 zlib1g libxau6 libxcb1 libssh2-1 ffmpeg libavcodec-extra58 libavfilter-extra7
+git clone https://github.com/NeySlim/streamtool
+
+cp /opt/streamtool/install/files/php.conf > /etc/php/7.4/fpm/pool.d/www.conf
+sed -i 's/cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/7.4/fpm/php.ini
+sed -i 's/output_buffering = 4096/output_buffering = Off/g' /etc/php/7.4/fpm/php.ini
+perl -pi -e 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/7.4/fpm/php.ini
+perl -pi -e 's/;error_log = syslog/error_log = php_error.log/g' /etc/php/7.4/fpm/php.ini
+perl -pi -e 's/;date.timezone =/date.timezone = UTC/g' /etc/php/7.4/fpm/php.ini
+useradd nginx
+service php7.4-fpm restart
+ln -s /usr/bin/ffmpeg /usr/local/bin/ffmpeg
+ln -s /usr/bin/ffprobe /usr/local/bin/ffprobe
+/usr/sbin/useradd -s /sbin/nologin -U -d /opt/streamtool -m streamtool
+
+cp -R /opt/streamtool/app/www/streamtool/* /opt/streamtool/app/www/; rm -Rf /opt/streamtool/app/www/streamtool/
+
+
+grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/local/bin/ffmpeg' /etc/sudoers || echo 'nginx ALL = (root) NOPASSWD: /usr/local/bin/ffmpeg' >> /etc/sudoers
+grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/local/bin/ffprobe'/etc/sudoers || echo 'nginx ALL = (root) NOPASSWD: /usr/local/bin/ffprobe' >> /etc/sudoers
+
+cp /opt/streamtool/install/files/streamtool.service /etc/systemd/system/.
+systemctl daemon-reload
+mkdir -p /opt/streamtool/app/www/hl ; chmod -R 777 /opt/streamtool/app/www/hl; mkdir -p /opt/streamtool/app/www/cache; chmod -R 777 /opt/streamtool/app/www/cache; chown nginx:nginx /opt/streamtool/app/nginx/conf
+
+
+
+ln -s /usr/bin/ffmpeg /usr/local/bin/ffmpeg
+ln -s /usr/bin/ffprobe /usr/local/bin/ffprobe
+
+echo "`date +%s | sha256sum | base64 | head -c 32 ; echo`" > /root/MYSQL_ROOT_PASSWORD
+sqlpasswd=(`cat /root/MYSQL_ROOT_PASSWORD`);
+echo "mysql-server mysql-server/root_password password $sqlpasswd" | debconf-set-selections
+echo "mysql-server mysql-server/root_password_again password $sqlpasswd" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/app-password-confirm password $sqlpasswd" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/mysql/admin-pass password $sqlpasswd" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/mysql/app-pass password $sqlpasswd" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none" | debconf-set-selections
+
+
+#Database install and configuration
+sudo apt-get -y install mariadb-server mariadb-client
+systemctl stop mariadb
+grep -qxF "default-authentication-plugin = mysql_native_password" /etc/mysql/mariadb.conf.d/50-server.cnf || sed '/\[mysqld\]/a # set default password auth\
+default-authentication-plugin = mysql_native_password\' -i /etc/mysql/mariadb.conf.d/50-server.cnf
+systemctl start mariadb
+
+mysql -uroot -e "SET SQL_MODE='ALLOW_INVALID_DATES,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'"
+mysql -uroot -e "CREATE DATABASE streamtool"
+mysql -uroot -e "CREATE USER 'streamtool'@'localhost' identified by '$sqlpasswd'"
+mysql -uroot -e "grant all privileges on streamtool.* to 'streamtool'@'localhost'"
+
+sed -i 's/xxx/streamtool/g' /opt/streamtool/app/www/config.php
+sed -i 's/zzz/'$sqlpasswd'/g' /opt/streamtool/app/www/config.php
+sed -i 's/ttt/streamtool/g' /opt/streamtool/app/www/config.php
+mkdir -p /opt/streamtool/app/www1/; mkdir -p /opt/streamtool/app/www1/log/; chown nginx:nginx /opt/streamtool/app/www1/log/; cp -R /opt/streamtool/app/www/* /opt/streamtool/app/www1/; rm -rf /opt/streamtool/app/www1/*.*
+rm -rf /opt/streamtool/app/www1/hl
+ln -s /opt/streamtool/app/www/hl /opt/streamtool/app/www1/hl
+ln -s /opt/streamtool/app/www/config.php /opt/streamtool/app/www1/config.php
+ln -s /opt/streamtool/app/www/functions.php /opt/streamtool/app/www1/functions.php
+ln -s /opt/streamtool/app/www/stream.php /opt/streamtool/app/www1/stream.php
+ln -s /opt/streamtool/app/www/playlist.php /opt/streamtool/app/www1/playlist.php
+ln -sf /etc/alternatives/php /opt/streamtool/app/php/bin/php
+grep -qxF 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' /etc/fstab || echo 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' >> /etc/fstab
+chown -R streamtool. /opt/streamtool
+mount /opt/streamtool/app/www/hl/
+service php7.4-fpm stop
+service php7.4-fpm start
+
+systemctl start streamtool
+curl -s http://127.0.0.1:9001/install_database_tables.php?install
+curl -s http://127.0.0.1:9001/install_database_tables.php?update
+mv /opt/streamtool/app/www/install_database_tables.php /opt/streamtool/app/.
+
+echo "
+*************************************************************
+*
+*  Streamtool install complete
+*
+*  http://`hostname -I | cut -d " " -f1`:9001
+*  Username: admin  Password: admin
+*
+***

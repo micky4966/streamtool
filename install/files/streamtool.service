@@ -1,0 +1,12 @@
+[Unit]
+Description=Streamtool
+After=network.target mariadb.service
+Wants=network-online.target
+
+[Service]
+Restart=always
+Type=simple
+ExecStart=/opt/streamtool/app/nginx/sbin/nginx_streamtool
+
+[Install]
+WantedBy=multi-user.target 
