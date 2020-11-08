@@ -31,10 +31,8 @@ cp /opt/streamtool/install/files/streamtool.service /etc/systemd/system/.
 systemctl daemon-reload
 mkdir -p /opt/streamtool/app/www/hl ; chmod -R 777 /opt/streamtool/app/www/hl; mkdir -p /opt/streamtool/app/www/cache; chmod -R 777 /opt/streamtool/app/www/cache;
 
-
-
-ln -s /usr/bin/ffmpeg /usr/local/bin/ffmpeg
-ln -s /usr/bin/ffprobe /usr/local/bin/ffprobe
+ln -sf /usr/bin/ffmpeg /usr/local/bin/ffmpeg
+ln -sf /usr/bin/ffprobe /usr/local/bin/ffprobe
 
 echo "`date +%s | sha256sum | base64 | head -c 32 ; echo`" > /root/MYSQL_ROOT_PASSWORD
 sqlpasswd=(`cat /root/MYSQL_ROOT_PASSWORD`);
