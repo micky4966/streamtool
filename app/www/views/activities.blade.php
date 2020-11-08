@@ -21,7 +21,7 @@
                         <tr class="headings">
                             <th>User</th>
                             <th>Stream</th>
-                            <th>DataStart</th>
+                            <th>Start time (UTC)</th>
                             <th>IP</th>
                             <th>User agent</th>
                             <th>Action</th>
