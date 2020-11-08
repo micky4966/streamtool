@@ -168,22 +168,13 @@ if (isset($_GET['install'])) {
         echo "created transcodes table <br>" . PHP_EOL;
 
         $profile1 = new Transcode();
-        $profile1->name = 'Default 1: Video Copy, Audio Copy';
+        $profile1->name = 'AAC: Video Copy, Audio AAC';
         $profile1->probesize = 10000000;
         $profile1->analyzeduration = 10000000;
         $profile1->video_codec = 'copy';
-        $profile1->audio_codec = 'copy';
+        $profile1->audio_codec = 'aac';
         $profile1->save();
-        echo "created transcode profile1 data <br>" . PHP_EOL;
-
-        $profile2 = new Transcode();
-        $profile2->name = 'Default 2: Video Copy, Audio AAC';
-        $profile2->probesize = 10000000;
-        $profile2->analyzeduration = 10000000;
-        $profile2->video_codec = 'copy';
-        $profile2->audio_codec = 'aac';
-        $profile2->save();
-        echo "created transcode profile2 data <br>" . PHP_EOL;
+        echo "created AAC transcode profile data <br>" . PHP_EOL;
     }
 
 
