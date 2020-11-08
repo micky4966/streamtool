@@ -166,14 +166,23 @@ if (isset($_GET['install'])) {
         });
 
         echo "created transcodes table <br>" . PHP_EOL;
-
+        
         $profile1 = new Transcode();
-        $profile1->name = 'AAC: Video Copy, Audio AAC';
+        $profile1->name = 'Default: HLS remux';
         $profile1->probesize = 10000000;
         $profile1->analyzeduration = 10000000;
         $profile1->video_codec = 'copy';
-        $profile1->audio_codec = 'aac';
+        $profile1->audio_codec = 'copy';
         $profile1->save();
+        echo "created AAC transcode profile data <br>" . PHP_EOL;
+        
+        $profile2 = new Transcode();
+        $profile2->name = 'AAC: Video Copy, AAC Audio';
+        $profile2->probesize = 10000000;
+        $profile2->analyzeduration = 10000000;
+        $profile2->video_codec = 'copy';
+        $profile2->audio_codec = 'aac';
+        $profile2->save();
         echo "created AAC transcode profile data <br>" . PHP_EOL;
     }
 
