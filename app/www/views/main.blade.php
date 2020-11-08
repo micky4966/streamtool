@@ -31,7 +31,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.php" class="site_title"> <span><span>Streamtool</span></span></a>
+                    <a href="index.php" class="site_title"><img src="https://raw.githubusercontent.com/NeySlim/streamtool/master/app/www/img/streamtoollogorond.png"><span><span>Streamtool</span></span></a>
                 </div>
                 <div class="clearfix"></div>
                 <br />
@@ -56,7 +56,7 @@
                     <div class="menu_section">
                         <h3>Extra information</h3>
                         <ul class="nav side-menu">
-                            <li><a target="_new" href="https://github.com/NeySlim/Streamtool-v69/issues"><i class="fa fa-laptop"></i> Support </a></li>
+                            <li><a target="_new" href="https://github.com/NeySlim/streamtool/issues"><i class="fa fa-laptop"></i> Support </a></li>
                         </ul>
                     </div>
                 </div>
