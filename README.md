@@ -35,7 +35,7 @@
 ## How can I use it?
 - Default login: admin / admin
   - Add a category to allow user and stream creation
-  - Add stream and use defined transcode profile 1 called **Default 1**
+  - Add a stream or import a playlist
   - Add a user
 - Not using transcoding will only remux stream to simple hls output.
 - AAC profile will only transcode audio tracks
