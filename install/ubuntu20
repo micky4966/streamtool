@@ -84,14 +84,14 @@ ln -s /opt/streamtool/app/www/playlist.php /opt/streamtool/app/www1/playlist.php
 grep -qxF 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' /etc/fstab || echo 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' >> /etc/fstab
 chown -R streamtool. /opt/streamtool
 mount /opt/streamtool/app/www/hl/
-service php7.4-fpm stop
-service php7.4-fpm start
 
+systemctl restart php7.4-fpm
 systemctl start streamtool
-sleep 1
+echo "Starting Streamtool Webserver"
+sleep 5
 curl -s http://127.0.0.1:9001/install_database_tables.php?install
 curl -s http://127.0.0.1:9001/install_database_tables.php?update
 
-mv /opt/streamtool/app/www/install_database_tables.php /opt/streamtool/app/.
+#mv /opt/streamtool/app/www/install_database_tables.php /opt/streamtool/app/.
 
 echo -e "************************************************\n*\n*  Streamtool install complete\n*\n*  http://`hostname -I | cut -d ' ' -f1`:9001\n*  Username: admin  Password: admin\n*\n***"
