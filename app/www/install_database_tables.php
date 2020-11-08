@@ -174,7 +174,7 @@ if (isset($_GET['install'])) {
         $profile1->video_codec = 'copy';
         $profile1->audio_codec = 'copy';
         $profile1->save();
-        echo "created AAC transcode profile data <br>" . PHP_EOL;
+        echo "created default hls copy profile<br>" . PHP_EOL;
         
         $profile2 = new Transcode();
         $profile2->name = 'AAC: Video Copy, AAC Audio';
@@ -183,7 +183,7 @@ if (isset($_GET['install'])) {
         $profile2->video_codec = 'copy';
         $profile2->audio_codec = 'aac';
         $profile2->save();
-        echo "created AAC transcode profile data <br>" . PHP_EOL;
+        echo "created AAC transcode profile<br>" . PHP_EOL;
     }
 
 
