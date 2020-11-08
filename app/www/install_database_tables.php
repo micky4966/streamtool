@@ -111,7 +111,7 @@ if (isset($_GET['install'])) {
             $table->tinyInteger('bitstreamfilter')->default(0);
             $table->tinyInteger('checker')->default(0);
             $table->string('logo')->default('');
-            $table->string('tvid')->default('')
+            $table->string('tvid')->default('');
             $table->timestamps();
         });
         echo "created streams table <br>" . PHP_EOL;
