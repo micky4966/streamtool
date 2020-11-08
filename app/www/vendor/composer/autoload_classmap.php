@@ -11,7 +11,7 @@ return array(
     'BlockedIp' => $baseDir . '/models/BlockedIp.php',
     'BlockedUseragent' => $baseDir . '/models/BlockedUseragent.php',
     'Category' => $baseDir . '/models/Category.php',
-    'FosStreaming' => $baseDir . '/models/FosStreaming.php',
+    'Streamtool' => $baseDir . '/models/Streamtool.php',
     'Setting' => $baseDir . '/models/Setting.php',
     'Stream' => $baseDir . '/models/Stream.php',
     'Transcode' => $baseDir . '/models/Transcode.php',
