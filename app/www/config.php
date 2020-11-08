@@ -1,6 +1,7 @@
 <?php
 session_start();
-date_default_timezone_set('America/Chicago');
+//Uncomment next line to force timezone
+//date_default_timezone_set('Europe/Paris');
 
 require 'vendor/autoload.php';
 include('functions.php');
