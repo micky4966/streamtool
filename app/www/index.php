@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Streamtool panel by Tyfix</title>
+    <title>Streamtool panel by NeySlim</title>
 
     <!-- Bootstrap core CSS -->
 
@@ -101,7 +101,7 @@ if (isset($_POST['submit'])) {
 
 
                             <p>&copy;2015 All Rights Reserved Streamtool by <a href="http://www.tyfix.nl"
-                                                                                  target="_blank">Tyfix</a></p>
+                                                                                  target="_blank">NeySlim</a></p>
                         </div>
                     </div>
                 </form>

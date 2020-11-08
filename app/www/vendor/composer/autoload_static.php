@@ -116,7 +116,7 @@ class ComposerStaticInitd7c19318aeb827b282d69319510de682
         'BlockedIp' => __DIR__ . '/../..' . '/models/BlockedIp.php',
         'BlockedUseragent' => __DIR__ . '/../..' . '/models/BlockedUseragent.php',
         'Category' => __DIR__ . '/../..' . '/models/Category.php',
-        'Streamtool' => __DIR__ . '/../..' . '/models/Streamtool.php',
+        'FosStreaming' => __DIR__ . '/../..' . '/models/FosStreaming.php',
         'Setting' => __DIR__ . '/../..' . '/models/Setting.php',
         'Stream' => __DIR__ . '/../..' . '/models/Stream.php',
         'Transcode' => __DIR__ . '/../..' . '/models/Transcode.php',
