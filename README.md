@@ -16,6 +16,7 @@
 - IP Block
 - User Agent block
 - predefined transcode profiles
+ 
 
 
 ## Installation
@@ -26,20 +27,18 @@
 5. **`Mysql Password : cat /root/MYSQL_ROOT_PASSWORD`**
 
 
-### Change port of panel
+### Change streaming port
 1. change port in webinterface -> Settings -> web Port
 2. change port in /opt/streamtool/app/nginx/conf/nginx.conf -> listen 8000;
-3. `killall nginx; killall nginx_streamtool`
-4. `/opt/streamtool/app/nginx/sbin/nginx`
+3. Execute # systemctl restart streamtool
 
 ## How can I use it?
 - Default login: admin / admin
-  - Add user
+  - Add a category to allow user and stream creation
   - Add stream and use defined transcode profile 1 called **Default 1**
-- You can use it also in proxy mode, but that depends on how you want to use it.
-- The most stable way is using transcode profile: **Default 1** without proxy mode ticket
+  - Add a user
+- Not using transcoding will only remux stream to simple hls output.
+- AAC profile will only transcode audio tracks
+- nvenc/vaapi supported but profiles not yet implemented
 
-## Sources
-1. Streamtool-v1
-2. nginx
 
