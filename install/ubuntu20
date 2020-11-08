@@ -80,7 +80,7 @@ ln -s /opt/streamtool/app/www/config.php /opt/streamtool/app/www1/config.php
 ln -s /opt/streamtool/app/www/functions.php /opt/streamtool/app/www1/functions.php
 ln -s /opt/streamtool/app/www/stream.php /opt/streamtool/app/www1/stream.php
 ln -s /opt/streamtool/app/www/playlist.php /opt/streamtool/app/www1/playlist.php
-#ln -sf /etc/alternatives/php /opt/streamtool/app/php/bin/php
+
 grep -qxF 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' /etc/fstab || echo 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' >> /etc/fstab
 chown -R streamtool. /opt/streamtool
 mount /opt/streamtool/app/www/hl/
@@ -93,6 +93,6 @@ sleep 5
 curl -s http://127.0.0.1:9001/install_database_tables.php?install
 curl -s http://127.0.0.1:9001/install_database_tables.php?update
 
-#mv /opt/streamtool/app/www/install_database_tables.php /opt/streamtool/app/.
+mv /opt/streamtool/app/www/install_database_tables.php /opt/streamtool/app/install/files/.
 
 echo -e "************************************************\n*\n*  Streamtool install complete\n*\n*  http://`hostname -I | cut -d ' ' -f1`:9001\n*  Username: admin  Password: admin\n*\n***"
