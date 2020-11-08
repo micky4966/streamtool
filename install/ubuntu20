@@ -87,6 +87,7 @@ mount /opt/streamtool/app/www/hl/
 
 systemctl restart php7.4-fpm
 systemctl start streamtool
+(crontab -u streamtool -l 2>/dev/null; echo "*/1 * * * * /etc/alternatives/php /opt/streamtool/app/www/cron.php") | crontab -u streamtool -
 echo "Starting Streamtool Webserver"
 sleep 5
 curl -s http://127.0.0.1:9001/install_database_tables.php?install
