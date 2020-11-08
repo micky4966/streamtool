@@ -97,9 +97,9 @@ if (isset($_GET['install'])) {
         $db->schema()->create('streams', function ($table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('streamurl');
-            $table->string('streamurl2');
-            $table->string('streamurl3');
+            $table->string('streamurl')->default('http://');
+            $table->string('streamurl2')->default('');
+            $table->string('streamurl3')->default('');
             $table->tinyInteger('running')->default(0);
             $table->tinyInteger('status')->default(0);
             $table->integer('cat_id');
@@ -108,10 +108,10 @@ if (isset($_GET['install'])) {
             $table->tinyInteger('restream')->default(0);
             $table->string('video_codec_name')->default('N/A');
             $table->string('audio_codec_name')->default('N/A');
-            $table->tinyInteger('bitstreamfilter');
+            $table->tinyInteger('bitstreamfilter')->default(0);
             $table->tinyInteger('checker')->default(0);
-            $table->string('logo');
-            $table->string('tvid');
+            $table->string('logo')->default('');
+            $table->string('tvid')->default('')
             $table->timestamps();
         });
         echo "created streams table <br>" . PHP_EOL;
