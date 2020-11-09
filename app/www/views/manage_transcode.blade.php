@@ -32,14 +32,14 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Analyzeduration <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="number" name="probesize" class="form-control col-md-7 col-xs-12" placeholder="15000000" value="{{  isset($_POST['probesize']) ?  $_POST['probesize'] : $transcode->probesize ? $transcode->probesize : "15000000" }}" >
+                                        <input type="number" name="probesize" class="form-control col-md-7 col-xs-12" placeholder="10000000" value="{{  isset($_POST['probesize']) ?  $_POST['probesize'] : $transcode->probesize ? $transcode->probesize : "10000000" }}" >
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Probesize <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="number" name="analyzeduration" class="form-control col-md-7 col-xs-12" placeholder="12000000" value="{{  isset($_POST['analyzeduration']) ?  $_POST['analyzeduration'] : $transcode->analyzeduration ? $transcode->analyzeduration : "12000000" }}" >
+                                        <input type="number" name="analyzeduration" class="form-control col-md-7 col-xs-12" placeholder="10000000" value="{{  isset($_POST['analyzeduration']) ?  $_POST['analyzeduration'] : $transcode->analyzeduration ? $transcode->analyzeduration : "10000000" }}" >
                                     </div>
                                 </div>
 
