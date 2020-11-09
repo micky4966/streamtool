@@ -19,21 +19,19 @@ perl -pi -e 's/;error_log = syslog/error_log = php_error.log/g' /etc/php/7.4/fpm
 timezone="$(cat /etc/timezone)"
 perl -pi -e 's/;date.timezone =/date.timezone = ${timezone}/g' /etc/php/7.4/fpm/php.ini
 service php7.4-fpm restart
-ln -s /usr/bin/ffmpeg /usr/local/bin/ffmpeg
-ln -s /usr/bin/ffprobe /usr/local/bin/ffprobe
 /usr/sbin/useradd -s /sbin/nologin -U -d /opt/streamtool -m streamtool
 
 
 
-grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/local/bin/ffmpeg' /etc/sudoers || echo 'nginx ALL = (root) NOPASSWD: /usr/local/bin/ffmpeg' >> /etc/sudoers
-grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/local/bin/ffprobe' /etc/sudoers || echo 'nginx ALL = (root) NOPASSWD: /usr/local/bin/ffprobe' >> /etc/sudoers
+grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffmpeg' /etc/sudoers || echo 'nginx ALL = (root) NOPASSWD: /usr/bin/ffmpeg' >> /etc/sudoers
+grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffprobe' /etc/sudoers || echo 'nginx ALL = (root) NOPASSWD: /usr/bin/ffprobe' >> /etc/sudoers
 
 cp /opt/streamtool/install/files/streamtool.service /etc/systemd/system/.
 systemctl daemon-reload
 
 
-ln -sf /usr/bin/ffmpeg /usr/local/bin/ffmpeg
-ln -sf /usr/bin/ffprobe /usr/local/bin/ffprobe
+ln -sf /usr/bin/ffmpeg /usr/bin/ffmpeg
+ln -sf /usr/bin/ffprobe /usr/bin/ffprobe
 
 echo "`date +%s | sha256sum | base64 | head -c 32 ; echo`" > /root/MYSQL_ROOT_PASSWORD
 sqlpasswd=(`cat /root/MYSQL_ROOT_PASSWORD`);
