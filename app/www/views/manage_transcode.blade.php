@@ -51,6 +51,8 @@
                                             <option value="h264" {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == 'h264' : $transcode->video_codec  == 'h264' ? "selected" : "" }}>H.264</option>
                                             <option value="copy" {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == 'copy' : $transcode->video_codec  == 'copy' ? "selected" : "" }}>Copy</option>
                                             <option value="libx265" {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == 'libx265' : $transcode->video_codec  == 'libx265' ? "selected" : "" }}>H.265</option>
+                                            <option value="h264_nvenc" {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == 'h264_nvenc' : $transcode->video_codec  == 'h264_nvenc' ? "selected" : "" }}>Nvidia H264 nvenc</option>
+                                            <option value="hevc_nvenc" {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == 'hevc_nvenc' : $transcode->video_codec  == 'hevc_nvenc' ? "selected" : "" }}>Nvidia HEVC nvenc</option>
                                         </select>
                                     </div>
                                 </div>
