@@ -35,10 +35,12 @@ sqlpasswd=(`cat /root/MYSQL_ROOT_PASSWORD`);
 #Database install and configuration
 sudo apt-get -y install mariadb-server mariadb-client
 #systemctl stop mariadb
-grep -qxF "default-authentication-plugin = mysql_native_password" /etc/mysql/mariadb.conf.d/50-server.cnf || sed '/\[mysqld\]/a # set default password auth
+grep -qxF "default-authentication-plugin = mysql_native_password" /etc/mysql/mariadb.conf.d/50-server.cnf || sed '/\[mysqld\]/a # set default password auth\
 default-authentication-plugin = mysql_native_password\' -i /etc/mysql/mariadb.conf.d/50-server.cnf
-grep -qxF 'sql-mode="ALLOW_INVALID_DATES,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"' /etc/mysql/mariadb.conf.d/50-server.cnf || sed '/\[mysqld\]/a
-sql-mode=\"ALLOW_INVALID_DATES,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION\"\' -i /etc/mysql/mariadb.conf.d/50-server.cnf
+
+grep -qxF 'sql-mode="ALLOW_INVALID_DATES,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"' /etc/mysql/mariadb.conf.d/50-server.cnf || sed '/\[mysqld\]/a # set ugly date mode\
+sql-mode="ALLOW_INVALID_DATES,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"\' -i /etc/mysql/mariadb.conf.d/50-server.cnf
+
 systemctl restart mariadb
 
 
