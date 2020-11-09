@@ -137,7 +137,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Video bitrate <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="number" name="video_bitrate" class="form-control col-md-7 col-xs-12" placeholder="1500" required value="{{  isset($_POST['video_bitrate']) ?  $_POST['video_bitrate'] : $transcode->video_bitrate }}" >
+                                        <input type="number" name="video_bitrate" class="form-control col-md-7 col-xs-12" placeholder="1500" required value="{{  isset($_POST['video_bitrate']) ?  $_POST['video_bitrate'] : ( empty($transcode->video_bitrate) ? 0 : $transcode->video_bitrate  ) }}" >
                                         <span class="help-inline">Kilobytes,  0 is disabled</span>
                                     </div>
                                 </div>
