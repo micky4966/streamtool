@@ -147,7 +147,7 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Audio channel</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select name="audio_channel" class="form-control">
-                                            <option value="" {{ isset($_POST['audio_channel']) ?  $_POST['audio_channel']  == '' : $transcode->audio_channel  == '' ? "selected" : "" }}>Disable</option>
+                                            <option value="0" {{ isset($_POST['audio_channel']) ?  $_POST['audio_channel']  == '0' : $transcode->audio_channel  == '0' ? "selected" : "" }}>Disable</option>
                                             <option value="1" {{ isset($_POST['audio_channel']) ?  $_POST['audio_channel']  == '1' : $transcode->audio_channel  == '1' ? "selected" : "" }}>Mono</option>
                                             <option value="2" {{ isset($_POST['audio_channel']) ?  $_POST['audio_channel']  == '2' : $transcode->audio_channel  == '2' ? "selected" : "" }}>Stereo</option>
                                         </select>
@@ -159,7 +159,7 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Audio bitrate</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select name="audio_bitrate" class="form-control">
-                                            <option value="" {{ isset($_POST['audio_bitrate']) ?  $_POST['audio_bitrate']  == '' : $transcode->audio_bitrate  == '' ? "selected" : "" }}>Disable</option>
+                                            <option value="0" {{ isset($_POST['audio_bitrate']) ?  $_POST['audio_bitrate']  == '0' : $transcode->audio_bitrate  == '0' ? "selected" : "" }}>Disable</option>
                                             <option value="32" {{ isset($_POST['audio_bitrate']) ?  $_POST['audio_bitrate']  == '32' : $transcode->audio_bitrate  == '32' ? "selected" : "" }}>32k</option
                                             <option value="48" {{ isset($_POST['audio_bitrate']) ?  $_POST['audio_bitrate']  == '48' : $transcode->audio_bitrate  == '48' ? "selected" : "" }}>48k</option>
                                             <option value="64" {{ isset($_POST['audio_bitrate']) ?  $_POST['audio_bitrate']  == '64' : $transcode->audio_bitrate  == '64' ? "selected" : "" }}>64k</option>
@@ -175,7 +175,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">FPS <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="number" name="fps" class="form-control col-md-7 col-xs-12" placeholder="25" value="{{  isset($_POST['fps']) ?  $_POST['fps'] : $transcode->fps}}" >
+                                        <input type="number" name="fps" class="form-control col-md-7 col-xs-12" placeholder="25" value="{{  isset($_POST['fps']) ?  $_POST['fps'] : ( empty($transcode->fps) ? 0 : $transcode->fps ) }}" >
                                         0 is disabled
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">minrate <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="number" name="minrate" class="form-control col-md-7 col-xs-12" placeholder="200" value="{{  isset($_POST['minrate']) ?  $_POST['minrate'] : $transcode->minrate}}" >
+                                        <input type="number" name="minrate" class="form-control col-md-7 col-xs-12" placeholder="200" value="{{  isset($_POST['minrate']) ?  $_POST['minrate'] : ( empty($transcode->minrate) ? 0 : $transcode->minrate ) }}" >
                                         0 is disabled
                                     </div>
                                 </div>
@@ -191,7 +191,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">maxrate <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="number" name="maxrate" class="form-control col-md-7 col-xs-12" placeholder="2000" value="{{  isset($_POST['maxrate']) ?  $_POST['maxrate'] : $transcode->maxrate}}" >
+                                        <input type="number" name="maxrate" class="form-control col-md-7 col-xs-12" placeholder="2000" value="{{  isset($_POST['maxrate']) ?  $_POST['maxrate'] : ( empty($transcode->maxrate) ? 0 : $transcode->maxrate ) }}" >
                                         0 is disabled
                                     </div>
                                 </div>
@@ -199,7 +199,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">bufsize <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="number" name="bufsize" class="form-control col-md-7 col-xs-12" placeholder="1200" value="{{  isset($_POST['bufsize']) ?  $_POST['bufsize'] : $transcode->bufsize}}" >
+                                        <input type="number" name="bufsize" class="form-control col-md-7 col-xs-12" placeholder="1200" value="{{  isset($_POST['bufsize']) ?  $_POST['bufsize'] : ( empty($transcode->bufsize) ? 0 : $transcode->bufsize ) }}" >
                                         0 is disabled
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Audio sampling rate</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select name="audio_sampling_rate" class="form-control">
-                                            <option value="">Disable</option>
+                                            <option value="0">Disable</option>
                                             <option value="32000" {{ isset($_POST['audio_sampling_rate']) ?  $_POST['audio_sampling_rate']  == '32000' : $transcode->audio_sampling_rate  == '32000' ? "selected" : "" }}>32000</option>
                                             <option value="44100" {{ isset($_POST['audio_sampling_rate']) ?  $_POST['audio_sampling_rate']  == '44100' : $transcode->audio_sampling_rate  == '44100' ? "selected" : "" }}>44100</option>
                                             <option value="48000" {{ isset($_POST['audio_sampling_rate']) ?  $_POST['audio_sampling_rate']  == '48000' : $transcode->audio_sampling_rate  == '48000' ? "selected" : "" }}>48000 </option>
@@ -220,7 +220,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">crf <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="number" name="crf" class="form-control col-md-7 col-xs-12" placeholder="23" value="{{  isset($_POST['crf']) ?  $_POST['crf'] : $transcode->crf}}" >
+                                        <input type="number" name="crf" class="form-control col-md-7 col-xs-12" placeholder="23" value="{{  isset($_POST['crf']) ?  $_POST['crf'] : ( empty($transcode->crf) ? 0 : $transcode->crf ) }}" >
                                         0 is disabled
                                     </div>
                                 </div>
@@ -229,7 +229,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">threads <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="number" name="threads" class="form-control col-md-7 col-xs-12" placeholder="0" value="{{  isset($_POST['threads']) ?  $_POST['threads'] : $threads->bufsize}}" >
+                                        <input type="number" name="threads" class="form-control col-md-7 col-xs-12" placeholder="0" value="{{  isset($_POST['threads']) ?  $_POST['threads'] : ( empty($threads->bufsize) ? 0 : $threads->bufsize )  }}" >
                                         0 is disabled
                                     </div>
                                 </div>
