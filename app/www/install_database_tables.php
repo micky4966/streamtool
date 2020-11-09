@@ -83,7 +83,7 @@ if (isset($_GET['install'])) {
             $table->string('webport')->default('8000');
             $table->string('webip');
             $table->string('logourl')->default('http://example.com/logo/');
-            $table->string('hlsfolder')->default('hl');
+            $table->string('hlsfolder')->default('/opt/streamtool/app/www/hl');
             $table->string('user_agent')->default('Streamtool/ST2011');
             $table->timestamps();
         });
