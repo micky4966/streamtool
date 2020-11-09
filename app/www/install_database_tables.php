@@ -78,8 +78,8 @@ if (isset($_GET['install'])) {
 
         $db->schema()->create('settings', function ($table) {
             $table->increments('id');
-            $table->string('ffmpeg_path')->default('/usr/local/bin/ffmpeg');
-            $table->string('ffprobe_path')->default('/usr/local/bin/ffprobe');
+            $table->string('ffmpeg_path')->default('/usr/bin/ffmpeg');
+            $table->string('ffprobe_path')->default('/usr/bin/ffprobe');
             $table->string('webport')->default('8000');
             $table->string('webip');
             $table->string('logourl')->default('http://example.com/logo/');

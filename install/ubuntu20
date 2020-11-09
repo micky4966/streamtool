@@ -19,9 +19,8 @@ perl -pi -e 's/;error_log = syslog/error_log = php_error.log/g' /etc/php/7.4/fpm
 timezone="$(cat /etc/timezone)"
 perl -pi -e 's/;date.timezone =/date.timezone = ${timezone}/g' /etc/php/7.4/fpm/php.ini
 service php7.4-fpm restart
+
 /usr/sbin/useradd -s /sbin/nologin -U -d /opt/streamtool -m streamtool
-
-
 
 grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffmpeg' /etc/sudoers || echo 'nginx ALL = (root) NOPASSWD: /usr/bin/ffmpeg' >> /etc/sudoers
 grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffprobe' /etc/sudoers || echo 'nginx ALL = (root) NOPASSWD: /usr/bin/ffprobe' >> /etc/sudoers
@@ -29,20 +28,8 @@ grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffprobe' /etc/sudoers || e
 cp /opt/streamtool/install/files/streamtool.service /etc/systemd/system/.
 systemctl daemon-reload
 
-
-ln -sf /usr/bin/ffmpeg /usr/bin/ffmpeg
-ln -sf /usr/bin/ffprobe /usr/bin/ffprobe
-
 echo "`date +%s | sha256sum | base64 | head -c 32 ; echo`" > /root/MYSQL_ROOT_PASSWORD
 sqlpasswd=(`cat /root/MYSQL_ROOT_PASSWORD`);
-#echo "mysql-server mysql-server/root_password password $sqlpasswd" | debconf-set-selections
-#echo "mysql-server mysql-server/root_password_again password $sqlpasswd" | debconf-set-selections
-#echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
-#echo "phpmyadmin phpmyadmin/app-password-confirm password $sqlpasswd" | debconf-set-selections
-#echo "phpmyadmin phpmyadmin/mysql/admin-pass password $sqlpasswd" | debconf-set-selections
-#echo "phpmyadmin phpmyadmin/mysql/app-pass password $sqlpasswd" | debconf-set-selections
-#echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none" | debconf-set-selections
-
 
 #Database install and configuration
 sudo apt-get -y install mariadb-server mariadb-client
@@ -59,9 +46,12 @@ mysql -uroot -e "grant all privileges on streamtool.* to 'streamtool'@'localhost
 sed -i 's/xxx/streamtool/g' /opt/streamtool/app/www/config.php
 sed -i 's/zzz/'$sqlpasswd'/g' /opt/streamtool/app/www/config.php
 sed -i 's/ttt/streamtool/g' /opt/streamtool/app/www/config.php
-mkdir -p /opt/streamtool/app/www/hl
+
+ln -sf /opt/streamtool/app/nginx/sbin/nginx /opt/streamtool/app/nginx/sbin/nginx_streamtool
+
 chmod -R 777 /opt/streamtool/app/www/hl
 mkdir -p /opt/streamtool/app/www/cache
+mkdir -p /opt/streamtool/app/www/hl
 chmod -R 777 /opt/streamtool/app/www/cache
 mkdir -p /opt/streamtool/app/nginx/pid
 mkdir -p /opt/streamtool/app/nginx/client_body_temp
@@ -71,9 +61,9 @@ mkdir -p /opt/streamtool/app/nginx/scgi_temp
 mkdir -p /opt/streamtool/app/logs/
 mkdir -p /opt/streamtool/app/www1/
 mkdir -p /opt/streamtool/app/www1/log/
-cp -R /opt/streamtool/app/www/* /opt/streamtool/app/www1/ &&  rm -rf /opt/streamtool/app/www1/*.*
 rm -rf /opt/streamtool/app/www1/hl
-ln -sf /opt/streamtool/app/nginx/sbin/nginx /opt/streamtool/app/nginx/sbin/nginx_streamtool
+cp -R /opt/streamtool/app/www/* /opt/streamtool/app/www1/ &&  rm -rf /opt/streamtool/app/www1/*.*
+
 ln -s /opt/streamtool/app/www/hl /opt/streamtool/app/www1/hl
 ln -s /opt/streamtool/app/www/config.php /opt/streamtool/app/www1/config.php
 ln -s /opt/streamtool/app/www/functions.php /opt/streamtool/app/www1/functions.php
@@ -81,17 +71,19 @@ ln -s /opt/streamtool/app/www/stream.php /opt/streamtool/app/www1/stream.php
 ln -s /opt/streamtool/app/www/playlist.php /opt/streamtool/app/www1/playlist.php
 
 grep -qxF 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' /etc/fstab || echo 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' >> /etc/fstab
+
 chown -R streamtool. /opt/streamtool
 mount /opt/streamtool/app/www/hl/
 
 systemctl restart php7.4-fpm
 systemctl start streamtool
 (crontab -u streamtool -l 2>/dev/null; echo "*/1 * * * * /usr/bin/php /opt/streamtool/app/www/cron.php") | crontab -u streamtool -
+
 echo "Starting Streamtool Webserver"
 sleep 5
+
 curl -s http://127.0.0.1:9001/install_database_tables.php?install
 curl -s http://127.0.0.1:9001/install_database_tables.php?update
-
-mv /opt/streamtool/app/www/install_database_tables.php /opt/streamtool/app/install/files/.
+mv /opt/streamtool/app/www/install_database_tables.php /opt/streamtool/install/files/.
 
 echo -e "************************************************\n*\n*  Streamtool install complete\n*\n*  http://`hostname -I | cut -d ' ' -f1`:9001\n*  Username: admin  Password: admin\n*\n***"

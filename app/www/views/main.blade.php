@@ -96,7 +96,7 @@
             <!-- footer content -->
             <footer>
                 <div class="">
-                    <p class="pull-right">Streamtool v69</p>
+                    <p class="pull-right">Streamtool 11.2020</p>
                 </div>
                 <div class="clearfix"></div>
             </footer>
