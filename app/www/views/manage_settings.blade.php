@@ -47,7 +47,7 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="webport" value="{{  isset($_POST['webport']) ?  $_POST['webport'] : $setting->webport}}">
-                            <span class="label label-important">Important: restart nginx manualy ( killall -9 nginx && /usr/local/nginx/sbin/nginx )</span>
+                            <span class="label label-important">Important: need service restart: systemctl restart streamtool</span>
                         </div>
                     </div>
 
