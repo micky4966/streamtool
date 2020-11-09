@@ -46,7 +46,7 @@ function stop_stream($id)
         shell_exec("kill -9 " . $stream->pid);
         shell_exec("/bin/rm -r /opt/streamtool/app/www/" . $setting->hlsfolder . "/" . $stream->id . "*");
     }
-    $stream->pid = "";
+    $stream->pid = "0";
     $stream->running = 0;
     $stream->status = 0;
 
