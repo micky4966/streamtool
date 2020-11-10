@@ -123,7 +123,7 @@ if (isset($_GET['install'])) {
             $table->increments('id');
             $table->string('username')->unique();
             $table->string('password');
-            $table->tinyInteger('active');
+            $table->tinyInteger('active')->default('1');
             $table->string('lastconnected_ip')->default('');
             $table->date('exp_date')->default('0000-00-00 00:00:00');
             $table->integer('last_stream')->default('0');
