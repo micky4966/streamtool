@@ -6,7 +6,7 @@ spinner() {
 
   while [ -d /proc/$PID ]; do
     for i in $(seq 1 ${#chars}); do
-      sleep 0.1
+      sleep 0.2
       echo -en " ${chars:$i:1}" "$text\r"
     done
   done
@@ -52,7 +52,7 @@ git clone https://github.com/NeySlim/streamtool >/dev/null 2>&1 &
 PID=$!
 spinner $PID "Downloading software"
 
-echo "  - Configuring system"
+echo " - Configuring system"
 
 {
   cp /opt/streamtool/install/files/php.conf /etc/php/7.4/fpm/pool.d/www.conf
@@ -79,12 +79,11 @@ echo "  - Configuring system"
 echo ""
 echo ""
 echo "Database Installation"
-echo "  - Downloading and installing stock mariadb"
 #Database install and configuration
 sudo apt-get -y install mariadb-server mariadb-client >/dev/null 2>&1 &
 PID=$!
-spinner $PID
-echo "  - Configuring custom mariadb options"
+spinner $PID "Downloading and installing stock mariadb"
+echo " - Configuring custom mariadb options"
 
 {
   grep -qxF "default-authentication-plugin = mysql_native_password" /etc/mysql/mariadb.conf.d/50-server.cnf || sed '/\[mysqld\]/a # set default password auth\
@@ -157,4 +156,4 @@ spinner $PID "Starting Streamtool Webserver"
 } &>/dev/null
 
 echo ""
-echo -e "************************************************\n*                                                *\n*          Streamtool install complete           *\n*\n*          http://$(hostname -I | cut -d ' ' -f1):9001\n*       Username: admin  Password: admin         **                                                *\n\n************************************************"
+echo -e "**************************************************\n*                                                *\n*          Streamtool install complete           *\n*                                                *\n*          http://$(hostname -I | cut -d ' ' -f1):9001\n*       Username: admin  Password: admin         *\n*                                                *\n\n**************************************************"
