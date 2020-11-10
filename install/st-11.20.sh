@@ -110,10 +110,9 @@ echo "  - Last config"
 
   ln -sf /opt/streamtool/app/nginx/sbin/nginx /opt/streamtool/app/nginx/sbin/nginx_streamtool
 
-  chmod -R 777 /opt/streamtool/app/www/hl
   mkdir -p /opt/streamtool/app/www/cache
+  #chmod -R 777 /opt/streamtool/app/www/cache
   mkdir -p /opt/streamtool/app/www/hl
-  chmod -R 777 /opt/streamtool/app/www/cache
   mkdir -p /opt/streamtool/app/nginx/pid
   mkdir -p /opt/streamtool/app/nginx/client_body_temp
   mkdir -p /opt/streamtool/app/nginx/fastcgi_temp
@@ -122,19 +121,18 @@ echo "  - Last config"
   mkdir -p /opt/streamtool/app/logs/
   mkdir -p /opt/streamtool/app/www1/
   mkdir -p /opt/streamtool/app/www1/log/
-  rm -rf /opt/streamtool/app/www1/hl
   cp -R /opt/streamtool/app/www/* /opt/streamtool/app/www1/ && rm -rf /opt/streamtool/app/www1/*.*
-
-  ln -s /opt/streamtool/app/www/hl /opt/streamtool/app/www1/hl
+  rm -rf /opt/streamtool/app/www1/hl
   ln -s /opt/streamtool/app/www/config.php /opt/streamtool/app/www1/config.php
   ln -s /opt/streamtool/app/www/functions.php /opt/streamtool/app/www1/functions.php
   ln -s /opt/streamtool/app/www/stream.php /opt/streamtool/app/www1/stream.php
   ln -s /opt/streamtool/app/www/playlist.php /opt/streamtool/app/www1/playlist.php
-
   grep -qxF 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' /etc/fstab || echo 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' >>/etc/fstab
+  mount /opt/streamtool/app/www/hl
+  ln -s /opt/streamtool/app/www/hl /opt/streamtool/app/www1/hl
 
   chown -R streamtool. /opt/streamtool
-  mount /opt/streamtool/app/www/hl/
+  /
 
   systemctl restart php7.4-fpm
   systemctl start streamtool
