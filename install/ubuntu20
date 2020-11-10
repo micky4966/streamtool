@@ -106,6 +106,7 @@ systemctl restart mariadb
 
 
 mysql -uroot -e "CREATE DATABASE streamtool"
+mysql -uroot -e "DROP USER 'streamtool'@'localhost'"
 mysql -uroot -e "CREATE USER 'streamtool'@'localhost' identified by '$sqlpasswd'"
 mysql -uroot -e "grant all privileges on streamtool.* to 'streamtool'@'localhost'"
 } &> /dev/null
