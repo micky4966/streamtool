@@ -19,9 +19,12 @@ A web software for managing and manipulating video streams.
  
 ## Installation
  **SUPPORTED DISTRIBUTION : Ubuntu 20.04 64 BIT**
-Simply execute:
-`curl -s https://raw.githubusercontent.com/NeySlim/streamtool/master/install/st-11.20.sh | bash`
-Visit : http://your-ip:9001/ login with User: admin Password: admin
+  As administrator execute:
+```bash
+curl -s https://raw.githubusercontent.com/NeySlim/streamtool/master/install/st-11.20.sh | sudo bash
+```
+  Visit : http://streamtool-adress:9001/ login with 
+ Default Username Password: admin
 
 
 
