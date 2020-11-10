@@ -38,22 +38,22 @@ userdel streamtool
 echo ""
 echo "Updating system"
 echo "  - repositories"
-apt-get update > /dev/null &
+apt-get update > /dev/null 2>&1 &
 PID=$!
 spinner $PID
 
 echo "  - Full upgrade"
-apt-get full-upgrade --allow-downgrades --allow-remove-essential --allow-unauthenticated -y  > /dev/null &
+apt-get full-upgrade --allow-downgrades --allow-remove-essential --allow-unauthenticated -y  > /dev/null 2>&1 &
 PID=$!
 spinner $PID
 
 echo "  - Stock ubuntu necessary packages"
-apt-get install --allow-downgrades --allow-remove-essential --allow-unauthenticated -y sudo curl nano wget zip unzip git lsof iftop htop ca-certificates net-tools php php7.4 php7.4-cgi php7.4-bcmath php7.4-bz2 php7.4-cli php7.4-common php7.4-curl php7.4-fpm php7.4-gd php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-readline php7.4-soap php7.4-sqlite3 php7.4-tidy php7.4-xml php7.4-xmlrpc php7.4-xsl php7.4-zip libgeoip1 libqdbm14 libxdmcp6 libxml2 libxslt1.1 libxpm4 libcurl4 libmhash2 libpcre3 libpopt0 libpq5 libsensors-config libsm6 libpng16-16 libfreetype6 libc6 zlib1g libxau6 libxcb1 libssh2-1 ffmpeg libavcodec-extra58 libavfilter-extra7 > /dev/null &
+apt-get install --allow-downgrades --allow-remove-essential --allow-unauthenticated -y sudo curl nano wget zip unzip git lsof iftop htop ca-certificates net-tools php php7.4 php7.4-cgi php7.4-bcmath php7.4-bz2 php7.4-cli php7.4-common php7.4-curl php7.4-fpm php7.4-gd php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-readline php7.4-soap php7.4-sqlite3 php7.4-tidy php7.4-xml php7.4-xmlrpc php7.4-xsl php7.4-zip libgeoip1 libqdbm14 libxdmcp6 libxml2 libxslt1.1 libxpm4 libcurl4 libmhash2 libpcre3 libpopt0 libpq5 libsensors-config libsm6 libpng16-16 libfreetype6 libc6 zlib1g libxau6 libxcb1 libssh2-1 ffmpeg libavcodec-extra58 libavfilter-extra7 > /dev/null 2>&1 &
 PID=$!
 spinner $PID
 
 echo "  - Removing non needed packages"
-apt-get autoremove --allow-downgrades --allow-remove-essential --allow-unauthenticated -y > /dev/null &
+apt-get autoremove --allow-downgrades --allow-remove-essential --allow-unauthenticated -y > /dev/null 2>&1 &
 PID=$!
 spinner $PID
 
@@ -91,7 +91,7 @@ echo ""
 echo "Database Installation"
 echo "  - Downloading and installing stock mariadb"
 #Database install and configuration
-sudo apt-get -y install mariadb-server mariadb-client > /dev/null &
+sudo apt-get -y install mariadb-server mariadb-client > /dev/null 2>&1 &
 PID=$!
 spinner $PID
 echo "  - Configuring custom mariadb options"
