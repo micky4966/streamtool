@@ -480,9 +480,9 @@
                 profileValues: profileValues4
             }
         };
-        var codec_default_value = "copy"; // {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == '' : $transcode->video_codec  == '' ? "selected" : "" }}
-        var preset_default_value = "fast"; //{{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == '' : $transcode->preset_values  == '' ? "selected" : "" }}
-        var profile_default_value = ""; //{{ isset($_POST['profile']) ?  $_POST['profile']  == '' : $transcode->profile  == '' ? "selected" : "" }}
+        var codec_default_value = "{{ ( isset($_POST['video_codec']) ?  $_POST['video_codec']  == '' : $transcode->video_codec  == '' ? "selected" : "" }}"; // {{ ( isset($_POST['video_codec']) ?  $_POST['video_codec']  == '' : $transcode->video_codec  == '' ? "selected" : "" }}
+        var preset_default_value = "{{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == '' : $transcode->preset_values  == '' ? "selected" : "" }}"; //{{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == '' : $transcode->preset_values  == '' ? "selected" : "" }}
+        var profile_default_value = "{{ isset($_POST['profile']) ?  $_POST['profile']  == '' : $transcode->profile  == '' ? "selected" : "" }}"; //{{ isset($_POST['profile']) ?  $_POST['profile']  == '' : $transcode->profile  == '' ? "selected" : "" }}
 
         $(document).ready(function() {
 
