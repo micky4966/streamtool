@@ -21,6 +21,7 @@ echo "Cleaning mount point & user"
 {
   cd /opt/
   mount -l | grep '/opt/streamtool/app/www/hl' && umount /opt/streamtool/app/www/hl
+  crontab -r -u streamtool
   rm -rf /opt/streamtool
   userdel streamtool
 } &>/dev/null
@@ -72,8 +73,8 @@ echo " - Configuring system"
   echo "$(
     date +%s | sha256sum | base64 | head -c 32
     echo
-  )" >/root/MYSQL_ROOT_PASSWORD
-  sqlpasswd=($(cat /root/MYSQL_ROOT_PASSWORD))
+  )" > ~/STREAMTOOL_MYSQL_PASSWORD
+  sqlpasswd=($(cat ~/STREAMTOOL_MYSQL_PASSWORD))
 } &>/dev/null
 
 echo ""
