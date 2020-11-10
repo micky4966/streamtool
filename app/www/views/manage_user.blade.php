@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Active</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <p style="padding: 5px;"><span><input type="checkbox" class="flat" name="active" id="" value="1" {{ $user->active ? "checked" : ""}}></span></p>
+                                    <p style="padding: 5px;"><span><input type="checkbox" class="flat" name="active" id="" value="1" {{ !$user->active ?  : "checked"}}></span></p>
                                 </div>
                             </div>
 
