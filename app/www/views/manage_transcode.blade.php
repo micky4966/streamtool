@@ -25,7 +25,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Profile name <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="profilename" class="form-control col-md-7 col-xs-12"  value="{{  isset($_POST['name']) ?  $_POST['name'] : $transcode->name }}">
+                                        <input type="text" name="profilename" class="form-control col-md-7 col-xs-12"  placeholder="new_profile" value="{{  isset($_POST['name']) ?  $_POST['name'] : $transcode->name }}">
                                     </div>
                                 </div>
 
@@ -46,13 +46,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Video codec</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select name="video_codec" class="form-control">
-                                            <option value="" {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == '' : $transcode->video_codec  == '' ? "selected" : "" }}>Disable</option>
-                                            <option value="h264" {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == 'h264' : $transcode->video_codec  == 'h264' ? "selected" : "" }}>H.264</option>
-                                            <option value="copy" {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == 'copy' : $transcode->video_codec  == 'copy' ? "selected" : "" }}>Copy</option>
-                                            <option value="libx265" {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == 'libx265' : $transcode->video_codec  == 'libx265' ? "selected" : "" }}>H.265</option>
-                                            <option value="h264_nvenc" {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == 'h264_nvenc' : $transcode->video_codec  == 'h264_nvenc' ? "selected" : "" }}>Nvidia H264 nvenc</option>
-                                            <option value="hevc_nvenc" {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == 'hevc_nvenc' : $transcode->video_codec  == 'hevc_nvenc' ? "selected" : "" }}>Nvidia HEVC nvenc</option>
+                                        <select name="video_codec" onChange="updatePresetValuesSelect()" id="video_codec" class="form-control">                                    
                                         </select>
                                     </div>
                                 </div>
@@ -60,7 +54,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Audio codec</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select name="audio_codec" class="form-control">
+                                        <select name="audio_codec" class="form-control" id="video_codec" onChange="updatePresetValuesSelect()">
                                             <option value="" {{ isset($_POST['audio_codec']) ?  $_POST['audio_codec']  == '' : $transcode->audio_codec  == '' ? "selected" : "" }}>Disable</option>
                                             <option value="aac" {{ isset($_POST['audio_codec']) ?  $_POST['audio_codec']  == 'aac' : $transcode->audio_codec  == 'aac' ? "selected" : "" }}>AAC</option>
                                             <option value="copy" {{ isset($_POST['audio_codec']) ?  $_POST['audio_codec']  == 'copy' : $transcode->audio_codec  == 'copy' ? "selected" : "" }}>Copy</option>
@@ -81,18 +75,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Preset</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select name="preset_values" class="form-control">
-                                            <option value="" {{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == '' : $transcode->preset_values  == '' ? "selected" : "" }}>Disable</option>
-                                            <option value="ultrafast" {{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == 'ultrafast' : $transcode->preset_values  == 'ultrafast' ? "selected" : "" }}>Ultrafast</option>
-                                            <option value="superfast" {{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == 'superfast' : $transcode->preset_values  == 'superfast' ? "selected" : "" }}>Superfast</option>
-                                            <option value="veryfast" {{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == 'veryfast' : $transcode->preset_values  == 'veryfast' ? "selected" : "" }}>veryfast</option>
-                                            <option value="faster" {{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == 'faster' : $transcode->preset_values  == 'faster' ? "selected" : "" }}>Faster</option>
-                                            <option value="fast" {{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == 'fast' : $transcode->preset_values  == 'fast' ? "selected" : "" }}>Fast</option>
-                                            <option value="medium" {{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == 'medium' : $transcode->preset_values  == 'medium' ? "selected" : "" }}>Medium</option>
-                                            <option value="slow" {{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == 'slow' : $transcode->preset_values  == 'slow' ? "selected" : "" }}>Slow</option>
-                                            <option value="slower" {{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == 'slower' : $transcode->preset_values  == 'slower' ? "selected" : "" }}>Slower</option>
-                                            <option value="veryslow" {{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == 'veryslow' : $transcode->preset_values  == 'veryslow' ? "selected" : "" }}>Veryslow</option>
-                                            <option value="placebo" {{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == 'placebo' : $transcode->preset_values  == 'placebo' ? "selected" : "" }}>Placebo</option>
+                                        <select name="preset_values" class="form-control" id="preset_values">                                           
                                         </select>
                                     </div>
                                 </div>
@@ -281,6 +264,91 @@
                         allowClear: true
                     });
                 });
+            </script>
+            <script type="text/javascript" >
+	
+	            function updatePresetValuesSelect(){
+	        	    var codec_id = document.getElementById("video_codec").value;
+		
+	        	    var preset_values_select = document.getElementById("preset_values");
+	        	    preset_values_select.innerHTML=null;
+		
+	        	    var presetValues = codecs[codec_id].presetValues;
+	        	    var selectedIndex = 0 ;
+	        	    for (var presetValue in presetValues){
+	        	    	var option = document.createElement("option");
+		            	option.text = presetValues[presetValue].label;
+		            	option.value = presetValues[presetValue].id;
+		            	preset_values_select.appendChild(option);
+			
+		            	if( presetValues[presetValue].id == preset_default_value) {
+		            		preset_values_select.selectedIndex = selectedIndex;
+		            	}
+			             selectedIndex++;
+		            }
+	            }
+	
+	            function updateVideoCodecSelect(){
+		            var selectedIndex = 0;
+		            var codecs_select = document.getElementById("video_codec");
+	            	for (var codec in codecs){
+		            	var option = document.createElement("option");
+		            	option.text = codecs[codec].label;
+		            	option.value = codec;
+		            	codecs_select.appendChild(option);
+			
+		            	if(codec == codec_default_value) {
+		            		codecs_select.selectedIndex = selectedIndex;
+		            	}
+		            	selectedIndex++;
+	            	}
+            	}
+                var presetValues1 = [{ id :"", label :"Disable" }];
+
+                var presetValues2 = [{id : "ultrafast", label : "Ultrafast" },
+				            		{id : "superfast", label :"Superfast"},
+				            		{id : "veryfast", label : "Veryfast"},
+				            		{id : "faster", label :"Faster"},
+				            		{id : "fast", label :"Fast" },
+				            		{id : "medium", label : "Medium"},
+				            		{id : "slow", label : "Slow"},
+				            		{id : "slower", label : "Slower"},
+                                    {id : "veryslow", label : "Veryslow"}
+				            		];
+		            
+
+	            	var presetValues3 = [ { id: "default", label : "default"},
+							{ id: "slow", label : "slow"},
+                            { id: "medium", label : "medium"},
+                            { id: "fast", label : "fast"},
+                            { id: "hp", label : "hp"},
+                            { id: "hq", label : "hq"},
+                            { id: "ll", label : "ll"},
+                            { id: "llhq", label : "llhq"},
+                            { id: "llhp", label : "llhp"}
+                            ];
+
+		            var codecs ={
+				            	"" :  {label : "Disable", presetValues : presetValues1},
+                                "copy" : {label : "Copy", presetValues : presetValues1},
+				            	"h264" : {label : "H.264", presetValues : presetValues2}, 
+				            	"libx265" : {label : "H265", presetValues : presetValues2},
+				            	"h264_nvenc" : {label : "Nvidia H264 nvenc", presetValues : presetValues3},
+				            	"hevc_nvenc" : {label : "Nvidia HEVC nvenc", presetValues : presetValues3}
+				            	};
+                    var codec_default_value = "copy"; // {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == '' : $transcode->video_codec  == '' ? "selected" : "" }}
+		            var preset_default_value = "fast"; //{{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == '' : $transcode->preset_values  == '' ? "selected" : "" }}
+
+            	$(document).ready(function() {   
+
+		
+
+		
+
+		            updateVideoCodecSelect();
+		            updatePresetValuesSelect();
+		
+	            });	
             </script>
         @endsection
 
