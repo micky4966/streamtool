@@ -146,7 +146,7 @@ echo "  - Last config"
 echo ""
 echo ""
 echo
-sleep 5
+sleep 5 &
 PID=$!
 spinner $PID "Starting Streamtool Webserver"
 {
