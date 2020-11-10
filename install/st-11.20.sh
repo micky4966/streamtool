@@ -5,7 +5,7 @@ spinner() {
   chars="◷◶◵◴"
 
   while [ -d /proc/$PID ]; do
-    for i in $(seq 1 ${#chars}); do
+    for (( i=0; i<${#chars}; i++ )); do
       sleep 0.2
       echo -en " ${chars:$i:1}" "$text\r"
     done
