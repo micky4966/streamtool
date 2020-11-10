@@ -99,6 +99,7 @@ function getTranscode($id, $streamnumber = null)
         $ffmpeg .= $trans->threads ? ' -threads ' . $trans->threads : '';
         $ffmpeg .= $trans->deinterlance ? ' -vf yadif' : '';
         $ffmpeg .= $endofffmpeg;
+        file_put_contents('/opt/streamtool/app/www1/log/streamtool-ffmpeg'.'.log', $ffmpeg, FILE_APPEND);
         return $ffmpeg;
     }
 

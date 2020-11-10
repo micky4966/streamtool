@@ -433,7 +433,19 @@
                 label: "high -level 4.2"
             }
         ];
-
+        var profileValues4 = [{
+                id: "main -level 4.2",
+                label: "main -level 4.2"
+            },
+            {
+                id: "main10 -level auto",
+                label: "main10 -level auto"
+            },
+            {
+                id: "rext -level auto",
+                label: "rext -level auto"
+            }
+        ];
 
 
         var codecs = {
@@ -464,8 +476,8 @@
             },
             "hevc_nvenc": {
                 label: "Nvidia HEVC nvenc",
-                presetValues: presetValues3,
-                profileValues: profileValues3
+                presetValues: presetValues4,
+                profileValues: profileValues4
             }
         };
         var codec_default_value = "copy"; // {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == '' : $transcode->video_codec  == '' ? "selected" : "" }}
