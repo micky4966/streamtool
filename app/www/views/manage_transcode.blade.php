@@ -44,9 +44,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Video codec</label>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Video Encoder</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select name="video_codec" onChange="updatePresetValuesSelect()" id="video_codec" class="form-control">                                    
+                                        <select name="video_codec" id="video_codec" class="form-control">                                    
                                         </select>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Audio codec</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select name="audio_codec" class="form-control" id="video_codec" onChange="updatePresetValuesSelect()">
+                                        <select name="audio_codec" class="form-control" id="audio_codec" >
                                             <option value="" {{ isset($_POST['audio_codec']) ?  $_POST['audio_codec']  == '' : $transcode->audio_codec  == '' ? "selected" : "" }}>Disable</option>
                                             <option value="aac" {{ isset($_POST['audio_codec']) ?  $_POST['audio_codec']  == 'aac' : $transcode->audio_codec  == 'aac' ? "selected" : "" }}>AAC</option>
                                             <option value="copy" {{ isset($_POST['audio_codec']) ?  $_POST['audio_codec']  == 'copy' : $transcode->audio_codec  == 'copy' ? "selected" : "" }}>Copy</option>
@@ -65,9 +65,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Profile</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select name="profile" class="form-control">
-                                            <option value="" {{ isset($_POST['profile']) ?  $_POST['profile']  == '' : $transcode->profile  == '' ? "selected" : "" }}>Disable</option>
-                                            <option value="baseline -level 3.0" {{ isset($_POST['profile']) ?  $_POST['profile']  == 'baseline' : $transcode->profile  == 'baseline' ? "selected" : "" }}>Baseline -level 3.0</option>
+                                        <select name="profile" id="profile_values" class="form-control">  
                                         </select>
                                     </div>
                                 </div>
@@ -143,7 +141,7 @@
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select name="audio_bitrate" class="form-control">
                                             <option value="0" {{ isset($_POST['audio_bitrate']) ?  $_POST['audio_bitrate']  == '0' : $transcode->audio_bitrate  == '0' ? "selected" : "" }}>Disable</option>
-                                            <option value="32" {{ isset($_POST['audio_bitrate']) ?  $_POST['audio_bitrate']  == '32' : $transcode->audio_bitrate  == '32' ? "selected" : "" }}>32k</option
+                                            <option value="32" {{ isset($_POST['audio_bitrate']) ?  $_POST['audio_bitrate']  == '32' : $transcode->audio_bitrate  == '32' ? "selected" : "" }}>32k</option>
                                             <option value="48" {{ isset($_POST['audio_bitrate']) ?  $_POST['audio_bitrate']  == '48' : $transcode->audio_bitrate  == '48' ? "selected" : "" }}>48k</option>
                                             <option value="64" {{ isset($_POST['audio_bitrate']) ?  $_POST['audio_bitrate']  == '64' : $transcode->audio_bitrate  == '64' ? "selected" : "" }}>64k</option>
                                             <option value="96" {{ isset($_POST['audio_bitrate']) ?  $_POST['audio_bitrate']  == '96' : $transcode->audio_bitrate  == '96' ? "selected" : "" }}>96k</option>
@@ -287,7 +285,26 @@
 			             selectedIndex++;
 		            }
 	            }
-	
+                function updateProfileValuesSelect(){
+	        	    var codec_id = document.getElementById("video_codec").value;
+		
+	        	    var profile_values_select = document.getElementById("profile_values");
+	        	    profile_values_select.innerHTML=null;
+		
+	        	    var profileValues = codecs[codec_id].profileValues;
+	        	    var selectedIndex = 0 ;
+	        	    for (var profileValue in profileValues){
+	        	    	var option = document.createElement("option");
+		            	option.text = profileValues[profileValue].label;
+		            	option.value = profileValues[profileValue].id;
+		            	profile_values_select.appendChild(option);
+			
+		            	if( profileValues[profileValue].id == profile_default_value) {
+		            		profile_values_select.selectedIndex = selectedIndex;
+		            	}
+			             selectedIndex++;
+		            }
+	            }	
 	            function updateVideoCodecSelect(){
 		            var selectedIndex = 0;
 		            var codecs_select = document.getElementById("video_codec");
@@ -304,6 +321,8 @@
 	            	}
             	}
                 var presetValues1 = [{ id :"", label :"Disable" }];
+                var profileValues1 = [{ id :"", label :"Disable" }];
+
 
                 var presetValues2 = [{id : "ultrafast", label : "Ultrafast" },
 				            		{id : "superfast", label :"Superfast"},
@@ -315,9 +334,12 @@
 				            		{id : "slower", label : "Slower"},
                                     {id : "veryslow", label : "Veryslow"}
 				            		];
-		            
 
-	            	var presetValues3 = [ { id: "default", label : "default"},
+                var profileValues2 = [{id : "baseline -level 3.0", label : "baseline -level 3.0" },
+                                      {id : "main -level 4.0", label : "main -level 4.0" },
+                                      {id : "high -level 4.2", label : "high -level 4.2" }];
+
+            	var presetValues3 = [ { id: "default", label : "default"},
 							{ id: "slow", label : "slow"},
                             { id: "medium", label : "medium"},
                             { id: "fast", label : "fast"},
@@ -328,26 +350,36 @@
                             { id: "llhp", label : "llhp"}
                             ];
 
-		            var codecs ={
-				            	"" :  {label : "Disable", presetValues : presetValues1},
-                                "copy" : {label : "Copy", presetValues : presetValues1},
-				            	"h264" : {label : "H.264", presetValues : presetValues2}, 
-				            	"libx265" : {label : "H265", presetValues : presetValues2},
-				            	"h264_nvenc" : {label : "Nvidia H264 nvenc", presetValues : presetValues3},
-				            	"hevc_nvenc" : {label : "Nvidia HEVC nvenc", presetValues : presetValues3}
+                var profileValues3 = [{id : "baseline -level 3.0", label : "baseline -level 3.0" },
+                                      {id : "main -level 4.0", label : "main -level 4.0" },
+                                      {id : "high -level 4.2", label : "high -level 4.2" }];
+
+
+
+	            var codecs ={
+				            	"" :  {label : "Disable", presetValues : presetValues1 , profileValues : profileValues1 },
+                                "copy" : {label : "Copy", presetValues : presetValues1 , profileValues : profileValues1 },
+				            	"h264" : {label : "H.264", presetValues : presetValues2 , profileValues : profileValues2 }, 
+				            	"libx265" : {label : "H265", presetValues : presetValues2 , profileValues : profileValues2 },
+				            	"h264_nvenc" : {label : "Nvidia H264 nvenc", presetValues : presetValues3 , profileValues : profileValues3 },
+				            	"hevc_nvenc" : {label : "Nvidia HEVC nvenc", presetValues : presetValues3 , profileValues : profileValues3 }
 				            	};
                     var codec_default_value = "copy"; // {{ isset($_POST['video_codec']) ?  $_POST['video_codec']  == '' : $transcode->video_codec  == '' ? "selected" : "" }}
 		            var preset_default_value = "fast"; //{{ isset($_POST['preset_values']) ?  $_POST['preset_values']  == '' : $transcode->preset_values  == '' ? "selected" : "" }}
+                    var profile_default_value = ""; //{{ isset($_POST['profile']) ?  $_POST['profile']  == '' : $transcode->profile  == '' ? "selected" : "" }}
 
             	$(document).ready(function() {   
 
-		
-
+                    $("#video_codec").on("change", function () {
+                                            updatePresetValuesSelect();  
+                                            updateProfileValuesSelect();
+                                          });
+                                   
 		
 
 		            updateVideoCodecSelect();
 		            updatePresetValuesSelect();
-		
+                    updateProfileValuesSelect();
 	            });	
             </script>
         @endsection
