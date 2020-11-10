@@ -1,44 +1,43 @@
-# streamtool
+![Streamtool](https://github.com/NeySlim/streamtool/raw/master/app/www/img/streamtool.png "Streamtool")
+
+A web software for managing and manipulating video streams.
+
 ## Features:
-- Streaming and restreaming (authentication, m3u8)
-- Manage users (overview, add, edit, delete, enable, disable)
-- Manage categories (overview, add, edit, delete)
-- Manage streams (overview, add, edit, delete,start,stop)
-- Manage settings (configuration)
-- Autorestart (every minute)
-- Transcode
-- Last IP connected
-- h264_mp4toannexb
-- play stream
-- Playlist import
-- Multiple streams on one channel
-- Limit streams on users
-- IP Block
-- User Agent block
-- predefined transcode profiles
+- Streaming and restreaming
+- Manage users
+- Manage stream categories
+- Manage streams 
+- Transcode streams with advanced configuration
+- Manage transcode profiles
+- Hardware transcoding
+- Autorestart on stream failure
+- Playlist generation
+- Bulk import
+- User Agent manager
+- IP filter manager
+... and more to come
  
-
-
 ## Installation
-1. **`SUPPORTED DISTRIBUTION : Ubuntu 20.04 64 BIT`**
-2. `curl -s https://raw.githubusercontent.com/NeySlim/streamtool/master/install/ubuntu20 | bash`
-3. `Visit : http://your-ip:9001/ login with User: admin Password: admin`
-4. `Change "Web ip: *" with your public IPv4 server ip at http://your-ip:9001/settings.php`
-5. `Mariadb Password : cat /root/MYSQL_ROOT_PASSWORD`
+ **SUPPORTED DISTRIBUTION : Ubuntu 20.04 64 BIT**
+  As administrator execute:
+```bash
+curl -s https://raw.githubusercontent.com/NeySlim/streamtool/master/install/st-11.20.sh | sudo bash
+```
+  Visit : http://streamtool-adress:9001/ login with 
+ Default Username Password: admin
+
 
 
 ### Change streaming port
 1. change port in webinterface -> Settings -> web Port
-2. change port in /opt/streamtool/app/nginx/conf/nginx.conf -> listen 8000;
-3. Execute **systemctl restart streamtool**
+2. Execute **systemctl restart streamtool**
 
-## How can I use it?
+## How does it work ?
 - Default login: admin / admin
   - Add a category to allow user and stream creation
   - Add a stream or import a playlist
   - Add a user
 - Not using transcoding will only remux stream to simple hls output.
-- AAC profile will only transcode audio tracks
 - nvenc/vaapi supported but profiles not yet implemented
 
 
