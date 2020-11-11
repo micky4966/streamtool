@@ -41,11 +41,11 @@
                     <div class="menu_section">
                         <h3>General</h3>
                         <ul class="nav side-menu">
-                            <li><a href="index.php"><i class="fa fa-dashboard"></i> Dashboard </a></li>
+                            <li><a href="index.php"><i class="fas fa-tachometer-alt"></i> Dashboard </a></li>
                             <li><a href="streams.php"><i class="fa fa-broadcast-tower"></i> Streams </a></li>
                             <li><a href="users.php"><i class="fa fa-users"></i> User Manager</a></li>
                             <li><a href="categories.php"><i class="fa fa-list"></i> Category manager </a></li>
-                            <li><a href="transcodes.php"><i class="fa fa-reorder"></i> Transcode profiles </a></li>
+                            <li><a href="transcodes.php"><i class="fas fa-sync-alt"></i></i> Transcode profiles </a></li>
                             <li><a href="stream_importer.php"><i class="fa fa-upload"></i> Bulk import streams</a></li>
                             <li><a href="admins.php"><i class="fa fa-user"></i> Administrator manager </a></li>
                             <li><a href="ipblocks.php"><i class="fa fa-shield-alt"></i> IP Security </a></li>
@@ -57,7 +57,7 @@
                     <div class="menu_section">
                         <h3>Extra information</h3>
                         <ul class="nav side-menu">
-                            <li><a target="_new" href="https://github.com/NeySlim/streamtool/issues"><i class="fa fa-laptop"></i> Support </a></li>
+                            <li><a target="_new" href="https://github.com/NeySlim/streamtool/issues"><i class="far fa-comments"></i> Support </a></li>
                         </ul>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                <li><a href="?logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                <li><a href="?logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                                 </li>
                             </ul>
                         </li>
