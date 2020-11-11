@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Streamtool</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="fonts/css/all.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <!-- Custom styling plus plugins -->
     <link href="css/custom.css" rel="stylesheet">
@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="css/progressbar/bootstrap-progressbar-3.3.0.css">
     <link href="css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
+    <script data-search-pseudo-elements src="fonts/js/all.js"></script>
     <!--[if lt IE 9]>
     <script src="../assets/js/ie8-responsive-file-warning.js"></script>
     <![endif]-->
