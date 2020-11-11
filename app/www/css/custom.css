@@ -2097,8 +2097,8 @@ h4.graph_title {
 #sidebar-menu .fa {
     width: 26px;
     opacity: .99;
-    display: inline-block;
-    font-family: FontAwesome;
+    display: none;
+    font-family: Font Awesome 5 Free;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;

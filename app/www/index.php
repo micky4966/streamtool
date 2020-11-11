@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="fonts/css/all.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
 
     <!-- Custom styling plus plugins -->
@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
 
 
     <script src="js/jquery.min.js"></script>
-
+    <script data-search-pseudo-elements src="fonts/js/all.js"></script>
     <!--[if lt IE 9]>
     <script src="../assets/js/ie8-responsive-file-warning.js"></script>
     <![endif]-->
