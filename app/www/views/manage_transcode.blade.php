@@ -419,7 +419,43 @@
                 label: "llhp"
             }
         ];
-
+        var presetValues4 = [{
+                id: "default",
+                label: "default"
+            },
+            {
+                id: "slow",
+                label: "slow"
+            },
+            {
+                id: "medium",
+                label: "medium"
+            },
+            {
+                id: "fast",
+                label: "fast"
+            },
+            {
+                id: "hp",
+                label: "hp"
+            },
+            {
+                id: "hq",
+                label: "hq"
+            },
+            {
+                id: "ll",
+                label: "ll"
+            },
+            {
+                id: "llhq",
+                label: "llhq"
+            },
+            {
+                id: "llhp",
+                label: "llhp"
+            }
+        ];
         var profileValues3 = [{
                 id: "baseline -level 3.0",
                 label: "baseline -level 3.0"
