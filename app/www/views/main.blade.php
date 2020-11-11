@@ -41,15 +41,15 @@
                         <h3>General</h3>
                         <ul class="nav side-menu">
                             <li><a href="index.php"><i class="fa fa-dashboard"></i> Dashboard </a></li>
-                            <li><a href="streams.php"><i class="fa  fa-upload"></i> Streams </a></li>
-                            <li><a href="activities.php"><i class="fa fa-toggle-right"></i> Activities </a></li>
-                            <li><a href="users.php"><i class="fa fa-users"></i> Users </a></li>
-                            <li><a href="categories.php"><i class="fa fa-list"></i> Categories </a></li>
+                            <li><a href="streams.php"><i class="fa fa-broadcast-tower"></i>"></i> Streams </a></li>
+                            <li><a href="users.php"><i class="fa fa-users"></i> User Manager</a></li>
+                            <li><a href="categories.php"><i class="fa fa-list"></i> Category manager </a></li>
                             <li><a href="transcodes.php"><i class="fa fa-reorder"></i> Transcode profiles </a></li>
-                            <li><a href="stream_importer.php"><i class="fa fa-archive"></i> Playlist importer </a></li>
-                            <li><a href="admins.php"><i class="fa fa-user"></i> Admin's </a></li>
-                            <li><a href="ipblocks.php"><i class="fa fa-exclamation-triangle"></i> Ipblock </a></li>
-                            <li><a href="useragentblocks.php"><i class="fa fa-exclamation-triangle"></i> User agent block </a></li>
+                            <li><a href="stream_importer.php"><i class="fa fa-upload"></i> Bulk import streams</a></li>
+                            <li><a href="admins.php"><i class="fa fa-user"></i> Administrator manager </a></li>
+                            <li><a href="ipblocks.php"><i class="fa fa-shield-alt"></i> IP Security </a></li>
+                            <li><a href="useragentblocks.php"><i class="fa "></i> User agent manager </a></li>
+                            <li><a href="activities.php"><i class="fa fa-clipboard-list"></i> Activity log </a></li>
                             <li><a href="settings.php"><i class="fa fa-cog"></i> Settings </a></li>
                         </ul>
                     </div>

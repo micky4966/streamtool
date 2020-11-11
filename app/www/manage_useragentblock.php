@@ -3,12 +3,12 @@ include('config.php');
 logincheck();
 
 $message = [];
-$title = "Create useragent block";
+$title = "Create User Agent block";
 $ipblock = new BlockedUseragent;
 $edit = 0;
 
 if (isset($_GET['id'])) {
-    $title = "Edit ipblock";
+    $title = "Edit User Agent";
     $ipblock = BlockedUseragent::find($_GET['id']);
 }
 
@@ -17,15 +17,15 @@ if (isset($_POST['submit'])) {
     $exists = BlockedUseragent::where('name', '=', $_POST['name'])->get();
     if (empty($_POST['name'])) {
         $message['type'] = "error";
-        $message['message'] = "useragent field cannot be empty";
+        $message['message'] = "User Agent field cannot be empty";
         $error = 1;
     }
     if ($error == 0) {
         $message['type'] = "success";
         if (isset($_GET['id'])) {
-            $message['message'] = "useragent block edited";
+            $message['message'] = "User Agent filter Edited";
         } else {
-            $message['message'] = "useragent block Created";
+            $message['message'] = "User Agent filter Created";
         }
         $ipblock->name = $_POST['name'];
         $ipblock->description = $_POST['description'];

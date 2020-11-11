@@ -36,13 +36,13 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel tile fixed_height_320">
             <div class="x_title">
-                <h2>SYSTEM</h2>
+                <h2>SYSTEM INFORMATIONS</h2>
             </div>
             <div class="x_content">
-                <h4>App Usage across versions</h4>
+                <h4>Hardware Resources:</h4>
                 <div class="widget_summary">
                     <div class="w_left w_25">
-                        <span>SPACE</span>
+                        <span>STORAGE</span>
                     </div>
                     <div class="w_center w_55">
                         <div class="progress">
@@ -52,14 +52,14 @@
                         </div>
                     </div>
                     <div class="w_right w_20">
-                        <span>{{ $space['count'] }} / {{ $space['total'] }}</span>
+                        <span>{{ ( $space['count'] / 1024 ) }} / {{ ( $space['total'] / 1024 ) }}GB</span>
                     </div>
                     <div class="clearfix"></div>
                 </div>
 
                 <div class="widget_summary">
                     <div class="w_left w_25">
-                        <span>CPU</span>
+                        <span>CPU LOAD</span>
                     </div>
                     <div class="w_center w_55">
                         <div class="progress">
@@ -76,7 +76,7 @@
 
                 <div class="widget_summary">
                     <div class="w_left w_25">
-                        <span>MEMORY</span>
+                        <span>MEMORY USAGE</span>
                     </div>
                     <div class="w_center w_55">
                         <div class="progress">
@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div class="w_right w_20">
-                        <span>{{ $mem['count'] }} / {{ $mem['total'] }}</span>
+                        <span>{{ ( $mem['count'] / 1024 ) }} / {{ ( $mem['total'] / 1024 ) }} MB</span>
                     </div>
                     <div class="clearfix"></div>
                 </div>

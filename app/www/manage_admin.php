@@ -3,12 +3,12 @@ include('config.php');
 logincheck();
 
 $message = [];
-$title = "Create admin";
+$title = "Create administrator";
 $admin = new Admin;
 $edit = 0;
 
 if (isset($_GET['id'])) {
-    $title = "Edit admin";
+    $title = "Edit administrator";
     $admin = Admin::find($_GET['id']);
 }
 
@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
         if (isset($_GET['id'])) {
             $message['message'] = "admin edited";
         } else {
-            $message['message'] = "admin Created";
+            $message['message'] = "admin created";
         }
 
         $admin->username = $_POST['username'];

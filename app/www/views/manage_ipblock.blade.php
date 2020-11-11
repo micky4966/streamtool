@@ -17,14 +17,14 @@
                     <br>
                     <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" role="form" action="" method="post">
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Ip <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">IP <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" name="ip" class="form-control col-md-7 col-xs-12"  value="{{  isset($_POST['ip']) ?  $_POST['ip'] : $ipblock->ip}}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">description
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Description
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <textarea class="form-control" name="description" placeholder='' rows="3">{{ $ipblock->description }}</textarea>

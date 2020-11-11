@@ -3,12 +3,12 @@ include('config.php');
 logincheck();
 
 $message = [];
-$title = "Create ipblock";
+$title = "Create IP filter";
 $ipblock = new BlockedIp;
 $edit = 0;
 
 if (isset($_GET['id'])) {
-    $title = "Edit ipblock";
+    $title = "Edit IP filter";
     $ipblock = BlockedIp::find($_GET['id']);
 }
 
@@ -17,16 +17,16 @@ if (isset($_POST['submit'])) {
     $exists = BlockedIp::where('ip', '=', $_POST['ip'])->get();
     if (empty($_POST['ip'])) {
         $message['type'] = "error";
-        $message['message'] = "ip field cannot be empty";
+        $message['message'] = "IP field cannot be empty";
         $error = 1;
     }
 
     if ($error == 0) {
         $message['type'] = "success";
         if (isset($_GET['id'])) {
-            $message['message'] = "ipblock edited";
+            $message['message'] = "filter edited";
         } else {
-            $message['message'] = "ipblock Created";
+            $message['message'] = "filter Created";
         }
 
 
