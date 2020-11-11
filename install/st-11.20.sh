@@ -20,6 +20,7 @@ echo ""
 echo "Cleaning mount point & user"
 {
   cd /opt/
+  killall ffmpeg
   mount -l | grep '/opt/streamtool/app/www/hl' && umount /opt/streamtool/app/www/hl
   crontab -r -u streamtool
   rm -rf /opt/streamtool
