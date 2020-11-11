@@ -83,9 +83,9 @@ if (isset($_GET['username']) && isset($_GET['password']) && isset($_GET['stream'
                         } else {
                             $url = $stream->streamurl;
                         }
-                        $folder = $setting->hlsfolder . '/';
+                        $folder = "/opt/streamtool/app/www/" . $setting->hlsfolder . '/';
                         $files = "";
-                        $file = $setting->hlsfolder . '/' . $stream->id . '_.m3u8';
+                        $file = "/opt/streamtool/app/www/" . $setting->hlsfolder . '/' . $stream->id . '_.m3u8';
                         if (file_exists($file) && preg_match_all("/(.*?).ts/", file_get_contents($file), $data)) {
                             $files = $data[0];
                             foreach ($files as $file) {
