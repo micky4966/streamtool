@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="w_right w_20">
-                        <span>{{ ( $space['count'] / 1024 ) }} / {{ ( $space['total'] / 1024 ) }}GB</span>
+                        <span>{{ round(( $space['count'] / 1024 ),2) }} / {{ round(( $space['total'] / 1024 ),2) }}GB</span>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="w_right w_20">
-                        <span>{{ $cpu['count'] }} / 100</span>
+                        <span>{{ $cpu['count'] }} %</span>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div class="w_right w_20">
-                        <span>{{ ( $mem['count'] / 1024 ) }} / {{ ( $mem['total'] / 1024 ) }} MB</span>
+                        <span>{{ round(( $mem['count'] / 1024 ),2) }} / {{ round(( $mem['total'] / 1024 ),2) }} MB</span>
                     </div>
                     <div class="clearfix"></div>
                 </div>
