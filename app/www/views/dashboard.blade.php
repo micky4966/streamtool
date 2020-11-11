@@ -46,7 +46,7 @@
                     </div>
                     <div class="w_center w_55">
                         <div class="progress">
-                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $space['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
+                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $space['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $space['pr'] }}%;">
 
                             </div>
                         </div>
@@ -63,13 +63,13 @@
                     </div>
                     <div class="w_center w_55">
                         <div class="progress">
-                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $cpu['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
+                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $cpu['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $cpu['pr'] }}%;">
 
                             </div>
                         </div>
                     </div>
                     <div class="w_right w_20">
-                        <span>{{ $cpu['count'] }} %</span>
+                        <span>{{ $cpu['pr'] }} %</span>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -80,12 +80,12 @@
                     </div>
                     <div class="w_center w_55">
                         <div class="progress">
-                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $mem['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
+                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $mem['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $mem['pr'] }}%;">
                             </div>
                         </div>
                     </div>
                     <div class="w_right w_20">
-                        <span>{{ round(( $mem['count'] / 1024 ),2) }} / {{ round(( $mem['total'] / 1024 ),2) }} MB</span>
+                        <span>{{ round(( $mem['count'] / 1024 ),2) }} / {{ round(( $mem['total'] / 1024 ),2) }}MB</span>
                     </div>
                     <div class="clearfix"></div>
                 </div>
