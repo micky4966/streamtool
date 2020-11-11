@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Streamtool panel by NeySlim</title>
+    <title>Streamtool</title>
 
     <!-- Bootstrap core CSS -->
 
@@ -100,7 +100,7 @@ if (isset($_POST['submit'])) {
                         <div>
 
 
-                            <p>&copy;2020 All Rights Reserved Streamtool by <a href="https://github.com/NeySlim/streamtool"
+                            <p>&copy;2020 Streamtool - <a href="https://github.com/NeySlim/streamtool"
                                                                                   target="_blank">NeySlim</a></p>
                         </div>
                     </div>
