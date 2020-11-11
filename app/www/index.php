@@ -100,7 +100,7 @@ if (isset($_POST['submit'])) {
                         <div>
 
 
-                            <p>&copy;2015 All Rights Reserved Streamtool by <a href="http://www.tyfix.nl"
+                            <p>&copy;2020 All Rights Reserved Streamtool by <a href="https://github.com/NeySlim/streamtool"
                                                                                   target="_blank">NeySlim</a></p>
                         </div>
                     </div>
