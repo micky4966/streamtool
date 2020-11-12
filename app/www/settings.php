@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
         if (is_null($_POST['webport'])) {
             $setting->webport = 8000;
         }
-        generatEginxConfPort($_POST['webport']);
+        generateNginxConfPort($_POST['webport']);
         $port = true;
     }
 
@@ -31,7 +31,8 @@ if (isset($_POST['submit'])) {
     $setting->save();
 
     if ($port) {
-        die("Restart nginx and go to the following url: http://" . $_SERVER['SERVER_ADDR'] . ":" . $_POST['webport'] . "/settings.php");
+        shell_exec('/opt/streamtool/app/nginx/sbin/nginx_streamtool -s reload');
+        redirect("settings.php", 1000);
     } else {
         redirect("settings.php", 1000);
     }
