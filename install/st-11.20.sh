@@ -115,6 +115,7 @@ echo "  - Last config"
   mkdir -p /opt/streamtool/app/nginx/fastcgi_temp
   mkdir -p /opt/streamtool/app/nginx/proxy_temp
   mkdir -p /opt/streamtool/app/nginx/scgi_temp
+  mkdir -p /opt/streamtool/app/php/var/run
   mkdir -p /opt/streamtool/app/logs/
   mkdir -p /opt/streamtool/app/www1/
   mkdir -p /opt/streamtool/app/www1/log/
