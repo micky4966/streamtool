@@ -62,8 +62,8 @@ echo " - Configuring system"
 
 {
   /usr/sbin/useradd -s /sbin/nologin -U -d /opt/streamtool -m streamtool
-  grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffmpeg' /etc/sudoers || echo 'nginx ALL = (root) NOPASSWD: /usr/bin/ffmpeg' >>/etc/sudoers
-  grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffprobe' /etc/sudoers || echo 'nginx ALL = (root) NOPASSWD: /usr/bin/ffprobe' >>/etc/sudoers
+  #grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffmpeg' /etc/sudoers || echo 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffmpeg' >>/etc/sudoers
+  #grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffprobe' /etc/sudoers || echo 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffprobe' >>/etc/sudoers
   grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/systemctl'  /etc/sudoers || echo 'streamtool ALL = (root) NOPASSWD: /usr/bin/systemctl' >>/etc/sudoers
   cp /opt/streamtool/install/files/streamtool*.service /etc/systemd/system/.
   systemctl daemon-reload
