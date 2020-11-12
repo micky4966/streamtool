@@ -31,7 +31,7 @@ curl -s https://raw.githubusercontent.com/NeySlim/streamtool/master/install/st-1
 
 ### Change streaming port
 1. change port in webinterface -> Settings -> web Port
-2. Execute **systemctl restart streamtool**
+2. Execute **systemctl restart streamtool-webserver**
 
 ## How does it work ?
 - Default login: admin / admin
