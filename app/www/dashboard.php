@@ -37,6 +37,13 @@ $mem_usage = $mem[2];
 $mem_total = $mem[1];
 $mem_pr = $mem[2] / $mem[1] * 100;
 
+$gpupresent = FALSE;
+if (file_exists('/usr/bin/nvidia-smi')) {
+    shell_exec('/opt/streamtool/app/bin/nvsmi-parser.sh > /tmp/smi.csv');
+    $gpupresent = TRUE;
+    $gpuinfos = csv_to_array('/tmp/smi.csv');
+}
+
 
 $space = [];
 $space['pr'] = $space_pr;
