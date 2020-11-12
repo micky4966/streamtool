@@ -1,18 +1,12 @@
 [Unit]
 Description=Streamtool
-After=network.target mariadb.service
+After=syslog.target network.target remote-fs.target nss-lookup.target mariadb.service
 Wants=network-online.target
 
 [Service]
-Restart=always
-Type=forking
-PIDFile=/opt/streamtool/app/nginx/pid/nginx.pid
-ExecStart=/opt/streamtool/app/nginx/sbin/nginx_streamtool
-ExecStartPre=/opt/streamtool/app/nginx/sbin/nginx_streamtool -t
-ExecReload=/opt/streamtool/app/nginx/sbin/nginx_streamtool -s reload
-ExecStop=/bin/kill -s QUIT $MAINPID
-PrivateTmp=true
-
+Type=oneshot
+ExecStart=/bin/true
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target

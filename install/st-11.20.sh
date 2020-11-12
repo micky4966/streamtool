@@ -45,7 +45,7 @@ apt-get autoremove --allow-downgrades --allow-remove-essential --allow-unauthent
 PID=$!
 spinner $PID "Removing unnecessary packages"
 
-apt-get install --allow-downgrades --allow-remove-essential --allow-unauthenticated -y sudo curl nano wget zip unzip git lsof iftop htop ca-certificates net-tools php php7.4 php7.4-cgi php7.4-bcmath php7.4-bz2 php7.4-cli php7.4-common php7.4-curl php7.4-fpm php7.4-gd php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-readline php7.4-soap php7.4-sqlite3 php7.4-tidy php7.4-xml php7.4-xmlrpc php7.4-xsl php7.4-zip libgeoip1 libqdbm14 libxdmcp6 libxml2 libxslt1.1 libxpm4 libcurl4 libmhash2 libpcre3 libpopt0 libpq5 libsensors-config libsm6 libpng16-16 libfreetype6 libc6 zlib1g libxau6 libxcb1 libssh2-1 libgd3 ffmpeg libavcodec-extra58 libavfilter-extra7 >/dev/null 2>&1 &
+apt-get install --allow-downgrades --allow-remove-essential --allow-unauthenticated -y sudo curl nano wget zip unzip git lsof iftop htop ca-certificates net-tools libgeoip1 libqdbm14 libxdmcp6 libxml2 libxslt1.1 libxpm4 libcurl4 libmhash2 libpcre3 libpopt0 libpq5 libsensors-config libsm6 libpng16-16 libfreetype6 libc6 zlib1g libxau6 libxcb1 libssh2-1 libgd3 ffmpeg libavcodec-extra58 libavfilter-extra7 >/dev/null 2>&1 &
 PID=$!
 spinner $PID "Installing ubuntu required packages"
 
@@ -60,20 +60,13 @@ spinner $PID "Downloading software"
 echo " - Configuring system"
 
 {
-  cp /opt/streamtool/install/files/php.conf /etc/php/7.4/fpm/pool.d/www.conf
-  sed -i 's/cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/7.4/fpm/php.ini
-  sed -i 's/output_buffering = 4096/output_buffering = Off/g' /etc/php/7.4/fpm/php.ini
-  perl -pi -e 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/7.4/fpm/php.ini
-  perl -pi -e 's/;error_log = syslog/error_log = php_error.log/g' /etc/php/7.4/fpm/php.ini
-  timezone="$(cat /etc/timezone)"
-  perl -pi -e 's/;date.timezone =/date.timezone = ${timezone}/g' /etc/php/7.4/fpm/php.ini
-  service php7.4-fpm restart
   /usr/sbin/useradd -s /sbin/nologin -U -d /opt/streamtool -m streamtool
   grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffmpeg' /etc/sudoers || echo 'nginx ALL = (root) NOPASSWD: /usr/bin/ffmpeg' >>/etc/sudoers
   grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/ffprobe' /etc/sudoers || echo 'nginx ALL = (root) NOPASSWD: /usr/bin/ffprobe' >>/etc/sudoers
-  cp /opt/streamtool/install/files/streamtool.service /etc/systemd/system/.
+  grep -qxF 'streamtool ALL = (root) NOPASSWD: /usr/bin/systemctl'  /etc/sudoers || echo 'streamtool ALL = (root) NOPASSWD: /usr/bin/systemctl' >>/etc/sudoers
+  cp /opt/streamtool/install/files/streamtool*.service /etc/systemd/system/.
   systemctl daemon-reload
-  systemctl enable streamtool
+  systemctl enable streamtool streamtool-webserver streamtool-fpm
   echo "$(
     date +%s | sha256sum | base64 | head -c 32
     echo
@@ -125,7 +118,7 @@ echo "  - Last config"
   mkdir -p /opt/streamtool/app/logs/
   mkdir -p /opt/streamtool/app/www1/
   mkdir -p /opt/streamtool/app/www1/log/
-  cp -R /opt/streamtool/app/www/* /opt/streamtool/app/www1/ && rm -rf /opt/streamtool/app/www1/*.*
+  cp -ar /opt/streamtool/app/www/* /opt/streamtool/app/www1/ && rm -rf /opt/streamtool/app/www1/*.*
   rm -rf /opt/streamtool/app/www1/hl
   ln -s /opt/streamtool/app/www/config.php /opt/streamtool/app/www1/config.php
   ln -s /opt/streamtool/app/www/functions.php /opt/streamtool/app/www1/functions.php
@@ -136,19 +129,17 @@ echo "  - Last config"
   ln -s /opt/streamtool/app/www/hl /opt/streamtool/app/www1/hl
 
   chown -R streamtool. /opt/streamtool
-  /
 
-  systemctl restart php7.4-fpm
-  systemctl start streamtool
   (
     crontab -u streamtool -l 2>/dev/null
-    echo "*/1 * * * * /usr/bin/php /opt/streamtool/app/www/cron.php"
+    echo "*/1 * * * * /opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php"
   ) | crontab -u streamtool -
 } &>/dev/null
 
 echo ""
 echo ""
-echo
+
+systemctl start streamtool
 sleep 5 &
 PID=$!
 spinner $PID "Starting Streamtool Webserver"
