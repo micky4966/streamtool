@@ -103,7 +103,7 @@ function getTranscode($id, $streamnumber = null)
         return $ffmpeg;
     }
 
-    $ffmpeg .= ' -y -thread_queue_size 512 -loglevel error -fflags nobuffer -flags low_delay -fflags +genpts -strict experimental -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 2 -err_detect ignore_err -i "' . $url . '"';
+    $ffmpeg .= ' -y -thread_queue_size 512 -loglevel error -fflags nobuffer -flags low_delay -fflags +genpts -strict experimental -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 2 -err_detect ignore_err';
     $ffmpeg .= ' -user_agent "' . ($setting->user_agent ? $setting->user_agent : 'Streamtool') . '"';
     $ffmpeg .= ' -i "' . $url . '"';
     $ffmpeg .= ' -c copy -a copy';
