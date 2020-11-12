@@ -28,16 +28,12 @@ curl -s https://raw.githubusercontent.com/NeySlim/streamtool/master/install/st-1
  Default Username Password: admin
 
 
-
-### Change streaming port
-1. change port in webinterface -> Settings -> web Port
-2. Execute **systemctl restart streamtool-webserver**
-
 ## How does it work ?
 - Default login: admin / admin
   - Add a category to allow user and stream creation
   - Add a stream or import a playlist
   - Add a user
+- not recommanded to change hls output directory
 - Not using transcoding will only remux stream to simple hls output.
 - vaapi soon to be implemented
 
