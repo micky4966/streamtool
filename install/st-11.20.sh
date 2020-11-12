@@ -125,6 +125,7 @@ echo "  - Last config"
   ln -s /opt/streamtool/app/www/config.php /opt/streamtool/app/www1/config.php
   ln -s /opt/streamtool/app/www/functions.php /opt/streamtool/app/www1/functions.php
   ln -s /opt/streamtool/app/www/stream.php /opt/streamtool/app/www1/stream.php
+  ln -s /opt/streamtool/app/www/mpegts.php /opt/streamtool/app/www1/mpegts.php
   ln -s /opt/streamtool/app/www/playlist.php /opt/streamtool/app/www1/playlist.php
   grep -qxF 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' /etc/fstab || echo 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' >>/etc/fstab
   mount /opt/streamtool/app/www/hl
