@@ -9,12 +9,13 @@ A web software for managing and manipulating video streams.
 - Manage streams 
 - Transcode streams with advanced configuration
 - Manage transcode profiles
-- Hardware transcoding
+- NVENC full hardware transcoding (decoding/encoding) support for H264/HEVC
 - Autorestart on stream failure
 - Playlist generation
 - Bulk import
 - User Agent manager
 - IP filter manager
+- Resources monitor
 ... and more to come
  
 ## Installation
@@ -38,6 +39,6 @@ curl -s https://raw.githubusercontent.com/NeySlim/streamtool/master/install/st-1
   - Add a stream or import a playlist
   - Add a user
 - Not using transcoding will only remux stream to simple hls output.
-- nvenc/vaapi supported but profiles not yet implemented
+- vaapi soon to be implemented
 
 
