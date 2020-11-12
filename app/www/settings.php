@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
     $setting->save();
 
     if ($port) {
-        shell_exec('/opt/streamtool/app/nginx/sbin/nginx_streamtool -s reload');
+        shell_exec('sudo /usr/bin/systemctl reload streamtool-webserver');
         redirect("settings.php", 1000);
     } else {
         redirect("settings.php", 1000);
