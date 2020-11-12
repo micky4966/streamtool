@@ -108,7 +108,7 @@ echo "  - Last config"
   ln -sf /opt/streamtool/app/nginx/sbin/nginx /opt/streamtool/app/nginx/sbin/nginx_streamtool
 
   mkdir -p /opt/streamtool/app/www/cache
-  #chmod -R 777 /opt/streamtool/app/www/cache
+  chmod -R 777 /opt/streamtool/app/www/cache
   mkdir -p /opt/streamtool/app/www/hl
   mkdir -p /opt/streamtool/app/nginx/pid
   mkdir -p /opt/streamtool/app/nginx/client_body_temp
