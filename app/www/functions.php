@@ -294,17 +294,17 @@ http {
         rewrite ^/live/(.*)/(.*)/(.*)$ /stream.php?username=$1&password=$2&stream=$3 break;
         rewrite ^/mpegts/(.*)/(.*)/(.*)$ /mpegts.php?username=$1&password=$2&stream=$3 break;
 		location ~ \.php$ {
-		  try_files $uri =404;
-		  fastcgi_index index.php;
-		  include fastcgi_params;
-		  fastcgi_buffering on;
-		  fastcgi_buffers 96 32k;
-		  fastcgi_buffer_size 32k;
-		  fastcgi_max_temp_file_size 0;
-		  fastcgi_keep_conn on;
-		  fastcgi_param SCRIPT_FILENAME /opt/streamtool/app/www1/$fastcgi_script_name;
-		  fastcgi_param SCRIPT_NAME $fastcgi_script_name;
-		  fastcgi_pass 127.0.0.1:9002;
+            try_files $uri =404;
+            fastcgi_index index.php;
+            include fastcgi_params;
+            fastcgi_buffering on;
+            fastcgi_buffers 96 32k;
+            fastcgi_buffer_size 32k;
+            fastcgi_max_temp_file_size 0;
+            fastcgi_keep_conn on;
+            fastcgi_param SCRIPT_FILENAME /opt/streamtool/app/www1/$fastcgi_script_name;
+            fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+            fastcgi_pass unix:/opt/streamtool/app/php/var/run/stream.sock;
 		}	
 	}
 	server {
