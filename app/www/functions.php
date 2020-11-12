@@ -77,11 +77,19 @@ function getTranscode($id, $streamnumber = null)
         $ffmpeg .= ' -probesize ' . ($trans->probesize ? $trans->probesize : '15000000');
         $ffmpeg .= ' -analyzeduration ' . ($trans->analyzeduration ? $trans->analyzeduration : '12000000');
         $ffmpeg .= ' -user_agent "' . ($setting->user_agent ? $setting->user_agent : 'Streamtool') . '"';
+        if ( strpos($trans->video_codec, 'nvenc')) {
+            $ffmpeg .= ' -hwaccel cuvid';
+            if ( strpos($stream->video_codec_name, '264') !== false ) {
+                    $ffmpeg .= ' -c:v h264_cuvid';
+            }
+            if ( strpos($stream->video_codec_name, 'hevc') !== false ) {
+                    $ffmpeg .= ' -c:v hevc_cuvid';
+            }
+        }
         $ffmpeg .= ' -i ' . '"' . "$url" . '"';
         $ffmpeg .= ' -strict -2 -dn ';
         $ffmpeg .= $trans->scale ? ' -vf scale=' . ($trans->scale ? $trans->scale : '') : '';
         $ffmpeg .= $trans->audio_codec ? ' -acodec ' . $trans->audio_codec : '';
-        '';
         $ffmpeg .= $trans->video_codec ? ' -vcodec ' . $trans->video_codec : '';
         $ffmpeg .= $trans->profile ? ' -profile:v ' . $trans->profile : '';
         $ffmpeg .= $trans->preset ? ' -preset ' . $trans->preset_values : '';
@@ -120,6 +128,15 @@ function getTranscodedata($id)
     $ffmpeg .= ' -probesize ' . ($trans->probesize ? $trans->probesize : '15000000');
     $ffmpeg .= ' -analyzeduration ' . ($trans->analyzeduration ? $trans->analyzeduration : '12000000');
     $ffmpeg .= ' -user_agent "' . ($setting->user_agent ? $setting->user_agent : 'Streamtool') . '"';
+    if ( strpos($trans->video_codec, 'nvenc')) {
+        $ffmpeg .= ' -hwaccel cuvid';
+        if ( strpos($stream->video_codec_name, '264') !== false ) {
+                $ffmpeg .= ' -c:v h264_cuvid';
+        }
+        if ( strpos($stream->video_codec_name, 'hevc') !== false ) {
+                $ffmpeg .= ' -c:v hevc_cuvid';
+        }
+    }    
     $ffmpeg .= ' -i ' . '"' . "[input]" . '"';
     $ffmpeg .= ' -strict -2 -dn ';
     $ffmpeg .= $trans->scale ? ' -vf scale=' . ($trans->scale ? $trans->scale : '') : '';
