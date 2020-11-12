@@ -19,6 +19,7 @@ echo ""
 
 echo "Cleaning mount point & user"
 {
+  systemctl stop streamtool-webserver streamtool-fpm streamtool
   cd /opt/
   killall ffmpeg
   while [ ! -z "`mount -l | grep '/opt/streamtool/app/www/hl'`" ]; do 

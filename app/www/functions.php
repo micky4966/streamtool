@@ -76,8 +76,8 @@ function getTranscode($id, $streamnumber = null)
         $ffmpeg .= ' -y -thread_queue_size 512 -loglevel error -fflags nobuffer -flags low_delay -fflags +genpts -strict experimental -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 2 -err_detect ignore_err';
         $ffmpeg .= ' -probesize ' . ($trans->probesize ? $trans->probesize : '15000000');
         $ffmpeg .= ' -analyzeduration ' . ($trans->analyzeduration ? $trans->analyzeduration : '12000000');
-        $ffmpeg .= ' -i ' . '"' . "$url" . '"';
         $ffmpeg .= ' -user_agent "' . ($setting->user_agent ? $setting->user_agent : 'Streamtool') . '"';
+        $ffmpeg .= ' -i ' . '"' . "$url" . '"';
         $ffmpeg .= ' -strict -2 -dn ';
         $ffmpeg .= $trans->scale ? ' -vf scale=' . ($trans->scale ? $trans->scale : '') : '';
         $ffmpeg .= $trans->audio_codec ? ' -acodec ' . $trans->audio_codec : '';
@@ -103,9 +103,10 @@ function getTranscode($id, $streamnumber = null)
         return $ffmpeg;
     }
 
-    $ffmpeg .= ' -probesize 15000000 -analyzeduration 9000000 -i "' . $url . '"';
+    $ffmpeg .= ' -y -thread_queue_size 512 -loglevel error -fflags nobuffer -flags low_delay -fflags +genpts -strict experimental -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 2 -err_detect ignore_err -i "' . $url . '"';
     $ffmpeg .= ' -user_agent "' . ($setting->user_agent ? $setting->user_agent : 'Streamtool') . '"';
-    $ffmpeg .= ' -c copy -c:a aac -b:a 128k';
+    $ffmpeg .= ' -i "' . $url . '"';
+    $ffmpeg .= ' -c copy -a copy';
     $ffmpeg .= $endofffmpeg;
     return $ffmpeg;
 }
@@ -118,8 +119,8 @@ function getTranscodedata($id)
     $ffmpeg .= ' -y -thread_queue_size 512 -loglevel error -fflags nobuffer -flags low_delay -fflags +genpts -strict experimental -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 2 -err_detect ignore_err';
     $ffmpeg .= ' -probesize ' . ($trans->probesize ? $trans->probesize : '15000000');
     $ffmpeg .= ' -analyzeduration ' . ($trans->analyzeduration ? $trans->analyzeduration : '12000000');
-    $ffmpeg .= ' -i ' . '"' . "[input]" . '"';
     $ffmpeg .= ' -user_agent "' . ($setting->user_agent ? $setting->user_agent : 'Streamtool') . '"';
+    $ffmpeg .= ' -i ' . '"' . "[input]" . '"';
     $ffmpeg .= ' -strict -2 -dn ';
     $ffmpeg .= $trans->scale ? ' -vf scale=' . ($trans->scale ? $trans->scale : '') : '';
     $ffmpeg .= $trans->audio_codec ? ' -acodec ' . $trans->audio_codec : '';
