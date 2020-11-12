@@ -1,7 +1,7 @@
 @extends('main')
 @section('content')
-        <!-- top tiles -->
-<div class="row tile_count" onclick="document.location = 'streams.php?running=1'"  style="cursor:pointer">
+<!-- top tiles -->
+<div class="row tile_count" onclick="document.location = 'streams.php?running=1'" style="cursor:pointer">
     <div class="animated flipInY col-md-4 col-sm-4 col-xs-4 tile_stats_count">
         <div class="left"></div>
         <div class="right">
@@ -9,14 +9,14 @@
             <div class="count">{{ $online }}</div>
         </div>
     </div>
-    <div class="animated flipInY col-md-4 col-sm-4 col-xs-4 tile_stats_count" onclick="document.location = 'streams.php?running=2'"  style="cursor:pointer">
+    <div class="animated flipInY col-md-4 col-sm-4 col-xs-4 tile_stats_count" onclick="document.location = 'streams.php?running=2'" style="cursor:pointer">
         <div class="left"></div>
         <div class="right">
-            <span class="count_top"<i class="fas fa-volume-off"></i> Offline streams</span>
+            <span class="count_top" <i class="fas fa-volume-off"></i> Offline streams</span>
             <div class="count">{{ $offline }}</div>
         </div>
     </div>
-    <div class="animated flipInY col-md-4 col-sm-4 col-xs-4 tile_stats_count" onclick="document.location = 'streams.php'"  style="cursor:pointer">
+    <div class="animated flipInY col-md-4 col-sm-4 col-xs-4 tile_stats_count" onclick="document.location = 'streams.php'" style="cursor:pointer">
         <div class="left"></div>
         <div class="right">
             <span class="count_top"><i class="fas fa-rss"></i> Total streams</span>
@@ -89,10 +89,23 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-
+                <div class="widget_summary">
+                    <div class="w_left w_25">
+                        <span>GPUS INFOS</span>
+                    </div>
+                    <div class="w_center w_55">
+                        <div class="progress">
+                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $mem['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $mem['pr'] }}%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w_right w_20">
+                        <span>{{ round(( $mem['count'] / 1024 ),2) }} / {{ round(( $mem['total'] / 1024 ),2) }}MB</span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
 
             </div>
         </div>
     </div>
-@endsection
-
+    @endsection

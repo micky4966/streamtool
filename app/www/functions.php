@@ -292,7 +292,7 @@ function start_stream($id)
 }
 
 
-function generatEginxConfPort($port)
+function generateNginxConfPort($port)
 {
     ob_start();
     echo 'user  nginx;
