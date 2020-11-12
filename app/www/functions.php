@@ -291,7 +291,8 @@ http {
 		root /opt/streamtool/app/www1/;
 		server_tokens off;
 		chunked_transfer_encoding off;
-		rewrite ^/live/(.*)/(.*)/(.*)$ /stream.php?username=$1&password=$2&stream=$3 break;
+        rewrite ^/live/(.*)/(.*)/(.*)$ /stream.php?username=$1&password=$2&stream=$3 break;
+        rewrite ^/mpegts/(.*)/(.*)/(.*)$ /mpegts.php?username=$1&password=$2&stream=$3 break;
 		location ~ \.php$ {
 		  try_files $uri =404;
 		  fastcgi_index index.php;
