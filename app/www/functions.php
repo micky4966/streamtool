@@ -295,7 +295,7 @@ function start_stream($id)
 function generateNginxConfPort($port)
 {
     ob_start();
-    echo 'user  nginx;
+    echo 'user  streamtool;
 worker_processes  auto;
 worker_rlimit_nofile 655350;
 
