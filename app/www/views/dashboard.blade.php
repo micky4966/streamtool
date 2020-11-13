@@ -12,7 +12,7 @@
     <div class="animated flipInY col-md-4 col-sm-4 col-xs-4 tile_stats_count" onclick="document.location = 'streams.php?running=2'" style="cursor:pointer">
         <div class="left"></div>
         <div class="right">
-            <span class="count_top" <i class="fas fa-volume-off"></i> Offline streams</span>
+            <span class="count_top"><i class="fas fa-volume-mute"></i> Offline streams</span>
             <div class="count">{{ $offline }}</div>
         </div>
     </div>

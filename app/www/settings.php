@@ -3,6 +3,21 @@ include('config.php');
 logincheck();
 $message = [];
 $setting = Setting::first();
+
+if (isset($_POST['patchnv'])) {
+
+    $result = patchnv();
+    if ($result != null) {
+        $message['type'] = "success";
+        $message['message'] = "Nvidia Patch successful: " . $result;
+    } else {
+        $message['type'] = "error";
+        $message['message'] = "Nvidia Patch application failed";
+    }
+}
+
+
+
 if (isset($_POST['submit'])) {
 
     $port = false;
@@ -36,8 +51,6 @@ if (isset($_POST['submit'])) {
     } else {
         redirect("settings.php", 1000);
     }
-
-
 }
 echo $template->view()->make('manage_settings')
     ->with('setting', $setting)

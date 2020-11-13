@@ -55,6 +55,12 @@ function csv_to_array($filename = '', $delimiter = ',')
     }
     return $data;
 }
+function patchnv()
+{
+    copy('https://raw.githubusercontent.com/keylase/nvidia-patch/master/patch.sh', '/tmp/patch.sh');
+    $patchresult = exec_shell('chmod +x /tmp/patch.sh; /usr/bin/sudo /tmp/patch.sh');
+    return $patchresult;
+}
 
 function stop_stream($id)
 {

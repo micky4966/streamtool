@@ -82,6 +82,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                             <button type="submit" name="submit" class="btn btn-success">Submit</button>
                         </div>
+                        <button class="btn btn-danger" href="settings?patchnv" title="Patch Nvidia encoder limit" onclick="return confirm('Are you sure?')">Patch Nvidia encoder limit</button>
                     </div>
 
                 </form>
