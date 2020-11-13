@@ -34,7 +34,7 @@
 
 
     <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel tile fixed_height_320">
+        <div class="x_panel tile">
             <div class="x_title">
                 <h2>SYSTEM INFORMATIONS</h2>
             </div>
@@ -85,36 +85,42 @@
                         </div>
                     </div>
                     <div class="w_right w_20">
-                        <span>{{ round(( $mem['count'] / 1024 ),2) }} / {{ round(( $mem['total'] / 1024 ),2) }}MB</span>
+                        <span>{{ round(( $mem['count'] / 1024 /1024 ),2) }} / {{ round(( $mem['total'] / 1024 /1024 ),2) }}GB</span>
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div class="widget_summary">
-                    <div class="w_left w_25">
-                        <span>GPUS INFOS</span>
-                    </div>
-                    <div class="w_center w_55">
-                        <div class="progress">
-                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $mem['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $mem['pr'] }}%;">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w_right w_20">
-                        <span>{{ round(( $mem['count'] / 1024 ),2) }} / {{ round(( $mem['total'] / 1024 ),2) }}MB</span>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+                
             </div>
             @php
-            if (  $gpupresent  ) {
-                echo '<div class="x_content"><div class="x_title"><h2>GPUs INFORMATIONS</h2></div>';
-                    for ($i = 0; $i < count($gpuinfos); $i++){
-                        echo '<h4>GPU ' . $i . ' - ' . $gpuinfos[$i]['cardname'] . '</h4><div class="widget_summary"><div class="w_left w_25"><span>GPU UTILIZATION</span></div><div class="w_center w_55"><div class="progress"><div class="progress-bar bg-blue" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['gputil'] . '" aria-valuemin=" 0" ari></div></div> </div><div class="w_right w_20"><span>' . $gpuinfos[$i]['gputil'] . '%</span></div><div class="clearfix"></div></div>';
+            if ( $gpupresent ) {
+            echo '<div class="x_content">
+                <div class="x_title">
+                    <h2>GPUs INFORMATIONS</h2>
+                </div>';
+                for ($i = 0; $i < count($gpuinfos); $i++){ 
+                    echo '
+                    <h4>GPU ' . $i . ' - ' . $gpuinfos[$i]['cardname'] . '</h4>
+                        <div class="widget_summary">
+                            <div class="w_left w_25">
+                                <span>GPU UTILIZATION</span>
+                            </div>
+                            <div class="w_center w_55">
+                                <div class="progress">
+                                    <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['gpuutil'] . '" aria-valuemin=" 0"aria-valuemin="0" aria-valuemax="100" style="width: ' .$gpuinfos[$i]['gpuutil'] . '%"></div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w_right w_20">
+                                <span>' . $gpuinfos[$i]['gpuutil'].'%</span>
+                            </div>
+                        </div>
+                        </div>';
                     }
-            }
-            @endphp
-
-</div>
-</div>
-</div>
-@endsection
+                    echo '</div>'; 
+                }
+            @endphp 
+                    </div> 
+                </div> 
+            </div>
+            @endsection
