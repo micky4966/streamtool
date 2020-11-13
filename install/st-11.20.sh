@@ -151,7 +151,7 @@ echo ""
 echo ""
 streamPort=`mysql -uroot -Nse "SELECT webport FROM streamtool.settings"`
 if [ "$?" == "0" ]; then
-  sed -i 's/listen 8000/listen '${streamPort}'/g' /opt/streamtool/app/nginx/conf/nginx.conf
+  sed -i 's/listen 8000/listen '"${streamPort}"'/g' /opt/streamtool/app/nginx/conf/nginx.conf
 fi
 systemctl start streamtool
 sleep 5 &
