@@ -13,6 +13,22 @@ spinner() {
   echo -en " - $text\n"
 }
 
+if [ -f /etc/lsb-release ]; then
+    . /etc/lsb-release
+        if [ $DISTRIB_ID == Ubuntu ]; then
+            if [ $DISTRIB_RELEASE != "20.04" ]; then
+                echo "ERROR: System supported: Ubuntu 20.04 LTS"
+                exit 2
+            fi
+        else
+        echo "ERROR: System supported: Ubuntu 20.04 LTS"
+        exit 2   
+        fi
+fi
+
+
+
+
 clear
 echo -e "************************************************\n*                                              *\n*          Streamtool autoinstaller            *\n*                                              *\n************************************************"
 echo ""
