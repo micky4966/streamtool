@@ -130,7 +130,6 @@ do
     fi
 done
   ln -s /opt/streamtool/app/www/config /opt/streamtool/app/wws/config
-  ln -s /opt/streamtool/app/www/ /opt/streamtool/app/wws/
   ln -s /opt/streamtool/app/www/config.php /opt/streamtool/app/wws/config.php
   ln -s /opt/streamtool/app/www/functions.php /opt/streamtool/app/wws/functions.php
   ln -s /opt/streamtool/app/www/stream.php /opt/streamtool/app/wws/stream.php
@@ -150,7 +149,10 @@ done
 
 echo ""
 echo ""
-
+streamPort=`mysql -uroot -Nse "SELECT webport FROM streamtool.settings"`
+if [ "$?" == "0" ]; then
+  sed -i 's/listen 8000/listen ${streamPort}/g' /opt/streamtool/app/nginx/conf/nginx.conf
+fi
 systemctl start streamtool
 sleep 5 &
 PID=$!
