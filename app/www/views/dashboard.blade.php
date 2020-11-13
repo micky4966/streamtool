@@ -104,8 +104,17 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-
             </div>
-        </div>
-    </div>
-    @endsection
+            @php
+            if (  $gpupresent  ) {
+                echo '<div class="x_content"><div class="x_title"><h2>GPUs INFORMATIONS</h2></div>';
+                    for ($i = 0; $i < count($gpuinfos); $i++){
+                        echo '<h4>GPU ' . $i . ' - ' . $gpuinfos[$i]['cardname'] . '</h4><div class="widget_summary"><div class="w_left w_25"><span>GPU UTILIZATION</span></div><div class="w_center w_55"><div class="progress"><div class="progress-bar bg-blue" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['gputil'] . '" aria-valuemin=" 0" ari></div></div> </div><div class="w_right w_20"><span>' . $gpuinfos[$i]['gputil'] . '%</span></div><div class="clearfix"></div></div>';
+                    }
+            }
+            @endphp
+
+</div>
+</div>
+</div>
+@endsection

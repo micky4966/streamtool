@@ -107,7 +107,7 @@ echo "  - Last config"
   sed -i 's/ttt/streamtool/g' /opt/streamtool/app/www/config.php
 
   ln -sf /opt/streamtool/app/nginx/sbin/nginx /opt/streamtool/app/nginx/sbin/nginx_streamtool
-
+  chmod +x /opt/streamtool/app/bin/*.sh
   mkdir -p /opt/streamtool/app/www/cache
   chmod -R 777 /opt/streamtool/app/www/cache
   mkdir -p /opt/streamtool/app/www/hl
