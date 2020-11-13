@@ -13,7 +13,6 @@
     <!-- Custom styling plus plugins -->
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/icheck/flat/green.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/progressbar/bootstrap-progressbar-3.3.0.css">
     <link href="css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
     <script data-search-pseudo-elements src="fonts/js/all.js"></script>
@@ -116,7 +115,6 @@
 <!-- chart js -->
 <script src="js/chartjs/chart.min.js"></script>
 <!-- bootstrap progress js -->
-<script src="js/progressbar/bootstrap-progressbar.min.js"></script>
 <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
 <!-- icheck -->
 <script src="js/icheck/icheck.min.js"></script>
