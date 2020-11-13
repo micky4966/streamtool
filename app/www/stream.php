@@ -36,7 +36,7 @@ if (isset($_GET['username']) && isset($_GET['password']) && isset($_GET['stream'
             " User: ".$username.
             " Pass: ".$password.
 	    " ".PHP_EOL; 
-            file_put_contents('/opt/streamtool/app/www1/log/streamtool-loginfail'.'.log', $log, FILE_APPEND);
+            file_put_contents('/opt/streamtool/app/wws/log/streamtool-loginfail'.'.log', $log, FILE_APPEND);
             sleep (10);
 		  }
 

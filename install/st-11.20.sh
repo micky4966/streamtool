@@ -118,18 +118,27 @@ echo "  - Last config"
   mkdir -p /opt/streamtool/app/nginx/scgi_temp
   mkdir -p /opt/streamtool/app/php/var/run
   mkdir -p /opt/streamtool/app/logs/
-  mkdir -p /opt/streamtool/app/www1/
-  mkdir -p /opt/streamtool/app/www1/log/
-  cp -ar /opt/streamtool/app/www/* /opt/streamtool/app/www1/ && rm -rf /opt/streamtool/app/www1/*.*
-  rm -rf /opt/streamtool/app/www1/hl
-  ln -s /opt/streamtool/app/www/config.php /opt/streamtool/app/www1/config.php
-  ln -s /opt/streamtool/app/www/functions.php /opt/streamtool/app/www1/functions.php
-  ln -s /opt/streamtool/app/www/stream.php /opt/streamtool/app/www1/stream.php
-  ln -s /opt/streamtool/app/www/mpegts.php /opt/streamtool/app/www1/mpegts.php
-  ln -s /opt/streamtool/app/www/playlist.php /opt/streamtool/app/www1/playlist.php
-  grep -qxF 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' /etc/fstab || echo 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' >>/etc/fstab
   mount /opt/streamtool/app/www/hl
-  ln -s /opt/streamtool/app/www/hl /opt/streamtool/app/www1/hl
+  mkdir -p /opt/streamtool/app/wws/
+  mkdir -p /opt/streamtool/app/wws/log/
+  cd /opt/streamtool/app/www/
+for FILE in *
+do
+    if test -d $FILE
+    then
+      ln -s /opt/streamtool/app/www/$FILE /opt/streamtool/app/wws/$FILE
+    fi
+done
+  ln -s /opt/streamtool/app/www/config /opt/streamtool/app/wws/config
+  ln -s /opt/streamtool/app/www/ /opt/streamtool/app/wws/
+  ln -s /opt/streamtool/app/www/config.php /opt/streamtool/app/wws/config.php
+  ln -s /opt/streamtool/app/www/functions.php /opt/streamtool/app/wws/functions.php
+  ln -s /opt/streamtool/app/www/stream.php /opt/streamtool/app/wws/stream.php
+  ln -s /opt/streamtool/app/www/mpegts.php /opt/streamtool/app/wws/mpegts.php
+  ln -s /opt/streamtool/app/www/playlist.php /opt/streamtool/app/wws/playlist.php
+  grep -qxF 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' /etc/fstab || echo 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' >>/etc/fstab
+  
+  ln -s /opt/streamtool/app/www/hl /opt/streamtool/app/wws/hl
 
   chown -R streamtool. /opt/streamtool
 

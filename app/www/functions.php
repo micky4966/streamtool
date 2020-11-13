@@ -58,7 +58,7 @@ function csv_to_array($filename = '', $delimiter = ',')
 function patchnv()
 {
     copy('https://raw.githubusercontent.com/keylase/nvidia-patch/master/patch.sh', '/tmp/patch.sh');
-    $patchresult = exec_shell('chmod +x /tmp/patch.sh; /usr/bin/sudo /tmp/patch.sh');
+    $patchresult = shell_exec('/usr/bin/chmod +x /tmp/patch.sh && /usr/bin/sudo /tmp/patch.sh');
     return $patchresult;
 }
 
@@ -132,7 +132,7 @@ function getTranscode($id, $streamnumber = null)
         $ffmpeg .= $trans->threads ? ' -threads ' . $trans->threads : '';
         $ffmpeg .= $trans->deinterlance ? ' -vf yadif' : '';
         $ffmpeg .= $endofffmpeg;
-        file_put_contents('/opt/streamtool/app/www1/log/streamtool-ffmpeg' . '.log', $ffmpeg, FILE_APPEND);
+        file_put_contents('/opt/streamtool/app/wws/log/streamtool-ffmpeg' . '.log', $ffmpeg, FILE_APPEND);
         return $ffmpeg;
     }
 
@@ -329,7 +329,7 @@ http {
         lingering_close           off;
 	server {
 		listen ' . $port . ';
-		root /opt/streamtool/app/www1/;
+		root /opt/streamtool/app/wws/;
 		server_tokens off;
 		chunked_transfer_encoding off;
         rewrite ^/live/(.*)/(.*)/(.*)$ /stream.php?username=$1&password=$2&stream=$3 break;
@@ -343,7 +343,7 @@ http {
             fastcgi_buffer_size 32k;
             fastcgi_max_temp_file_size 0;
             fastcgi_keep_conn on;
-            fastcgi_param SCRIPT_FILENAME /opt/streamtool/app/www1/$fastcgi_script_name;
+            fastcgi_param SCRIPT_FILENAME /opt/streamtool/app/wws/$fastcgi_script_name;
             fastcgi_param SCRIPT_NAME $fastcgi_script_name;
             fastcgi_pass unix:/opt/streamtool/app/php/var/run/stream.sock;
 		}	
