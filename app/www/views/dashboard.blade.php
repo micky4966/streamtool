@@ -36,7 +36,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel tile">
             <div class="x_title">
-                <h2>SYSTEM INFORMATIONS</h2>
+                <h3>SYSTEM INFORMATIONS</h3>
             </div>
             <div class="x_content">
                 <h4>Hardware Resources:</h4>
@@ -95,9 +95,9 @@
             if ( $gpupresent ) {
             echo '
                 <div class="x_title">
-                    <h2>GPUs INFORMATIONS</h2>
+                    <h3>GPUs INFORMATIONS</h3>
                 </div>';
-                for ($i = 0; $i < count($gpuinfos); $i++){ 
+                for ($i = 0; $i < count($gpuinfos); $i++){
                     echo '<div class="x_content">
                     <h4>GPU ' . $i . ' - ' . $gpuinfos[$i]['cardname'] .':</h4>
                         <div class="widget_summary">
@@ -106,7 +106,7 @@
                             </div>
                             <div class="w_center w_55">
                                 <div class="progress">
-                                    <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['gpuutil'] . '" aria-valuemin=" 0"aria-valuemin="0" aria-valuemax="100" style="width: ' .$gpuinfos[$i]['gpuutil'] . '%"></div>
+                                    <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['gpuutil'] . '" aria-value>
                                     <div class="clearfix">
                                     </div>
                                 </div>
@@ -115,11 +115,12 @@
                                 <span>' . $gpuinfos[$i]['gpuutil'].'%</span>
                             </div>
                         </div>
+                        </div>
                         </div>';
                     }
-                    echo '</div>'; 
                 }
-            @endphp 
+            @endphp
+
                     </div> 
                 </div> 
             </div>
