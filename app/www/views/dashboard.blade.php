@@ -93,15 +93,14 @@
             </div>
             @php
             if ( $gpupresent ) {
-            echo '<div class="x_content">
+            echo '
                 <div class="x_title">
                     <h2>GPUs INFORMATIONS</h2>
                 </div>';
                 for ($i = 0; $i < count($gpuinfos); $i++){ 
-                    echo '
+                    echo '<div class="x_content">
                     <h4>GPU ' . $i . ' - ' . $gpuinfos[$i]['cardname'] .':</h4>
                         <div class="widget_summary">
-                        <div class="x_content">
                             <div class="w_left w_25">
                                 <span>GPU UTILIZATION</span>
                             </div>
@@ -114,7 +113,6 @@
                             </div>
                             <div class="w_right w_20">
                                 <span>' . $gpuinfos[$i]['gpuutil'].'%</span>
-                            </div>
                             </div>
                         </div>
                         </div>';
