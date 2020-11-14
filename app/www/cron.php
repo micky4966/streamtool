@@ -7,7 +7,7 @@ if (isset($_SERVER['SERVER_ADDR'])) {
 include('config.php');
 $setting = Setting::first();
 while (TRUE) {
-    file_exists ( '/opt/streamtool/app/www/.' $setting->hlsfolder . '/nocheck' ) ? exit(0) :"";
+    file_exists ( '/opt/streamtool/app/www/'. $setting->hlsfolder . '/nocheck' ) ? exit(0) :"";
     foreach (Stream::where('pid', '!=', 0)->where('running', '=', 1)->where('checkable', '=', 1)->get() as $stream) {
         if (!checkPid($stream->pid)) {
             $stream->checker = 0;
