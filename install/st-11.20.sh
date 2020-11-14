@@ -32,6 +32,7 @@ echo ""
 
 echo "Cleaning mount point & user"
 {
+  streamPort=""
   systemctl stop streamtool-webserver streamtool-fpm streamtool
   cd /opt/
   killall ffmpeg
