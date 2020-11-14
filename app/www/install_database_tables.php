@@ -110,6 +110,7 @@ if (isset($_GET['install'])) {
             $table->string('audio_codec_name')->default('N/A');
             $table->tinyInteger('bitstreamfilter')->default(0);
             $table->tinyInteger('checker')->default(0);
+            $table->tinyInteger('checkable')->default(0);
             $table->string('logo')->default('');
             $table->string('tvid')->default('');
             $table->timestamps();

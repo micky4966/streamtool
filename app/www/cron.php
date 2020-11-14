@@ -6,7 +6,7 @@ if (isset($_SERVER['SERVER_ADDR'])) {
 }
 include('config.php');
 $setting = Setting::first();
-foreach (Stream::where('pid', '!=', 0)->where('running', '=', 1)->get() as $stream) {
+foreach (Stream::where('pid', '!=', 0)->where('running', '=', 1)->where('checkable', '=', 1)->get() as $stream) {
     if (!checkPid($stream->pid)) {
         $stream->checker = 0;
         $checkstreamurl = shell_exec('/usr/bin/timeout 15s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl . '" -v  quiet -print_format json -show_streams 2>&1');
@@ -60,7 +60,7 @@ foreach (Stream::where('pid', '!=', 0)->where('running', '=', 1)->get() as $stre
         $stream->save();
     }
 }
-foreach (Stream::where('restream', '=', 1)->where('running', '=', 1)->get() as $stream) {
+foreach (Stream::where('restream', '=', 1)->where('running', '=', 1)->where('checkable', '=', 1)->get() as $stream) {
     $stream->checker = 0;
     $checkstreamurl = shell_exec('/usr/bin/timeout 15s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl . '" -v  quiet -print_format json -show_streams 2>&1');
     $streaminfo = (array)json_decode($checkstreamurl);

@@ -31,7 +31,7 @@ if (isset($_GET['username']) && isset($_GET['password']) && isset($_GET['stream'
       if ($user = User::where('username', '=', $username)->where('password', '=', $password)->where('active', '=', 1)->first()) {
 
       } else { 
-	    $log  = "Worning --> Ip: [".$_SERVER['REMOTE_ADDR'].'] - '.date("d-m-Y H:i:s").
+	    $log  = "Warning --> Ip: [".$_SERVER['REMOTE_ADDR'].'] - '.date("d-m-Y H:i:s").
             " - Attempt ".('Failed Login -').
             " User: ".$username.
             " Pass: ".$password.

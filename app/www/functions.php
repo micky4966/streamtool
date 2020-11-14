@@ -192,7 +192,7 @@ function start_stream($id)
     $setting = Setting::first();
     if ($stream->restream) {
         $stream->checker = 0;
-        $stream->pid = null;
+        $stream->pid = 0;
         $stream->running = 1;
         $stream->status = 1;
     } else {
@@ -287,13 +287,14 @@ function start_stream($id)
                         } else {
                             $stream->running = 1;
                             $stream->status = 2;
-                            $stream->pid = null;
+                            $stream->pid = 0;
                         }
                     }
                 }
             }
         }
     }
+    $stream->checkable = 1;
     $stream->save();
 }
 
