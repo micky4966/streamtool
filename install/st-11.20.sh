@@ -159,11 +159,11 @@ echo "  - Last config"
   ) | crontab -u streamtool -
   streamPort=$(mysql -uroot -Nse "SELECT webport FROM streamtool.settings")
   if (("$streamPort" < "1024")); then
-    streamPort=8000
+    streamPort="8000"
   fi
-  sed -i 's/listen 8000/listen '"${streamPort}"'/g' /opt/streamtool/app/nginx/conf/nginx.conf
+  
 } &>/dev/null
-
+sed -i 's/listen 8000/listen '"${streamPort}"'/g' /opt/streamtool/app/nginx/conf/nginx.conf
 echo ""
 echo ""
 
