@@ -15,7 +15,7 @@ if (is_null($settings)) {
     $settings->save();
 }
 $all = Stream::all()->count();
-$online = Stream::where('running', '=', 1)->count();
+$online = Stream::where('running', '=', 1)->where('status', '!=', 2)->count();
 $offline = Stream::where('running', '=', 0)->count();
 $space_pr = 0;
 $space_free = round((disk_free_space('/')) / 1048576, 1);
