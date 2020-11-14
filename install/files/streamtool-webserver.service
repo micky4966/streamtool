@@ -9,7 +9,6 @@ Type=forking
 PIDFile=/opt/streamtool/app/nginx/pid/nginx.pid
 ExecStart=/opt/streamtool/app/nginx/sbin/nginx_streamtool
 ExecStartPre=/opt/streamtool/app/nginx/sbin/nginx_streamtool -t
-ExecStartPost=sudo -u streamtool /opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php
 ExecReload=/opt/streamtool/app/nginx/sbin/nginx_streamtool -s reload
 ExecStop=/bin/kill -s QUIT $MAINPID
 PrivateTmp=true
