@@ -85,6 +85,7 @@ if (isset($_GET['install'])) {
             $table->string('logourl')->default('http://example.com/logo/');
             $table->string('hlsfolder')->default('/hl');
             $table->string('user_agent')->default('Streamtool/ST2011');
+            $table->tinyInteger('enableCheck')->default(1);
             $table->timestamps();
         });
 
