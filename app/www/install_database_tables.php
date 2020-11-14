@@ -185,6 +185,30 @@ if (isset($_GET['install'])) {
         $profile2->audio_codec = 'aac';
         $profile2->save();
         echo "created AAC transcode profile<br>" . PHP_EOL;
+
+        $profile3 = new Transcode();
+        $profile3->name = 'NVENC H264 - AAC - 4Mb/s';
+        $profile3->probesize = 10000000;
+        $profile3->analyzeduration = 10000000;
+        $profile3->video_codec = 'h264_nvenc';
+        $profile3->audio_codec = 'aac';
+        $profile3->profile = 'high -level 4.2';
+        $profile3->preset_values = 'llhq';
+        $profile3->video_bitrate = '4000';
+        $profile3->save();
+        echo "created H264_nvenc profile<br>" . PHP_EOL;
+
+        $profile4 = new Transcode();
+        $profile4->name = 'CPU H264 - AAC - 4Mb/s';
+        $profile4->probesize = 10000000;
+        $profile4->analyzeduration = 10000000;
+        $profile4->video_codec = 'h264';
+        $profile4->audio_codec = 'copy';
+        $profile4->profile = 'main -level 4.0';
+        $profile4->preset_values = 'veryfast';
+        $profile4->video_bitrate = '4000';
+        $profile4->save();
+        echo "created H264 CPU profile<br>" . PHP_EOL;
     }
 
 
