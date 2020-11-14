@@ -5,13 +5,14 @@ if (isset($_SERVER['SERVER_ADDR'])) {
     }
 }
 include('config.php');
-$setting = Setting::first();
+
 while (TRUE) {
-    file_exists ( '/opt/streamtool/app/www/'. $setting->hlsfolder . '/nocheck' ) ? exit(0) :"";
+    $setting = Setting::first();
+    !$setting->enableCheck  ? exit(0) :'';
     foreach (Stream::where('pid', '!=', 0)->where('running', '=', 1)->where('checkable', '=', 1)->get() as $stream) {
         if (!checkPid($stream->pid)) {
             $stream->checker = 0;
-            $checkstreamurl = shell_exec('/usr/bin/timeout 15s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl . '" -v  quiet -print_format json -show_streams 2>&1');
+            $checkstreamurl = shell_exec('/usr/bin/timeout 8s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl . '" -v  quiet -print_format json -show_streams 2>&1');
             $streaminfo = (array)json_decode($checkstreamurl);
             if (count($streaminfo) > 0) {
                 $pid = shell_exec(getTranscode($stream->id));
@@ -27,7 +28,7 @@ while (TRUE) {
                 if ($stream->streamurl2) {
                     $stream->checker = 2;
                     echo "checking stream 2";
-                    $checkstreamurl = shell_exec('/usr/bin/timeout 15s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl2 . '" -v  quiet -print_format json -show_streams 2>&1');
+                    $checkstreamurl = shell_exec('/usr/bin/timeout 8s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl2 . '" -v  quiet -print_format json -show_streams 2>&1');
                     $streaminfo = (array)json_decode($checkstreamurl);
                     if (count($streaminfo) > 0) {
                         echo getTranscode($stream->id, 2);
@@ -42,7 +43,7 @@ while (TRUE) {
                         shell_exec("/bin/rm -r /opt/streamtool/app/www/" . $setting->hlsfolder . "/" . $stream->id . "*");
                         if ($stream->streamurl3) {
                             $stream->checker = 3;
-                            $checkstreamurl = shell_exec('/usr/bin/timeout 15s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl3 . '" -v  quiet -print_format json -show_streams 2>&1');
+                            $checkstreamurl = shell_exec('/usr/bin/timeout 8s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl3 . '" -v  quiet -print_format json -show_streams 2>&1');
                             $streaminfo = (array)json_decode($checkstreamurl);
                             if (count($streaminfo) > 0) {
                                 $pid = shell_exec(getTranscode($stream->id, 3));
@@ -62,20 +63,19 @@ while (TRUE) {
     }
     foreach (Stream::where('restream', '=', 1)->where('running', '=', 1)->where('checkable', '=', 1)->get() as $stream) {
         $stream->checker = 0;
-        $checkstreamurl = shell_exec('/usr/bin/timeout 15s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl . '" -v  quiet -print_format json -show_streams 2>&1');
+        $checkstreamurl = shell_exec('/usr/bin/timeout 8s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl . '" -v  quiet -print_format json -show_streams 2>&1');
         $streaminfo = (array)json_decode($checkstreamurl);
         if (count($streaminfo) > 0) {
             $stream->checker = 0;
         } else {
             if ($stream->streamurl2) {
-                $checkstreamurl = shell_exec('/usr/bin/timeout 15s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl2 . '" -v  quiet -print_format json -show_streams 2>&1');
+                $checkstreamurl = shell_exec('/usr/bin/timeout 8s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl2 . '" -v  quiet -print_format json -show_streams 2>&1');
                 $streaminfo = (array)json_decode($checkstreamurl);
                 if (count($streaminfo) > 0) {
                     $stream->checker = 2;
                 } else { // fail 2
                     if ($stream->streamurl3) {
-
-                        $checkstreamurl = shell_exec('/usr/bin/timeout 15s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl3 . '" -v  quiet -print_format json -show_streams 2>&1');
+                        $checkstreamurl = shell_exec('/usr/bin/timeout 8s ' . $setting->ffprobe_path . ' -analyzeduration 10000000 -probesize 9000000 -i "' . $stream->streamurl3 . '" -v  quiet -print_format json -show_streams 2>&1');
                         $streaminfo = (array)json_decode($checkstreamurl);
                         if (count($streaminfo) > 0) {
                             $stream->checker = 3;
