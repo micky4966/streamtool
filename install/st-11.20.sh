@@ -153,10 +153,7 @@ echo "  - Last config"
 
   chown -R streamtool. /opt/streamtool
 
-  (
-    crontab -u streamtool -l 2>/dev/null
-    echo "*/1 * * * * /opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php"
-  ) | crontab -u streamtool -
+ 
   streamPort=$(mysql -uroot -Nse "SELECT webport FROM streamtool.settings")
   if (("$streamPort" < "1024")); then
     streamPort="8000"
