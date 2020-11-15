@@ -41,8 +41,7 @@ $gpupresent = FALSE;
 if (file_exists('/usr/bin/nvidia-smi')) {
     shell_exec('/opt/streamtool/app/bin/nvsmi-parser.sh > /tmp/smi.csv');
     $gpupresent = TRUE;
-    $gpuinfos = csv_to_array('/tmp/smi.csv');
-    file_put_contents('/tmp/debug.log', $gpuinfos . PHP_EOL, FILE_APPEND);
+    $gpuinfos = csv_to_array('/tmp/smi.csv');    
 }
 
 
