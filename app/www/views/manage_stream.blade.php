@@ -21,7 +21,7 @@
                             <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" role="form" action="" method="post">
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name <span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Stream name <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" name="name" class="form-control col-md-7 col-xs-12"  name="name" value="{{  isset($_POST['name']) ?  $_POST['name'] : $stream->name}}">
@@ -29,7 +29,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Streamurl <span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Source URL <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" name="streamurl" class="form-control col-md-7 col-xs-12"  name="streamurl" value="{{  isset($_POST['streamurl']) ?  $_POST['streamurl'] : $stream->streamurl }}">
@@ -37,7 +37,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Streamurl 2 (backup)
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Backup URL 1 
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" name="streamurl2" class="form-control col-md-7 col-xs-12"  name="streamurl2" value="{{  isset($_POST['streamurl2']) ?  $_POST['streamurl2'] : $stream->streamurl2}}">
@@ -46,7 +46,7 @@
 
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Streamurl 3 (backup
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Backup URL 2 
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" name="streamurl3" class="form-control col-md-7 col-xs-12"  name="streamurl3" value="{{  isset($_POST['streamurl3']) ?  $_POST['streamurl3'] : $stream->streamurl3}}">
@@ -54,7 +54,7 @@
                                 </div>
 								
 								<div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">tvg-id id for xmltv
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">EPG tvg-id  
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" name="tvid" class="form-control col-md-7 col-xs-12"  name="tvid" value="{{  isset($_POST['tvid']) ?  $_POST['tvid'] : $stream->tvid}}">
@@ -62,7 +62,7 @@
                                 </div>
 								
 								<div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">logo name of your channelle (no url post)
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Channel logo picture name (inside logo folder) 
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" name="logo" class="form-control col-md-7 col-xs-12"  name="logo" value="{{  isset($_POST['logo']) ?  $_POST['logo'] : $stream->logo}}">
@@ -70,7 +70,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Bit stream filter:</label>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Apply BitStream filter:</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <p style="padding: 5px;"><span><input type="checkbox" class="flat" name="bitstreamfilter" id="" value="1" {{ $stream->bitstreamfilter ? "checked" : ""}}></span></p>
                                     </div>

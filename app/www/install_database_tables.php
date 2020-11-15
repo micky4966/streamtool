@@ -59,7 +59,10 @@ if (isset($_GET['install'])) {
 
         echo "created categories table <br>" . PHP_EOL;
     }
-
+    $category1 = new Category();
+    $category1->name = 'Default';
+    $category1->save();
+    echo "created default stream categorybr>" . PHP_EOL;
 
     if (!in_array('category_user', $arraynamesexist)) {
 

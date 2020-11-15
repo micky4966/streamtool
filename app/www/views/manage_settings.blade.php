@@ -39,7 +39,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="webip" value="{{  isset($_POST['webip']) ?  $_POST['webip'] : $setting->webip}}">
                         </div>
-                        Example: mystreams.com, 192.168.1.24 )
+                        <i class="fas fa-info-circle"></i>Example: mystreams.com, 192.168.1.24 )
                     </div>
 
                     <div class="form-group">
@@ -47,8 +47,9 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="webport" value="{{  isset($_POST['webport']) ?  $_POST['webport'] : $setting->webport}}">
-                            <span class="label label-important">Attention : need service restart: systemctl restart streamtool</span>
+                            
                         </div>
+                        <i class="fas fa-info-circle"></i>Webserver will be reloaded on parameter change
                     </div>
 
                     <div class="form-group">
@@ -56,8 +57,9 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="hlsfolder" value="{{  isset($_POST['hlsfolder']) ?  $_POST['hlsfolder'] : $setting->hlsfolder}}">
-                            <span class="label label-important">Set absolute path of hls folder.</span>
+                            <span class="label label-important">Set relative path of hls folder</span>
                         </div>
+                        <i class="fas fa-exclamation-triangle"></i>Parameter change is not recommanded
                     </div>
 
                     <div class="form-group">
@@ -66,7 +68,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="logourl" value="{{  isset($_POST['logourl']) ?  $_POST['logourl'] : $setting->logourl}}">
                         </div>
-                        (Base URL of logos repo) Ex: http://example.com/logo/
+                        <i class="fas fa-info-circle"></i>(Base URL of logos repo) Ex: http://repo.example.com/images/
                     </div>
 
                     <div class="form-group">
@@ -82,7 +84,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                             <button type="submit" name="submit" class="btn btn-success">Submit</button>
                         </div>
-                        <button class="btn btn-danger" href="settings?patchnv" title="Patch Nvidia encoder limit" onclick="return confirm('Are you sure?')">Patch Nvidia encoder limit</button>
+                        <button class="btn btn-danger" href="settings?patchnv" title="Patch Nvidia encoder limit" onclick="return confirm('Apply Nvidia patch limit ?')"><i class="fas fa-exclamation-triangle"></i>Patch Nvidia encoder limit</button>
                     </div>
 
                 </form>

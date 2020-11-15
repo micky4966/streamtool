@@ -5,10 +5,10 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Ip Block </h2>
+                    <h2>IP Security </h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <a class="btn btn-round btn-primary" href="manage_ipblock.php" title="Add">
-                            Add ipblock
+                            Add ip filter
                         </a>
                     </ul>
                     <div class="clearfix"></div>
@@ -47,7 +47,7 @@
                     @else
                         <div class="alert alert-info">
                             <button type="button" class="close" data-dismiss="alert">×</button>
-                            No ip blocks found
+                            No ip filter found
                         </div>
                     @endif
                 </div>

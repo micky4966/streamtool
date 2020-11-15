@@ -8,7 +8,7 @@
                     <h2>Ip Block </h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <a class="btn btn-round btn-primary" href="manage_useragentblock.php" title="Add">
-                            Add useragent block
+                            Add user agent filter
                         </a>
                     </ul>
                     <div class="clearfix"></div>
@@ -47,7 +47,7 @@
                     @else
                         <div class="alert alert-info">
                             <button type="button" class="close" data-dismiss="alert">×</button>
-                            No useragent blocks found
+                            No user agent filter found
                         </div>
                     @endif
                 </div>
