@@ -153,13 +153,16 @@ echo "  - Last config"
 
   chown -R streamtool. /opt/streamtool
 
- 
   streamPort=$(mysql -uroot -Nse "SELECT webport FROM streamtool.settings")
-  if [["$streamPort" < "1024"]]; then
+  if [ $streamPort -lt 1024 ]; then
     streamPort="8000"
   fi
-  
+
 } &>/dev/null
+if [[ "$streamPort" -lt "1024" ]]; then
+  streamPort="8000"
+fi
+
 sed -i 's/listen 8000/listen '"${streamPort}"'/g' /opt/streamtool/app/nginx/conf/nginx.conf
 echo ""
 echo ""
