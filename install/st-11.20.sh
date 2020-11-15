@@ -155,7 +155,7 @@ echo "  - Last config"
 
  
   streamPort=$(mysql -uroot -Nse "SELECT webport FROM streamtool.settings")
-  if (("$streamPort" < "1024")); then
+  if [["$streamPort" < "1024"]]; then
     streamPort="8000"
   fi
   
