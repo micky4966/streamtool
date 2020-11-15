@@ -19,14 +19,14 @@
                 <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" role="form" action="" method="post">
 
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Path to ffmpeg binary: <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Path to ffmpeg binary:
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12"  name="ffmpeg_path" value="{{  isset($_POST['ffmpeg_path']) ?  $_POST['ffmpeg_path'] : $setting->ffmpeg_path}}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Path to ffprobe binary<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Path to ffprobe binary
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12"  name="ffprobe_path" value="{{  isset($_POST['ffprobe_path']) ?  $_POST['ffprobe_path'] : $setting->ffprobe_path}}">
@@ -34,32 +34,32 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Custom IP/DNS: <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Custom IP/DNS: 
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="webip" value="{{  isset($_POST['webip']) ?  $_POST['webip'] : $setting->webip}}">
                         </div>
-                        <i class="fas fa-info-circle"></i>Example: mystreams.com, 192.168.1.24 )
+                        <i class="fas fa-info-circle"></i> Example: mystreams.com, 192.168.1.24 )
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Custom Streaming Port: <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Custom Streaming Port: 
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="webport" value="{{  isset($_POST['webport']) ?  $_POST['webport'] : $setting->webport}}">
                             
                         </div>
-                        <i class="fas fa-info-circle"></i>Webserver will be reloaded on parameter change
+                        <i class="fas fa-info-circle"></i >Webserver will be reloaded on parameter change
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">HLS Ouput Folder: <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">HLS Ouput Folder: 
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="hlsfolder" value="{{  isset($_POST['hlsfolder']) ?  $_POST['hlsfolder'] : $setting->hlsfolder}}">
                             <span class="label label-important">Set relative path of hls folder</span>
                         </div>
-                        <i class="fas fa-exclamation-triangle"></i>Parameter change is not recommanded
+                        <i class="fas fa-exclamation-triangle"></i> Parameter change is not recommanded
                     </div>
 
                     <div class="form-group">
@@ -68,11 +68,11 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="logourl" value="{{  isset($_POST['logourl']) ?  $_POST['logourl'] : $setting->logourl}}">
                         </div>
-                        <i class="fas fa-info-circle"></i>(Base URL of logos repo) Ex: http://repo.example.com/images/
+                        <i class="fas fa-info-circle"></i> (Base URL of logos repo) Ex: http://repo.example.com/images/
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">User Agent <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">User Agent 
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="user_agent" value="{{  isset($_POST['user_agent']) ?  $_POST['user_agent'] : $setting->user_agent}}">

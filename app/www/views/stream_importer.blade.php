@@ -21,7 +21,7 @@
                         <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" role="form" action="" method="post">
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Playlist importer <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Paste your playlist here (remove header like #EXTM3U if any)
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                       <textarea name="import"  lass="form-control col-md-7 col-xs-12"id=""  style="width: 100%;"  rows="10"
@@ -30,14 +30,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Proxy</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Proxy (restream) streams:</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <p style="padding: 5px;"><span><input type="checkbox" class="flat" name="restream" id="" value="1" {{ $stream->restream ? "checked" : ""}}></span></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Bit stream filter:</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">BitStream filter:</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <p style="padding: 5px;"><span><input type="checkbox" class="flat" name="bitstreamfilter" id="" value="1" {{ $stream->bitstreamfilter ? "checked" : ""}}></span></p>
                                 </div>
