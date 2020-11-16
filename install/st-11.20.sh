@@ -33,11 +33,19 @@ echo ""
 echo "Cleaning mount point & user"
 {
   streamPort=""
+  hlsFolder=/opt/streamtool/app/www$(mysql -uroot -Nse "SELECT hlsfolder FROM streamtool.settings;")
+  if [ -z "$hlsFolder" ]
+then
+      hlsFolder="/opt/streamtool/app/www/hls"
+fi
   systemctl stop streamtool-webserver streamtool-fpm streamtool
-  cd /opt/
+  killall /opt/streamtool/app/php/bin/php
+  killall /opt/streamtool/app/php/bin/php
   killall ffmpeg
-  while [ ! -z "$(mount -l | grep '/opt/streamtool/app/www/hl')" ]; do
-    umount /opt/streamtool/app/www/hl
+  killall ffmpeg
+  cd /opt/
+  while [ ! -z "$(mount -l | grep $(hlsFolder))" ]; do
+    umount $hlsFolder
     sleep .1
   done
   crontab -r -u streamtool
@@ -124,7 +132,7 @@ echo "  - Last config"
   chmod +x /opt/streamtool/app/bin/*.sh
   mkdir -p /opt/streamtool/app/www/cache
   chmod -R 777 /opt/streamtool/app/www/cache
-  mkdir -p /opt/streamtool/app/www/hl
+  mkdir -p ${hlsFolder}
   mkdir -p /opt/streamtool/app/nginx/pid
   mkdir -p /opt/streamtool/app/nginx/client_body_temp
   mkdir -p /opt/streamtool/app/nginx/fastcgi_temp
@@ -132,7 +140,7 @@ echo "  - Last config"
   mkdir -p /opt/streamtool/app/nginx/scgi_temp
   mkdir -p /opt/streamtool/app/php/var/run
   mkdir -p /opt/streamtool/app/logs/
-  mount /opt/streamtool/app/www/hl
+  mount ${hlsFolder}
   mkdir -p /opt/streamtool/app/wws/
   mkdir -p /opt/streamtool/app/wws/log/
   cd /opt/streamtool/app/www/
@@ -147,9 +155,9 @@ echo "  - Last config"
   ln -s /opt/streamtool/app/www/stream.php /opt/streamtool/app/wws/stream.php
   ln -s /opt/streamtool/app/www/mpegts.php /opt/streamtool/app/wws/mpegts.php
   ln -s /opt/streamtool/app/www/playlist.php /opt/streamtool/app/wws/playlist.php
-  grep -qxF 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' /etc/fstab || echo 'tmpfs /opt/streamtool/app/www/hl/ tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0' >>/etc/fstab
+  grep -qxF "tmpfs ${hlsFolder} tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0" /etc/fstab || echo "tmpfs ${hlsFolder} tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0" >>/etc/fstab
 
-  ln -s /opt/streamtool/app/www/hl /opt/streamtool/app/wws/hl
+  ln -s ${hlsFolder} /opt/streamtool/app/wws/.
 
   chown -R streamtool. /opt/streamtool
 

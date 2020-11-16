@@ -86,8 +86,8 @@ if (isset($_GET['install'])) {
             $table->string('webport')->default('8000');
             $table->string('webip');
             $table->string('logourl')->default('http://example.com/logo/');
-            $table->string('hlsfolder')->default('/hl');
-            $table->string('user_agent')->default('Streamtool/ST2011');
+            $table->string('hlsfolder')->default('/hls');
+            $table->string('user_agent')->default('Streamtool/ST-20.11');
             $table->tinyInteger('enableCheck')->default(1);
             $table->timestamps();
         });
