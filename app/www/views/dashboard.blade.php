@@ -110,10 +110,11 @@
                                     <div class="clearfix">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="w_right w_20">
+                                <div class="w_right w_20">
                                 <span>' . $gpuinfos[$i]['gpuutil'].'%</span>
                             </div>
+                            </div>
+
                         </div>
                         </div>
                         </div>';
