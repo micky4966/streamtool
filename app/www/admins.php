@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by NeySlim 2015
+ * Created by NeySlim 2020
  */
 include('config.php');
 logincheck();
