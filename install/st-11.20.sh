@@ -183,9 +183,9 @@ spinner $PID "Starting Streamtool Webserver"
   curl -s http://127.0.0.1:9001/install_database_tables.php?install
   curl -s http://127.0.0.1:9001/install_database_tables.php?update
   mv /opt/streamtool/app/www/install_database_tables.php /opt/streamtool/install/files/.
-  sudo -u streamtool /opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php &
+  sleep 1;
   streamPort=$(mysql -uroot -Nse "SELECT webport FROM streamtool.settings")
 } &>/dev/null
-
+sudo -u streamtool -- /opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php > /dev/null &
 echo ""
 echo -e "**************************************************\n*                                                *\n*          Streamtool install complete           *\n*                                                *\n*          http://$(hostname -I | cut -d ' ' -f1):9001\n*       Username: admin  Password: admin         *\n*                                                *\n**************************************************"
