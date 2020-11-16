@@ -89,40 +89,50 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                
+
             </div>
             @php
             if ( $gpupresent ) {
             echo '
-                <div class="x_title">
-                    <h3>GPUs INFORMATIONS</h3>
-                </div>';
-                for ($i = 0; $i < count($gpuinfos); $i++){
-                    echo '<div class="x_content">
-                    <h4>GPU ' . $i . ' - ' . $gpuinfos[$i]['cardname'] .':</h4>
-                        <div class="widget_summary">
-                            <div class="w_left w_25">
-                                <span>GPU UTILIZATION</span>
-                            </div>
-                            <div class="w_center w_55">
-                                <div class="progress">
-                                    <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['gpuutil'] . '" aria-value>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                                <div class="w_right w_20">
-                                <span>' . $gpuinfos[$i]['gpuutil'].'%</span>
-                            </div>
-                            </div>
-
+            <div class="x_title">
+                <h3>GPUs INFORMATIONS</h3>
+            </div>';
+            for ($i = 0; $i < count($gpuinfos); $i++){ echo '<div class="x_content">
+                    <h4>GPU ' . $i . ' - ' . $gpuinfos[$i]['cardname'] .':</h4> <div class="widget_summary">
+                <div class="w_left w_25">
+                    <span>GPU LOAD</span>
+                </div>
+                <div class="w_center w_55">
+                    <div class="progress">
+                        <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['gpuutil'] . '" aria-value></div>
+                        <div class="clearfix">
                         </div>
+                    </div>
+                </div>
+                <div class="w_right w_20">
+                    <span>' . $gpuinfos[$i]['gpuutil'].'%</span>
+                </div>
+                <div class="w_left w_25">
+                    <span>GPU MEMORY</span>
+                </div>
+                <div class="w_center w_55">
+                    <div class="progress">
+                        <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['memutil'] . '" aria-value></div>
+                        <div class="clearfix">
                         </div>
-                        </div>';
-                    }
-                }
-            @endphp
+                    </div>
+                </div>
+                <div class="w_right w_20">
+                    <span>' . $gpuinfos[$i]['memutil'].'%</span>
+                </div>
+        </div>
+    </div>
+</div>';
+}
+}
+@endphp
 
-                    </div> 
-                </div> 
-            </div>
-            @endsection
+</div>
+</div>
+</div>
+@endsection
