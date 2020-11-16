@@ -4,9 +4,10 @@ logincheck();
 $message = [];
 $setting = Setting::first();
 
-if (isset($_POST['patchnv'])) {
-
+if (isset($_GET['patchnv'])) {
+   
     $result = patchnv();
+    file_put_contents('/tmp/pute', $result, FILE_APPEND);
     if ($result != null) {
         $message['type'] = "success";
         $message['message'] = "Nvidia Patch successful: " . $result;

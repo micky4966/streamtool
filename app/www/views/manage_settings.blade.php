@@ -49,7 +49,7 @@
                             <input type="text" class="form-control col-md-7 col-xs-12" name="webport" value="{{  isset($_POST['webport']) ?  $_POST['webport'] : $setting->webport}}">
                             
                         </div>
-                        <i class="fas fa-info-circle"></i >Webserver will be reloaded on parameter change
+                        <i class="fas fa-info-circle"></i> Webserver will be reloaded on parameter change
                     </div>
 
                     <div class="form-group">
@@ -84,7 +84,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                             <button type="submit" name="submit" class="btn btn-success">Submit</button>
                         </div>
-                        <button class="btn btn-danger" href="settings?patchnv" title="Patch Nvidia encoder limit" onclick="return confirm('Apply Nvidia patch limit ?')"><i class="fas fa-exclamation-triangle"></i>Patch Nvidia encoder limit</button>
+                        <form action="" method="post" ><input id="patchnv" name="patchnv" type="hidden" value="1"><button  class="btn btn-danger" title="Patch Nvidia encoder limit" onclick="return confirm('Apply Nvidia patch limit ?')"><i class="fas fa-exclamation-triangle"></i> Patch Nvidia encoder limit</button></form>
                     </div>
 
                 </form>
