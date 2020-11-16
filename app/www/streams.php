@@ -13,6 +13,16 @@ if (isset($_GET['start'])) {
     $message = ['type' => 'success', 'message' => 'stream stopped'];
 }
 
+
+if (isset($_POST['start_cron']) {
+    $setting->enableCheck = "1";
+    shell_exec('/opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php &');
+}
+if (isset($_POST['stop_cron']) {
+    $setting->enableCheck = "0";
+    sleep(1);
+}
+
 if (isset($_GET['delete'])) {
     $stream = Stream::find($_GET['delete'])->delete();
     $message = ['type' => 'success', 'message' => 'stream deleted'];
@@ -50,6 +60,12 @@ if (isset($_GET['running']) && $_GET['running'] == 1) {
 } else {
     $stream = Stream::all();
 }
+
+
+
+$cronStatus=shell_exec('ps faux "/opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php" > /dev/null; echo $?') ? $cronStatus=0 :'';
+
+
 
 echo $template->view()->make('streams')
     ->with('streams', $stream)

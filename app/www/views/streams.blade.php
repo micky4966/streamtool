@@ -17,9 +17,14 @@
                         <div class="clearfix"></div>
                     </div>
                     <form action=""method="post">
-                        <input type="submit" name="mass_start" value="Mass start" class="btn btn-small btn-success" onclick="return confirm('Are you sure?')">
-                        <input type="submit" name="mass_stop" value="Mass stop" class="btn btn-small btn-danger" onclick="return confirm('Are you sure?')">
-                        <input type="submit" name="mass_delete" value="Mass delete" class="btn btn-small btn-danger" onclick="return confirm('Are you sure?')">
+                        <input type="submit" name="mass_start" value="Mass start" class="btn btn-small btn-success" onclick="return confirm('Mass start ?')">
+                        <input type="submit" name="mass_stop" value="Mass stop" class="btn btn-small btn-danger" onclick="return confirm('Mass stop ?')">
+                        <input type="submit" name="mass_delete" value="Mass delete" class="btn btn-small btn-danger" onclick="return confirm('Mass delete ?')">
+                        @if($cronStatus > 0)
+                            <input type="submit" name="stop_cron" value="Stop stream watcher" class="btn btn-small btn-danger">
+                        @else
+                            <input type="submit" name="start_cron" value="Start stream watcher" class="btn btn-small btn-success">
+                        @endif
                         @if(count($streams) > 0)
                             @if($message)
                                 <div class="alert alert-{{ $message['type'] }}">
@@ -99,7 +104,7 @@
                                 </table>
                             @else
                                 <div class="alert alert-info">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <button type="button" class="close" data-dismiss="alert">ï¿½</button>
                                     No streams found
                                 </div>
                             @endif
