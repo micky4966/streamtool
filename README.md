@@ -16,6 +16,7 @@ A web software for managing and manipulating video streams.
 - User Agent manager
 - IP filter manager
 - Resources monitor
+- Remove nvidia encoder limit on demand
 ... and more to come
  
 ## Installation
