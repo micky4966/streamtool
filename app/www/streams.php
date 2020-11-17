@@ -16,7 +16,7 @@ if (isset($_GET['start'])) {
 
 if (isset($_POST['start_cron'])) {
     $setting->enableCheck = "1";
-    exec('/opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php');
+    exec('/opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php &');
 }
 if (isset($_POST['stop_cron'])) {
     $setting->enableCheck = "0";
@@ -63,7 +63,7 @@ if (isset($_GET['running']) && $_GET['running'] == 1) {
 
 
 
-$cronStatus=shell_exec('ps faux "/opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php" > /dev/null; echo $?') ? $cronStatus=0 :'';
+$cronStatus=shell_exec('ps faux | grep "/[o]pt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php" > /dev/null; echo $?') ? $cronStatus=0 :'';
 
 
 

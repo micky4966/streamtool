@@ -34,15 +34,13 @@ if (isset($_GET['m3u_hls'])) {
     echo "#EXTM3U \r\n";
     foreach ($user->categories as $category) {
         foreach ($category->streams as $stream) {
-
-            //if ($stream->running == 1) {
-                echo "#EXTINF:0," . $stream->name . "\r\n";
-                echo "http://" . $setting->webip . ":" . $setting->webport . "/live/" . $user->username . "/" . $user->password . "/" . $stream->id . "\r\n";
-           // }
+            echo "#EXTINF:-1," . $stream->name . "\r\n";
+            echo "http://" . $setting->webip . ":" . $setting->webport . "/live/" . $user->username . "/" . $user->password . "/" . $stream->id . "\r\n";
         }
     }
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="st-'. $user->username . '_hls.m3u8"');
+    header('Content-Type: application/vnd.apple.mpegurl');
+    header('Content-Disposition: attachment; filename="st-' . $user->username . '_hls.m3u8"');
+    header("Content-Description: File Transfer");
     header("Content-Transfer-Encoding: binary");
     header('Pragma: no-cache');
     header('Expires: 0');
@@ -54,14 +52,14 @@ if (isset($_GET['m3u_mpegts'])) {
     foreach ($user->categories as $category) {
         foreach ($category->streams as $stream) {
 
-            //if ($stream->running == 1) {
-                echo "#EXTINF:0," . $stream->name . "\r\n";
-                echo "http://" . $setting->webip . ":" . $setting->webport . "/mpegts/" . $user->username . "/" . $user->password . "/" . $stream->id . "\r\n";
-            //}
+
+            echo "#EXTINF:-1," . $stream->name . "\r\n";
+            echo "http://" . $setting->webip . ":" . $setting->webport . "/mpegts/" . $user->username . "/" . $user->password . "/" . $stream->id . "\r\n";
         }
     }
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="st-'. $user->username . '_mpegts.m3u8"');
+    header('Content-Type: application/vnd.apple.mpegurl');
+    header('Content-Disposition: attachment; filename="st-' . $user->username . '_mpegts.m3u8"');
+    header("Content-Description: File Transfer");
     header("Content-Transfer-Encoding: binary");
     header('Pragma: no-cache');
     header('Expires: 0');
