@@ -33,6 +33,12 @@ echo ""
 echo "Cleaning mount point & user"
 {
   streamPort=""
+
+   for mount in `mount -l |grep tmpfs | cut -d ' ' -f3 |grep streamtool`;  
+    umount $mount
+  done
+
+
   hlsFolder=/opt/streamtool/app/www$(mysql -uroot -Nse "SELECT hlsfolder FROM streamtool.settings;")
   if [ -z "$hlsFolder" ]
 then
@@ -49,7 +55,8 @@ fi
     sleep .1
   done
   crontab -r -u streamtool
-  rm -rf /opt/streamtool
+  mv /opt/streamtool /opt/streamtool.old
+  rm -rf /opt/streamtool.old
   userdel streamtool
 } &>/dev/null
 
