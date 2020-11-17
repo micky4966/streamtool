@@ -16,7 +16,7 @@ if (isset($_GET['e2'])) {
     foreach ($user->categories as $category) {
         foreach ($category->streams as $stream) {
             if ($stream->running == 1) {
-                echo "#SERVICE 1:0:1:0:0:0:0:0:0:0:http%3A//" . $setting->webip . "%3A" . $setting->webport . "/live/" . $user->username . "/" . $user->password . "/" . $stream->id . "\r\n";
+                echo "#SERVICE 1:0:1:0:0:0:0:0:0:0:http%3A//" . $setting->webip . "%3A" . $setting->webport . "/mpegts/" . $user->username . "/" . $user->password . "/" . $stream->id . "\r\n";
                 echo "#DESCRIPTION " . $stream->name . "\r\n";
             }
         }
@@ -48,7 +48,7 @@ if (isset($_GET['m3u_hls'])) {
     header('Expires: 0');
     die;
 }
-if (isset($_GET['m3u8_mpegts'])) {
+if (isset($_GET['m3u_mpegts'])) {
 
     echo "#EXTM3U \r\n";
     foreach ($user->categories as $category) {
@@ -56,7 +56,7 @@ if (isset($_GET['m3u8_mpegts'])) {
 
             //if ($stream->running == 1) {
                 echo "#EXTINF:0," . $stream->name . "\r\n";
-                echo "http://" . $setting->webip . ":" . $setting->webport . "/live/" . $user->username . "/" . $user->password . "/" . $stream->id . "\r\n";
+                echo "http://" . $setting->webip . ":" . $setting->webport . "/mpegts/" . $user->username . "/" . $user->password . "/" . $stream->id . "\r\n";
             //}
         }
     }
@@ -72,7 +72,7 @@ if (isset($_GET['tv'])) {
     foreach ($user->categories as $category) {
         foreach ($category->streams as $stream) {
             if ($stream->running == 1) {
-                echo "ext,$stream->name,http://" . $setting->webip . ":" . $setting->webport . "/live/" . $user->username . "/" . $user->password . "/" . $stream->name . "\r\n";
+                echo "ext,$stream->name,http://" . $setting->webip . ":" . $setting->webport . "/mpegts/" . $user->username . "/" . $user->password . "/" . $stream->name . "\r\n";
             }
         }
     }
