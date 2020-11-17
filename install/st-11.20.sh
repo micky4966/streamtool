@@ -153,6 +153,7 @@ echo "  - Last config"
   ln -s /opt/streamtool/app/www/config.php /opt/streamtool/app/wws/config.php
   ln -s /opt/streamtool/app/www/functions.php /opt/streamtool/app/wws/functions.php
   ln -s /opt/streamtool/app/www/stream.php /opt/streamtool/app/wws/stream.php
+  ln -s /opt/streamtool/app/www/segment.php /opt/streamtool/app/wws/segment.php
   ln -s /opt/streamtool/app/www/mpegts.php /opt/streamtool/app/wws/mpegts.php
   ln -s /opt/streamtool/app/www/playlist.php /opt/streamtool/app/wws/playlist.php
   grep -qxF "tmpfs ${hlsFolder} tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0" /etc/fstab || echo "tmpfs ${hlsFolder} tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=80% 0 0" >>/etc/fstab

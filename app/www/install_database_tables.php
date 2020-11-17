@@ -1,7 +1,5 @@
 <?php
 include('config.php');
-// TODO: version control
-// TODO: update tables
 
 $db = $capsule;
 if (isset($_GET['install'])) {
@@ -56,13 +54,15 @@ if (isset($_GET['install'])) {
             $table->string('name');
             $table->timestamps();
         });
-
         echo "created categories table <br>" . PHP_EOL;
+
+
+        $category1 = new Category();
+        $category1->name = 'Default';
+        $category1->save();
+        echo "created default stream categorybr>" . PHP_EOL;
     }
-    $category1 = new Category();
-    $category1->name = 'Default';
-    $category1->save();
-    echo "created default stream categorybr>" . PHP_EOL;
+ 
 
     if (!in_array('category_user', $arraynamesexist)) {
 
@@ -83,6 +83,7 @@ if (isset($_GET['install'])) {
             $table->increments('id');
             $table->string('ffmpeg_path')->default('/usr/bin/ffmpeg');
             $table->string('ffprobe_path')->default('/usr/bin/ffprobe');
+            $table->string('ffmpeg_nvcc_path')->default('/opt/streamtool/app/bin/ffmpeg-streamtool');
             $table->string('webport')->default('8000');
             $table->string('webip');
             $table->string('logourl')->default('http://example.com/logo/');
