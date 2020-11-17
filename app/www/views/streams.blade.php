@@ -20,7 +20,7 @@
                         <input type="submit" name="mass_start" value="Mass start" class="btn btn-small btn-success" onclick="return confirm('Mass start ?')">
                         <input type="submit" name="mass_stop" value="Mass stop" class="btn btn-small btn-danger" onclick="return confirm('Mass stop ?')">
                         <input type="submit" name="mass_delete" value="Mass delete" class="btn btn-small btn-danger" onclick="return confirm('Mass delete ?')">
-                        @if($cronStatus = 0)
+                        @if($cronStatus == 0)
                             <input type="submit" name="stop_cron" value="Stop stream watcher" class="btn btn-small btn-danger">
                         @else
                             <input type="submit" name="start_cron" value="Start stream watcher" class="btn btn-small btn-success">
