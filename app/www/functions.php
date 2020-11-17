@@ -181,7 +181,7 @@ function getTranscodedata($id)
     $ffmpeg .= $trans->audio_channel ? ' -ac ' . $trans->audio_channel : '';
     $ffmpeg .= $trans->threads ? ' -threads ' . $trans->threads : '';
     $ffmpeg .= $trans->deinterlance ? ' -vf yadif' : '';
-    $ffmpeg .= " output[HLS]";
+    $ffmpeg .= " [OUTPUT]";
     return $ffmpeg;
 }
 
