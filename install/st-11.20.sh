@@ -34,7 +34,7 @@ echo "Cleaning mount point & user"
 {
   streamPort=""
 
-   for mount in `mount -l |grep tmpfs | cut -d ' ' -f3 |grep streamtool`;  
+   for mount in `mount -l |grep tmpfs | cut -d ' ' -f3 |grep streamtool`; do 
     umount $mount
   done
 
