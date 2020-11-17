@@ -65,8 +65,8 @@
                                     </td>
                                     <td class="center">{{ $user->category_names }}</td>
                                     <td class="center">
-                                        <a href="getfile.php?m3u=true&id={{ $user->id }}" title="GET HLS M3U8"><span class="label label-success">M3U_HLS</span></a>
-                                        <a href="getfile.php?m3u=true&id={{ $user->id }}" title="GET MPEGTS M3U8"><span class="label label-success">M3U_MPEGTS</span></a>
+                                        <a href="getfile.php?m3u_hls=true&id={{ $user->id }}" title="GET HLS M3U8"><span class="label label-success">M3U8 HLS</span></a>
+                                        <a href="getfile.php?m3u_mpegts=true&id={{ $user->id }}" title="GET MPEGTS M3U8"><span class="label label-success">M3U8 MPEGTS</span></a>
                                         <a href="getfile.php?e2=true&id={{ $user->id }}" title="GET E2"><span class="label label-success">E2</span></a>
                                         <a href="getfile.php?tv=true&id={{ $user->id }}" title="GET TV"><span class="label label-success">TV</span></a>
                                         <a href="clientsgen.php?id={{ $user->id }}" title="Clients"><span class="label label-success">Clients</span></a>
