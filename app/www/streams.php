@@ -16,11 +16,14 @@ if (isset($_GET['start'])) {
 
 if (isset($_POST['start_cron'])) {
     $setting->enableCheck = "1";
-    exec('/opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php &');
+    exec(sprintf("%s > %s 2>&1 & ", "/opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php" , "/tmp/streamtool-watcher.log"));
+    $setting->save();
 }
 if (isset($_POST['stop_cron'])) {
     $setting->enableCheck = "0";
+    $setting->save();
     sleep(1);
+    
 }
 
 if (isset($_GET['delete'])) {
@@ -63,12 +66,13 @@ if (isset($_GET['running']) && $_GET['running'] == 1) {
 
 
 
-$cronStatus=shell_exec('ps faux | grep "/[o]pt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php" > /dev/null; echo $?') ? $cronStatus=0 :'';
 
+$cronStatus=shell_exec('ps faux | grep "/[o]pt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php" > /dev/null; echo $?') == 0 ? 1 : 0;
 
 
 echo $template->view()->make('streams')
     ->with('streams', $stream)
     ->with('message', $message)
     ->with('title', $title)
+    ->with('cronStatus', $cronStatus)
     ->render();

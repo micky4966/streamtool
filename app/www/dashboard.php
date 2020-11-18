@@ -69,6 +69,6 @@ echo $template->view()
     ->with('space', $space)
     ->with('cpu', $cpu)
     ->with('mem', $mem)
-    ->with(gpupresent, $gpupresent)
-    ->with(gpuinfos, $gpuinfos)
+    ->with('gpupresent', $gpupresent)
+    ->with('gpuinfos', $gpuinfos)
     ->render();

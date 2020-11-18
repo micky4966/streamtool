@@ -4,7 +4,7 @@ logincheck();
 $message = [];
 $setting = Setting::first();
 
-if (isset($_GET['patchnv'])) {
+if (isset($_POST['patchnv'])) {
    
     $result = patchnv();
     if ($result != null) {
