@@ -79,7 +79,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select name="category" class="form-control">
+                                        <select name="category" class="select2_multiple form-control" >
                                             <option value='{{ $stream->category ? $stream->category->id : "" }}'>{{ $stream->category ? $stream->category->name : "Select" }}</option>
                                             @foreach($categories as $category)
                                                 <option value='{{ $category->id }}'>{{ $category->name }}</option>

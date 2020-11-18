@@ -3,7 +3,7 @@ include('config.php');
 logincheck();
 
 $message = [];
-$title = "Playlist importer";
+$title = "Bulk Strem Import";
 $stream = new Stream;
 $categories = Category::all();
 $transcodes = Transcode::all();

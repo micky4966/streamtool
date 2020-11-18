@@ -3,7 +3,7 @@ include('config.php');
 logincheck();
 
 $message = [];
-$title = "All Streams";
+$title = "Manage Streams";
 
 if (isset($_GET['start'])) {
     start_stream($_GET['start']);
@@ -13,17 +13,17 @@ if (isset($_GET['start'])) {
     $message = ['type' => 'success', 'message' => 'stream stopped'];
 }
 
-
 if (isset($_POST['start_cron'])) {
     $setting->enableCheck = "1";
-    exec(sprintf("%s > %s 2>&1 & ", "/opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php" , "/tmp/streamtool-watcher.log"));
     $setting->save();
+    exec(sprintf("%s > %s 2>&1 & ", "/opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php" , "/tmp/streamtool-watcher.log"));
+    $message = ['type' => 'success', 'message' => "Stream process watcher started"];
 }
 if (isset($_POST['stop_cron'])) {
     $setting->enableCheck = "0";
     $setting->save();
     sleep(1);
-    
+    $message = ['type' => 'error', 'message' => "Stream process watcher stopped"];
 }
 
 if (isset($_GET['delete'])) {
