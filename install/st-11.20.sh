@@ -51,7 +51,7 @@ fi
   killall ffmpeg
   killall ffmpeg-streamtool
   killall ffmpeg-streamtool
-  
+
   cd /opt/
   while [ ! -z "$(mount -l | grep $(hlsFolder))" ]; do
     umount $hlsFolder
@@ -172,6 +172,7 @@ echo "  - Last config"
 
   chown -R streamtool. /opt/streamtool
   bunzip2 /opt/streamtool/app/bin/*.bz2
+  chmod +x /opt/streamtool/app/bin/ff*streamtool
 
   streamPort=$(mysql -uroot -Nse "SELECT webport FROM streamtool.settings")
   if [ $streamPort -lt 1024 ]; then
