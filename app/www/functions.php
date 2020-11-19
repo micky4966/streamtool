@@ -102,13 +102,16 @@ function getTranscode($id, $streamnumber = null)
         $ffmpeg .= ' -probesize ' . ($trans->probesize ? $trans->probesize : '15000000');
         $ffmpeg .= ' -analyzeduration ' . ($trans->analyzeduration ? $trans->analyzeduration : '12000000');
         $ffmpeg .= ' -user_agent "' . ($setting->user_agent ? $setting->user_agent : 'Streamtool') . '"';
+        $nvencpos = 0;
         if (strpos($trans->video_codec, 'nvenc')) {
             $ffmpeg .= ' -hwaccel cuvid';
             if (strpos($stream->video_codec_name, '264') !== false) {
                 $ffmpeg .= ' -c:v h264_cuvid';
+                $nvencpos=1;
             }
             if (strpos($stream->video_codec_name, 'hevc') !== false) {
                 $ffmpeg .= ' -c:v hevc_cuvid';
+                $nvencpos=1;
             }
         }
         $ffmpeg .= ' -i ' . '"' . "$url" . '"';
@@ -130,9 +133,9 @@ function getTranscode($id, $streamnumber = null)
         $ffmpeg .= $trans->audio_channel ? ' -ac ' . $trans->audio_channel : '';
         $ffmpeg .= $stream->bitstreamfilter ? ' -bsf h264_mp4toannexb' : '';
         $ffmpeg .= $trans->threads ? ' -threads ' . $trans->threads : '';
-        $ffmpeg .= $trans->deinterlance ? ' -vf yadif' : '';
+        $ffmpeg .= $trans->deinterlance ? ($nvencpos ? ' -vf yadif_cuda' : ' -vf yadif') : '';
         $ffmpeg .= $endofffmpeg;
-        file_put_contents('/opt/streamtool/app/wws/log/streamtool-ffmpeg' . '.log', $ffmpeg, FILE_APPEND);
+        file_put_contents('/opt/streamtool/app/wws/log/streamtool-ffmpeg' . $id . '.log', $ffmpeg, FILE_APPEND);
         return $ffmpeg;
     }
 
@@ -153,15 +156,18 @@ function getTranscodedata($id)
     $ffmpeg .= ' -probesize ' . ($trans->probesize ? $trans->probesize : '15000000');
     $ffmpeg .= ' -analyzeduration ' . ($trans->analyzeduration ? $trans->analyzeduration : '12000000');
     $ffmpeg .= ' -user_agent "' . ($setting->user_agent ? $setting->user_agent : 'Streamtool') . '"';
-    if (strpos($trans->video_codec, 'nvenc')) {
-        $ffmpeg .= ' -hwaccel cuvid';
-        if (strpos($stream->video_codec_name, '264') !== false) {
-            $ffmpeg .= ' -c:v h264_cuvid';
+    $nvencpos = 0;
+        if (strpos($trans->video_codec, 'nvenc')) {
+            $ffmpeg .= ' -hwaccel cuvid';
+            if (strpos($stream->video_codec_name, '264') !== false) {
+                $ffmpeg .= ' -c:v h264_cuvid';
+                $nvencpos=1;
+            }
+            if (strpos($stream->video_codec_name, 'hevc') !== false) {
+                $ffmpeg .= ' -c:v hevc_cuvid';
+                $nvencpos=1;
+            }
         }
-        if (strpos($stream->video_codec_name, 'hevc') !== false) {
-            $ffmpeg .= ' -c:v hevc_cuvid';
-        }
-    }
     $ffmpeg .= ' -i ' . '"' . "[input]" . '"';
     $ffmpeg .= ' -strict -2 -dn ';
     $ffmpeg .= $trans->scale ? ' -vf scale=' . ($trans->scale ? $trans->scale : '') : '';
@@ -180,7 +186,7 @@ function getTranscodedata($id)
     $ffmpeg .= $trans->crf ? ' -crf ' . $trans->crf : '';
     $ffmpeg .= $trans->audio_channel ? ' -ac ' . $trans->audio_channel : '';
     $ffmpeg .= $trans->threads ? ' -threads ' . $trans->threads : '';
-    $ffmpeg .= $trans->deinterlance ? ' -vf yadif' : '';
+    $ffmpeg .= $trans->deinterlance ? ($nvencpos ? ' -vf yadif_cuda' : ' -vf yadif') : '';
     $ffmpeg .= " [OUTPUT]";
     return $ffmpeg;
 }
