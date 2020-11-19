@@ -31,6 +31,22 @@ function lists($list, $column)
     return $columns;
 }
 
+function barColor($pr)
+{
+    $color = "red";
+    if ($pr < 75) {
+        $color = "orange";
+    }
+    if ($pr < 50) {
+        $color = "green";
+    }
+    if ($pr < 25) {
+        $color = "green";
+    }
+    return $color;
+}
+
+
 function checkPid($pid)
 {
     exec("ps $pid", $output, $result);
@@ -107,11 +123,11 @@ function getTranscode($id, $streamnumber = null)
             $ffmpeg .= ' -hwaccel cuvid';
             if (strpos($stream->video_codec_name, '264') !== false) {
                 $ffmpeg .= ' -c:v h264_cuvid';
-                $nvencpos=1;
+                $nvencpos = 1;
             }
             if (strpos($stream->video_codec_name, 'hevc') !== false) {
                 $ffmpeg .= ' -c:v hevc_cuvid';
-                $nvencpos=1;
+                $nvencpos = 1;
             }
         }
         $ffmpeg .= ' -i ' . '"' . "$url" . '"';
@@ -157,17 +173,17 @@ function getTranscodedata($id)
     $ffmpeg .= ' -analyzeduration ' . ($trans->analyzeduration ? $trans->analyzeduration : '12000000');
     $ffmpeg .= ' -user_agent "' . ($setting->user_agent ? $setting->user_agent : 'Streamtool') . '"';
     $nvencpos = 0;
-        if (strpos($trans->video_codec, 'nvenc')) {
-            $ffmpeg .= ' -hwaccel cuvid';
-            if (strpos($stream->video_codec_name, '264') !== false) {
-                $ffmpeg .= ' -c:v h264_cuvid';
-                $nvencpos=1;
-            }
-            if (strpos($stream->video_codec_name, 'hevc') !== false) {
-                $ffmpeg .= ' -c:v hevc_cuvid';
-                $nvencpos=1;
-            }
+    if (strpos($trans->video_codec, 'nvenc')) {
+        $ffmpeg .= ' -hwaccel cuvid';
+        if (strpos($stream->video_codec_name, '264') !== false) {
+            $ffmpeg .= ' -c:v h264_cuvid';
+            $nvencpos = 1;
         }
+        if (strpos($stream->video_codec_name, 'hevc') !== false) {
+            $ffmpeg .= ' -c:v hevc_cuvid';
+            $nvencpos = 1;
+        }
+    }
     $ffmpeg .= ' -i ' . '"' . "[input]" . '"';
     $ffmpeg .= ' -strict -2 -dn ';
     $ffmpeg .= $trans->scale ? ' -vf scale=' . ($trans->scale ? $trans->scale : '') : '';

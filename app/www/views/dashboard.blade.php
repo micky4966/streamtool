@@ -46,12 +46,12 @@
                     </div>
                     <div class="w_center w_55">
                         <div class="progress">
-                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $space['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $space['pr'] }}%;">
+                            <div class="progress-bar bg-{{ barColor($space['pr']) }}" role="progressbar" aria-valuenow="{{ $space['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $space['pr'] }}%;">
 
                             </div>
                         </div>
                     </div>
-                    <div class="w_right w_20">
+                    <div class="w_left w_20">
                         <span>{{ round(( $space['count'] / 1024 ),2) }} / {{ round(( $space['total'] / 1024 ),2) }}GB</span>
                     </div>
                     <div class="clearfix"></div>
@@ -63,12 +63,12 @@
                     </div>
                     <div class="w_center w_55">
                         <div class="progress">
-                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $cpu['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $cpu['pr'] }}%;">
+                            <div class="progress-bar bg-{{ barColor($cpu['pr']) }}" role="progressbar" aria-valuenow="{{ $cpu['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $cpu['pr'] }}%;">
 
                             </div>
                         </div>
                     </div>
-                    <div class="w_right w_20">
+                    <div class="w_left w_20">
                         <span>{{ $cpu['pr'] }} %</span>
                     </div>
                     <div class="clearfix"></div>
@@ -80,11 +80,11 @@
                     </div>
                     <div class="w_center w_55">
                         <div class="progress">
-                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $mem['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $mem['pr'] }}%;">
+                            <div class="progress-bar bg-{{ barColor($mem['pr']) }}" role="progressbar" aria-valuenow="{{ $mem['pr'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $mem['pr'] }}%;">
                             </div>
                         </div>
                     </div>
-                    <div class="w_right w_20">
+                    <div class="w_left w_20">
                         <span>{{ round(( $mem['count'] / 1024 /1024 ),2) }} / {{ round(( $mem['total'] / 1024 /1024 ),2) }}GB</span>
                     </div>
                     <div class="clearfix"></div>
@@ -104,12 +104,12 @@
                 </div>
                 <div class="w_center w_55">
                     <div class="progress">
-                        <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['gpuutil'] . '" aria-value></div>
+                        <div class="progress-bar bg-'. barColor($gpuinfos[$i]['gpuutil']) . '" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['gpuutil'] . '" aria-valuemin="0" aria-valuemax="100" style="width: ' . $gpuinfos[$i]['gpuutil'] . '%;"></div>
                         <div class="clearfix">
                         </div>
                     </div>
                 </div>
-                <div class="w_right w_20">
+                <div class="w_left w_20">
                     <span>' . $gpuinfos[$i]['gpuutil'].'%</span>
                 </div>
                 <div class="w_left w_25">
@@ -117,14 +117,42 @@
                 </div>
                 <div class="w_center w_55">
                     <div class="progress">
-                        <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['memutil'] . '" aria-value></div>
+                        <div class="progress-bar bg-'. barColor($gpuinfos[$i]['memutil']) . '" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['memutil'] . '" aria-valuemin="0" aria-valuemax="100" style="width: ' . $gpuinfos[$i]['memutil'] . '%;"></div>
                         <div class="clearfix">
                         </div>
                     </div>
                 </div>
-                <div class="w_right w_20">
+                <div class="w_left w_20">
                     <span>' . $gpuinfos[$i]['memutil'].'%</span>
                 </div>
+        </div>
+        <div class="widget_summary">
+            <div class="w_left w_25">
+                <span>GPU TEMP</span>
+            </div>
+            <div class="w_center w_55">
+                <div class="progress">
+                    <div class="progress-bar bg-'. barColor(round($gpuinfos[$i]['temp'] / 86 * 100)) . '" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['temp'] . '" aria-valuemin="0" aria-valuemax="86" style="width: ' . ($gpuinfos[$i]['temp'] / 86 * 100) . '%;"></div>
+                    <div class="clearfix">
+                    </div>
+                </div>
+            </div>
+            <div class="w_left w_20">
+                <span>' . $gpuinfos[$i]['temp'].'°C (~ '. round(($gpuinfos[$i]['temp'] / 86 * 100)) .'%)</span>
+            </div>
+            <div class="w_left w_25">
+                <span>ENCODER USE</span>
+            </div>
+            <div class="w_center w_55">
+                <div class="progress">
+                    <div class="progress-bar bg-'. barColor($gpuinfos[$i]['encodutil']) . '" role="progressbar" aria-valuenow="' . $gpuinfos[$i]['encodutil'] . '" aria-valuemin="0" aria-valuemax="100" style="width: ' . $gpuinfos[$i]['encodutil'] . '%;"></div>
+                    <div class="clearfix">
+                    </div>
+                </div>
+            </div>
+            <div class="w_left w_20">
+                <span>' . $gpuinfos[$i]['encodutil'].'%</span>
+            </div>
         </div>
     </div>
 </div>';
