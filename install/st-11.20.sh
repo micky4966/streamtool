@@ -49,6 +49,9 @@ fi
   killall /opt/streamtool/app/php/bin/php
   killall ffmpeg
   killall ffmpeg
+  killall ffmpeg-streamtool
+  killall ffmpeg-streamtool
+  
   cd /opt/
   while [ ! -z "$(mount -l | grep $(hlsFolder))" ]; do
     umount $hlsFolder
