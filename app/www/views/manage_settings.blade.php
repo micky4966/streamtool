@@ -39,7 +39,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="webip" value="{{  isset($_POST['webip']) ?  $_POST['webip'] : $setting->webip}}">
                         </div>
-                        <i class="fas fa-info-circle"></i> Example: mystreams.com, 192.168.1.24 )
+                        <i class="fas fa-info-circle"></i> Example: mystreams.com, 192.168.1.24
                     </div>
 
                     <div class="form-group">

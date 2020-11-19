@@ -81,8 +81,8 @@ if (isset($_GET['install'])) {
 
         $db->schema()->create('settings', function ($table) {
             $table->increments('id');
-            $table->string('ffmpeg_path')->default('/usr/bin/ffmpeg');
-            $table->string('ffprobe_path')->default('/usr/bin/ffprobe');
+            $table->string('ffmpeg_path')->default('/opt/streamtool/app/bin/ffmpeg-streamtool');
+            $table->string('ffprobe_path')->default('/opt/streamtool/app/bin/ffprobe-streamtool');
             $table->string('ffmpeg_nvcc_path')->default('/opt/streamtool/app/bin/ffmpeg-streamtool');
             $table->string('webport')->default('8000');
             $table->string('webip');
