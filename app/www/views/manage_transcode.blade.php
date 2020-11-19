@@ -470,8 +470,8 @@
             }
         ];
         var profileValues4 = [{
-                id: "main -level 4.2",
-                label: "main -level 4.2"
+                id: "main -level 4.1",
+                label: "main -level 4.1"
             },
             {
                 id: "main10 -level auto",
