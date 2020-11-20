@@ -212,6 +212,7 @@ function start_stream($id)
 {
     $stream = Stream::find($id);
     $setting = Setting::first();
+    $stream->checkable = 0;
     if ($stream->restream) {
         $stream->checker = 0;
         $stream->pid = 0;
