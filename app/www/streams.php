@@ -2,6 +2,8 @@
 include('config.php');
 logincheck();
 
+$setting = Setting::first();
+
 $message = [];
 $title = "Manage Streams";
 
