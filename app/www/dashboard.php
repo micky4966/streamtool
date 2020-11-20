@@ -48,7 +48,7 @@ if (file_exists('/usr/bin/nvidia-smi')) {
 
 $space = [];
 $space['pr'] = $space_pr;
-$space['count'] = $space_free;
+$space['count'] = $space_used;
 $space['total'] = $space_total;
 
 $cpu = [];
