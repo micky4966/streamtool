@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Streamtool</title>
-
+    <link rel="icon" href="favicon.ico" />
     <!-- Bootstrap core CSS -->
 
     <link href="css/bootstrap.min.css" rel="stylesheet">

@@ -20,7 +20,8 @@ $offline = Stream::where('running', '=', 0)->count();
 $space_pr = 0;
 $space_free = round((disk_free_space('/')) / 1048576, 1);
 $space_total = round((disk_total_space('/')) / 1048576, 1);
-$space_pr = (int)(100 * ($space_free / $space_total));
+$space_used = $space_total - $space_free;
+$space_pr = (int)(100 * ($space_used / $space_total));
 $cpu_usage = "";
 $cpu_total = "";
 
