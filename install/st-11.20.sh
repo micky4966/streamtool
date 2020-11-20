@@ -3,7 +3,8 @@ spinner() {
   PID=$1
   text=$2
   chars="◷◶◵◴"
-
+  logFile="/tmp/st.log"
+  echo "" > $logFile
   while [ -d /proc/$PID ]; do
     for ((i = 0; i < ${#chars}; i++)); do
       sleep 0.2
@@ -61,24 +62,24 @@ fi
   mv /opt/streamtool /opt/streamtool.old
   rm -rf /opt/streamtool.old
   userdel streamtool
-} &>/dev/null
+} &>>$logFile
 
 echo ""
 echo "Updating system"
 
-apt-get update >/dev/null 2>&1 &
+apt-get update >>$logFile 2>&1 &
 PID=$!
 spinner $PID "repositories"
 
-apt-get full-upgrade --allow-downgrades --allow-remove-essential --allow-unauthenticated -y >/dev/null 2>&1 &
+apt-get full-upgrade --allow-downgrades --allow-remove-essential --allow-unauthenticated -y >>$logFile 2>&1 &
 PID=$!
 spinner $PID "Full upgrade"
 
-apt-get autoremove --allow-downgrades --allow-remove-essential --allow-unauthenticated -y >/dev/null 2>&1 &
+apt-get autoremove --allow-downgrades --allow-remove-essential --allow-unauthenticated -y >>$logFile 2>&1 &
 PID=$!
 spinner $PID "Removing unnecessary packages"
 
-apt-get install --allow-downgrades --allow-remove-essential --allow-unauthenticated -y sudo curl nano wget zip bzip2 unzip git lsof iftop htop ca-certificates net-tools xml-twig-tools libgeoip1 libqdbm14 libxdmcp6 libxml2 libxslt1.1 libxpm4 libcurl4 libmhash2 libpcre3 libpopt0 libpq5 libsensors-config libsm6 libpng16-16 libfreetype6 libc6 zlib1g libxau6 libxcb1 libssh2-1 libgd3 libtidy5deb1 libonig5 ffmpeg libavcodec-extra58 libavfilter-extra7 >/dev/null 2>&1 &
+apt-get install --allow-downgrades --allow-remove-essential --allow-unauthenticated -y sudo curl nano wget zip bzip2 unzip git lsof iftop htop ca-certificates net-tools xml-twig-tools libgeoip1 libqdbm14 libxdmcp6 libxml2 libxslt1.1 libxpm4 libcurl4 libmhash2 libpcre3 libpopt0 libpq5 libsensors-config libsm6 libpng16-16 libfreetype6 libc6 zlib1g libxau6 libxcb1 libssh2-1 libgd3 libtidy5deb1 libonig5 ffmpeg libavcodec-extra58 libavfilter-extra7 >>$logFile 2>&1 &
 PID=$!
 spinner $PID "Installing ubuntu required packages"
 
@@ -86,7 +87,7 @@ echo ""
 echo ""
 echo "Installing Streamtool"
 
-git clone https://github.com/NeySlim/streamtool >/dev/null 2>&1 &
+git clone https://github.com/NeySlim/streamtool >>$logFile 2>&1 &
 PID=$!
 spinner $PID "Downloading software"
 
@@ -104,13 +105,13 @@ echo " - Configuring system"
     echo
   )" >~/STREAMTOOL_MYSQL_PASSWORD
   sqlpasswd=($(cat ~/STREAMTOOL_MYSQL_PASSWORD))
-} &>/dev/null
+} &>>$logFile
 
 echo ""
 echo ""
 echo "Database Installation"
 #Database install and configuration
-sudo apt-get -y install mariadb-server mariadb-client >/dev/null 2>&1 &
+sudo apt-get -y install mariadb-server mariadb-client >>$logFile 2>&1 &
 PID=$!
 spinner $PID "Downloading and installing stock mariadb"
 echo " - Configuring custom mariadb options"
@@ -127,7 +128,7 @@ sql-mode="ALLOW_INVALID_DATES,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_
   mysql -uroot -e "DROP USER 'streamtool'@'localhost'"
   mysql -uroot -e "CREATE USER 'streamtool'@'localhost' identified by '$sqlpasswd'"
   mysql -uroot -e "grant all privileges on streamtool.* to 'streamtool'@'localhost'"
-} &>/dev/null
+} &>>$logFile
 
 echo ""
 echo ""
@@ -179,7 +180,7 @@ echo "  - Last config"
     streamPort="8000"
   fi
 
-} &>/dev/null
+} &>>$logFile
 if [[ "$streamPort" -lt "1024" ]]; then
   streamPort="8000"
 fi
@@ -198,7 +199,7 @@ spinner $PID "Starting Streamtool Webserver"
   mv /opt/streamtool/app/www/install_database_tables.php /opt/streamtool/install/files/.
   sleep 1;
   streamPort=$(mysql -uroot -Nse "SELECT webport FROM streamtool.settings")
-} &>/dev/null
+} &>>$logFile
 sudo -u streamtool -- /opt/streamtool/app/php/bin/php /opt/streamtool/app/www/cron.php > /dev/null &
 echo ""
 echo -e "**************************************************\n*                                                *\n*          Streamtool install complete           *\n*                                                *\n*          http://$(hostname -I | cut -d ' ' -f1):9001\n*       Username: admin  Password: admin         *\n*                                                *\n**************************************************"
