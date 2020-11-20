@@ -111,7 +111,7 @@ function getTranscode($id, $streamnumber = null)
     }
     $endofffmpeg = "";
     $endofffmpeg .= $stream->bitstreamfilter ? ' -bsf h264_mp4toannexb' : '';
-    $endofffmpeg .= ' -hls_flags delete_segments -hls_time 10 -hls_delete_threshold 3';
+    $endofffmpeg .= ' -hls_flags delete_segments -hls_time 10 -hls_delete_threshold 4';
     $endofffmpeg .= ' -hls_list_size 8 /opt/streamtool/app/www/' . $setting->hlsfolder . '/' . $stream->id . '_.m3u8  > /dev/null 2>/dev/null & echo $! ';
     if ($trans) {
         $ffmpeg .= ' -y -thread_queue_size 512 -loglevel error -fflags nobuffer -flags low_delay -fflags +genpts -strict experimental -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 2 -err_detect ignore_err';
