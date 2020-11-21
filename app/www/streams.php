@@ -9,16 +9,16 @@ $title = "Manage Streams";
 
 if (isset($_GET['start'])) {
     start_stream($_GET['start']);
-    $message = ['type' => 'success', 'message' => 'stream started'];
+    $message = ['type' => 'success', 'message' => 'Stream started'];
 } else if (isset($_GET['stop'])) {
     stop_stream($_GET['stop']);
-    $message = ['type' => 'success', 'message' => 'stream stopped'];
+    $message = ['type' => 'success', 'message' => 'Stream stopped'];
 }
 if (isset($_GET['restart'])) {
     stop_stream($_GET['restart']);
     usleep(100000);
     start_stream($_GET['restart']);
-    $message = ['type' => 'success', 'message' => 'stream started'];
+    $message = ['type' => 'success', 'message' => 'Stream restarted succesfully'];
 } 
 
 
@@ -37,14 +37,14 @@ if (isset($_POST['stop_cron'])) {
 
 if (isset($_GET['delete'])) {
     $stream = Stream::find($_GET['delete'])->delete();
-    $message = ['type' => 'success', 'message' => 'stream deleted'];
+    $message = ['type' => 'success', 'message' => 'Stream deleted'];
 }
 
 if (isset($_POST['mass_delete']) && isset($_POST['mselect'])) {
     foreach ($_POST['mselect'] as $streamids) {
         Stream::find($streamids)->delete();
     }
-    $message = ['type' => 'success', 'message' => 'streams deleted'];
+    $message = ['type' => 'success', 'message' => 'Streams deleted'];
 }
 
 if (isset($_POST['mass_start']) && isset($_POST['mselect'])) {
@@ -52,7 +52,7 @@ if (isset($_POST['mass_start']) && isset($_POST['mselect'])) {
         start_stream($streamids);
     }
 
-    $message = ['type' => 'success', 'message' => 'streams started'];
+    $message = ['type' => 'success', 'message' => 'Streams started'];
 }
 
 if (isset($_POST['mass_stop']) && isset($_POST['mselect'])) {

@@ -8,7 +8,7 @@
                 <div class="x_title">
                     <h2>Users </h2>
                     <ul class="nav navbar-right panel_toolbox">
-                        <a class="btn btn-round btn-primary" href="manage_user.php" title="Add">
+                        <a class="btn btn-round btn-primary btn-sm btn-sm" href="manage_user.php" title="Add">
                             Add user
                         </a>
                     </ul>
@@ -79,8 +79,8 @@
                                     <td class="center"> @if($user->lastconnected_ip) {{ $user->lastconnected_ip }} @else Never connected @endif </td>
                                     <td class="center"> @if($user->useragent) {{ $user->useragent }} @else Never connected @endif </td>
                                     <td class="center">
-                                        <a class="btn btn-info" href="manage_user.php?id={{ $user->id }}" title="Edit">Edit</a>
-                                        <a class="btn btn-danger" href="users.php?delete={{ $user->id }}" title="Delete" onclick="return confirm('Are you sure?')">Remove</a>
+                                        <a class="btn btn-info btn-sm" href="manage_user.php?id={{ $user->id }}" title="Edit">Edit</a>
+                                        <a class="btn btn-danger btn-sm" href="users.php?delete={{ $user->id }}" title="Delete" onclick="return confirm('Are you sure?')">Remove</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -111,7 +111,7 @@
                     <p><textarea name="" id="" class="col-md-12" rows="3">wget -O /etc/enigma2/iptv.sh "http://{{ $setting->webip }}:{{ $setting->webport }}/retrieve.php?username={{ $user->username }}&password={{ $user->password }}&type=auto_enigma2_oe2&output=mpegts" && chmod 777 /etc/enigma2/iptv.sh && /etc/enigma2/iptv.sh</textarea></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
                 </div>
             </div>
 

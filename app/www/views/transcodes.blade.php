@@ -7,7 +7,7 @@
                     <div class="x_title">
                         <h2>Transcode profiles </h2>
                         <ul class="nav navbar-right panel_toolbox">
-                            <a class="btn btn-round btn-primary" href="manage_transcode.php" title="Add">
+                            <a class="btn btn-round btn-primary btn-sm" href="manage_transcode.php" title="Add">
                                 Add transcode
                             </a>
                         </ul>
@@ -38,11 +38,11 @@
                                         <td>{{ getTranscodedata($trans->id) }}</td>
                                         <td class="center">
 
-                                            <a class="btn btn-info" href="manage_transcode.php?id={{ $trans->id }}" title="Edit">
+                                            <a class="btn btn-info btn-sm" href="manage_transcode.php?id={{ $trans->id }}" title="Edit">
                                                 Edit
                                             </a>
 
-                                            <a class="btn btn-danger" href="transcodes.php?delete={{ $trans->id }}" title="Delete" onclick="return confirm('Are you sure?')">
+                                            <a class="btn btn-danger btn-sm" href="transcodes.php?delete={{ $trans->id }}" title="Delete" onclick="return confirm('Are you sure?')">
                                                 Remove
                                             </a>
                                         </td>
