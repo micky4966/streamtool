@@ -91,7 +91,7 @@
                                         <a class="btn-success btn-sm" title="START STREAM" href="streams.php?start={{ $stream->id }}"><i class="far fa-play-circle"></i >Start</a>
                                         @endif
 
-                                        <a class="btn-info btn-sm" href="manage_stream.php?id={{ $stream->id }}" title="Edit">Edit</a>
+                                        <a class="btn-info btn-sm" href="manage_stream.php?id={{ $stream->id }}" title="Edit"><i class="far fa-edit"></i> Edit</a>
 
                                         <a class="btn-info btn-sm" href="streams.php?delete={{ $stream->id }}" title="Delete" onclick="return confirm('Delete {{ $stream->name }} ?')"><i class="far fa-times-circle"></i> Remove</a>
 
