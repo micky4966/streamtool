@@ -17,13 +17,13 @@
                     <div class="clearfix"></div>
                 </div>
                 <form action="" method="post">
-                    <input type="submit" name="mass_start" value="Mass start" class="btn btn-sm btn-success" onclick="return confirm('Mass start ?')"><i class="far fa-stop-circle"></i></input>
-                    <input type="submit" name="mass_stop" value="Mass stop" class="btn btn-sm btn-danger" onclick="return confirm('Mass stop ?')">
-                    <input type="submit" name="mass_delete" value="Mass delete" class="btn btn-sm btn-danger" onclick="return confirm('Mass delete ?')">
+                    <button type="submit" name="mass_start" value="Mass start" class="btn btn-sm btn-success" onclick="return confirm('Mass start ?')"><i class="far fa-play-circle"></i> MASS START</button>
+                    <button type="submit" name="mass_stop" value="Mass stop" class="btn btn-sm btn-danger" onclick="return confirm('Mass stop ?')"><i class="far fa-stop-circle"></i> MASS STOP</button>
+                    <button type="submit" name="mass_delete" value="Mass delete" class="btn btn-sm btn-danger" onclick="return confirm('Mass delete ?')"><i class="far fa-times-circle"></i> MASS DELETE</button>
                     @if($cronStatus == 1)
-                    <input type="submit" name="stop_cron" value="Stop stream watcher" class="btn btn-sm btn-danger">
+                    <button type="submit" name="stop_cron" value="Stop stream watcher" class="btn btn-sm btn-danger"><i class="fas fa-times"></i> Stop stream watcher</button>
                     @else
-                    <input type="submit" name="start_cron" value="Start stream watcher" class="btn btn-sm btn-success">
+                    <button type="submit" name="start_cron" value="Start stream watcher" class="btn btn-sm btn-success"><i class="fas fa-binoculars"></i> Start stream watcher</button>
                     @endif
                     @if(count($streams) > 0)
                     @if($message)
