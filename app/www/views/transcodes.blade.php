@@ -35,7 +35,7 @@
                                     <tr>
                                         <td class="center">{{ $key+1 }}</td>
                                         <td class="col-md-1">{{ $trans->name }}</td>
-                                        <td>{{ getTranscodedata($trans->id) }}</td>
+                                        <td><font face="monospace">{{ getTranscodedata($trans->id) }}</font></td>
                                         <td class="center">
 
                                             <a class="btn btn-info btn-sm" href="manage_transcode.php?id={{ $trans->id }}" title="Edit">

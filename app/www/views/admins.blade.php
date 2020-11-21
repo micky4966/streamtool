@@ -35,8 +35,8 @@
                                     <td class="center">{{ $key+1 }}</td>
                                     <td>{{ $admin->username }}</td>
                                     <td class="center">
-                                        <a class="btn btn-info" href="manage_admin.php?id={{ $admin->id }}" title="Edit">Edit</a>
-                                        <a class="btn btn-danger" href="admins.php?delete={{ $admin->id }}" title="Delete" onclick="return confirm('Are you sure?')">Remove</a>
+                                        <a class="btn btn-info btn-sm" href="manage_admin.php?id={{ $admin->id }}" title="Edit">Edit</a>
+                                        <a class="btn btn-danger btn-sm" href="admins.php?delete={{ $admin->id }}" title="Delete" onclick="return confirm('Are you sure?')">Remove</a>
                                     </td>
                                 </tr>
                             @endforeach

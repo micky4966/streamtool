@@ -7,7 +7,7 @@
                 <div class="x_title">
                     <h2>IP Security </h2>
                     <ul class="nav navbar-right panel_toolbox">
-                        <a class="btn btn-round btn-primary" href="manage_ipblock.php" title="Add">
+                        <a class="btn btn-round btn-primary btn-sm" href="manage_ipblock.php" title="Add">
                             Add ip filter
                         </a>
                     </ul>
@@ -37,8 +37,8 @@
                                     <td>{{ $block->ip }}</td>
                                     <td>{{ $block->description }}</td>
                                     <td class="center">
-                                        <a class="btn btn-info" href="manage_ipblock.php?id={{ $block->id }}" title="Edit">Edit</a>
-                                        <a class="btn btn-danger" href="ipblocks.php?delete={{ $block->id }}" title="Delete" onclick="return confirm('Are you sure?')">Remove</a>
+                                        <a class="btn btn-info btn-sm" href="manage_ipblock.php?id={{ $block->id }}" title="Edit">Edit</a>
+                                        <a class="btn btn-danger btn-sm" href="ipblocks.php?delete={{ $block->id }}" title="Delete" onclick="return confirm('Are you sure?')">Remove</a>
                                     </td>
                                 </tr>
                             @endforeach

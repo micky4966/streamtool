@@ -37,7 +37,7 @@
                                     <td>{{ $activity->user_ip }}</td>
                                     <td>{{ $activity->user_agent }}</td>
                                     <td class="center">
-                                        <a class="btn btn-danger" href="activities.php?delete={{ $activity->id }}" title="Delete" onclick="return confirm('Are you sure?')">Remove</a>
+                                        <a class="btn btn-danger btn-sm" href="activities.php?delete={{ $activity->id }}" title="Delete" onclick="return confirm('Are you sure?')">Remove</a>
                                     </td>
                                 </tr>
                             @endforeach

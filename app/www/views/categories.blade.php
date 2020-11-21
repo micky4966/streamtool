@@ -7,7 +7,7 @@
                         <div class="x_title">
                             <h2>Categories </h2>
                             <ul class="nav navbar-right panel_toolbox">
-                                <a class="btn btn-round btn-primary" href="manage_category.php" title="Add">
+                                <a class="btn btn-round btn-primary btn-sm" href="manage_category.php" title="Add">
                                     Add category
                                 </a>
                             </ul>
@@ -35,11 +35,11 @@
                                         <td class="center">{{ $key+1 }}</td>
                                         <td>{{ $category->name }}</td>
                                         <td class="center">
-                                            <a class="btn btn-info" href="manage_category.php?id={{ $category->id }}" title="Edit">
+                                            <a class="btn btn-sm btn-info" href="manage_category.php?id={{ $category->id }}" title="Edit">
                                                 Edit
                                             </a>
 
-                                            <a class="btn btn-danger" href="categories.php?delete={{ $category->id }}" title="Delete" onclick="return confirm('Are you sure?')">
+                                            <a class="btn btn-sm btn-danger" href="categories.php?delete={{ $category->id }}" title="Delete" onclick="return confirm('Are you sure?')">
                                                 Remove
                                             </a>
                                         </td>
