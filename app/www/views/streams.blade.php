@@ -17,7 +17,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <form action="" method="post">
-                    <input type="submit" name="mass_start" value="Mass start" class="btn btn-sm btn-success" onclick="return confirm('Mass start ?')">
+                    <input type="submit" name="mass_start" value="Mass start" class="btn btn-sm btn-success" onclick="return confirm('Mass start ?')"><i class="far fa-stop-circle"></i></input>
                     <input type="submit" name="mass_stop" value="Mass stop" class="btn btn-sm btn-danger" onclick="return confirm('Mass stop ?')">
                     <input type="submit" name="mass_delete" value="Mass delete" class="btn btn-sm btn-danger" onclick="return confirm('Mass delete ?')">
                     @if($cronStatus == 1)
@@ -85,15 +85,15 @@
                                     </td>
                                     <td class="center">
                                         @if($stream->status == 1)
-                                        <a class="btn-danger btn-sm" title="STOP STREAM" href="streams.php?stop={{ $stream->id }}">Stop</a>
-                                        <a class="btn-success btn-sm" title="RESTART STREAM" href="streams.php?restart={{ $stream->id }}">Restart</a>
+                                        <a class="btn-danger btn-sm" title="STOP STREAM" href="streams.php?stop={{ $stream->id }}"><i class="far fa-stop-circle"></i> Stop</a>
+                                        <a class="btn-success btn-sm" title="RESTART STREAM" href="streams.php?restart={{ $stream->id }}"><i class="fas fa-sync-alt"></i> Restart</a>
                                         @elseif ($stream->status != 1)
-                                        <a class="btn-success btn-sm" title="START STREAM" href="streams.php?start={{ $stream->id }}">Start</a>
+                                        <a class="btn-success btn-sm" title="START STREAM" href="streams.php?start={{ $stream->id }}"><i class="far fa-play-circle"></i >Start</a>
                                         @endif
 
                                         <a class="btn-info btn-sm" href="manage_stream.php?id={{ $stream->id }}" title="Edit">Edit</a>
 
-                                        <a class="btn-info btn-sm" href="streams.php?delete={{ $stream->id }}" title="Delete" onclick="return confirm('Delete {{ $stream->name }} ?')">Remove</a>
+                                        <a class="btn-info btn-sm" href="streams.php?delete={{ $stream->id }}" title="Delete" onclick="return confirm('Delete {{ $stream->name }} ?')"><i class="far fa-times-circle"></i> Remove</a>
 
 
                                     </td>
