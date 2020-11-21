@@ -7,7 +7,7 @@
                 <div class="x_title">
                     <h2>Admins </h2>
                     <ul class="nav navbar-right panel_toolbox">
-                        <a class="btn btn-round btn-primary" href="manage_admin.php" title="Add">
+                        <a class="btn btn-round btn-primary btn-sm" href="manage_admin.php" title="Add">
                             Add admin
                         </a>
                     </ul>

@@ -9,7 +9,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="">
-                    <a class="btn btn-danger" title="Delete" href="activities.php?delete_all=1">Delete all logs</a>
+                    <a class="btn btn-danger btn-sm" title="Delete" href="activities.php?delete_all=1">Delete all logs</a>
                     @if($message)
                         <div class="alert alert-{{ $message['type'] }}">
                             {{ $message['message'] }}

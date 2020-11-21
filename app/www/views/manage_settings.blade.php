@@ -84,7 +84,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                             <button type="submit" name="submit" class="btn btn-success btn-sm">Submit</button>
                         </div>
-                        <form action="" method="post" ><input id="patchnv" name="patchnv" type="hidden" value="1"><button  class="btn btn-danger" title="Patch Nvidia encoder limit" onclick="return confirm('Apply Nvidia patch limit ?')"><i class="fas fa-exclamation-triangle"></i> Patch Nvidia encoder limit</button></form>
+                        <form action="" method="post" ><input id="patchnv" name="patchnv" type="hidden" value="1"><button  class="btn btn-danger btn-sm" title="Patch Nvidia encoder limit" onclick="return confirm('Apply Nvidia patch limit ?')"><i class="fas fa-exclamation-triangle"></i> Patch Nvidia encoder limit</button></form>
                     </div>
 
                 </form>
