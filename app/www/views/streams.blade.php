@@ -67,7 +67,7 @@
                                         <span class="label label-info">streamurl3</span>
                                         @endif
                                     </td>
-                                    <td class="center"><span class="label label-{{ $stream->status_label['label'] }}">{{ $stream->status_label['text'] }}</span></td>
+                                    <td class="center"><span class="label label-{{ $stream->status_label['label'] }}"><i class="{{ $stream->status_label['icon'] }}"></i> {{ $stream->status_label["text"] }}</span></td>
                                     <td class="center">{{ $stream->category ? $stream->category->name : '' }} </td>
                                     <td>
                                         @if($stream->video_codec_name)

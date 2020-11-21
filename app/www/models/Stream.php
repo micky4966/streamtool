@@ -15,14 +15,17 @@ class Stream extends Streamtool {
     {
         $return = [];
         $return['label'] = 'danger';
-        $return['text'] = '<i class="fas fa-stop-circle"></i> STOPPED';
+        $return['text'] = 'STOPPED';
+        $return['icon'] = 'fas fa-stop-circle';
 
         if ($this->status == '1') {
             $return['label'] = 'success';
-            $return['text'] = '<i class="fas fa-circle-notch fa-spin"></i> RUNNING';
+            $return['text'] = 'RUNNING';
+            $return['icon'] = 'fas fa-circle-notch fa-spin';
         } else if ($this->status == '2') {
             $return['label'] = 'danger';
-            $return['text'] = '<i class="fas fa-exclamation-circle"></i> ERROR';
+            $return['text'] = 'ERROR';
+            $return['icon'] = 'fas fa-exclamation-circle';
         }
 
         return $return;
