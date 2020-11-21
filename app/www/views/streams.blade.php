@@ -86,10 +86,11 @@
                                         <td class="center">
                                             @if($stream->status == 1)
                                                 <a class="btn btn-outline-danger btn-sm" title="STOP STREAM" href="streams.php?stop={{ $stream->id }}">Stop</a>
+                                                <a class="btn btn-outline-success btn-sm" title="RESTART STREAM" href="streams.php?restart={{ $stream->id }}">Restart</a>
                                             @elseif ($stream->status != 1)
                                                 <a class="btn btn-outline-success btn-sm" title="START STREAM" href="streams.php?start={{ $stream->id }}">Start</a>
                                             @endif
-                                            <a class="btn btn-outline-success btn-sm" title=RESTART STREAM" href="streams.php?start={{ $stream->id }}">Start</a>
+                                            
 
                                             <a class="btn btn-outline-info btn-sm" href="manage_stream.php?id={{ $stream->id }}" title="Edit">
                                                 Edit

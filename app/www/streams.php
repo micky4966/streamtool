@@ -14,6 +14,13 @@ if (isset($_GET['start'])) {
     stop_stream($_GET['stop']);
     $message = ['type' => 'success', 'message' => 'stream stopped'];
 }
+if (isset($_GET['restart'])) {
+    stop_stream($_GET['restart']);
+    usleep(100000);
+    start_stream($_GET['restart']);
+    $message = ['type' => 'success', 'message' => 'stream started'];
+} 
+
 
 if (isset($_POST['start_cron'])) {
     $setting->enableCheck = "1";
