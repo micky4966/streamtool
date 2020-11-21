@@ -43,8 +43,8 @@
                             @foreach($users as $key => $user)
                                 <tr>
                                     <td class="center">{{ $key+1 }}</td>
-                                    <td>{{ $user->username }}</td>
-                                    <td class="center">{{ $user->password }}</td>
+                                    <td style="font-weight: bold;">{{ $user->username }}</td>
+                                    <td class="center"><div title="{{ $user->password }}"><span class="label label-default"><i class="fas fa-mouse-pointer"></i> hover me <i class="fas fa-key"></i></div></span></td>
                                     <td class="center">
                                         @if($user->active)
                                             <span class="label label-success">Active</span>
@@ -63,7 +63,7 @@
                                             <span class="label label-success">Unlimited</span>
                                         @endif
                                     </td>
-                                    <td class="center">{{ $user->category_names }}</td>
+                                    <td class="center"><span class="label label-default">{{ $user->category_names }}</span></td>
                                     <td class="center">
                                         <a href="getfile.php?m3u_hls=true&id={{ $user->id }}" title="GET HLS M3U8"><span class="label label-success">M3U8 HLS</span></a>
                                         <a href="getfile.php?m3u_mpegts=true&id={{ $user->id }}" title="GET MPEGTS M3U8"><span class="label label-success">M3U8 MPEGTS</span></a>
@@ -72,7 +72,7 @@
                                         <a href="clientsgen.php?id={{ $user->id }}" title="Clients"><span class="label label-success">Clients</span></a>
                                         <a href="javascript:;" data-toggle="modal" data-target="#autoenigma2"><span class="label label-success">Auto Enigma2</span></a>
                                     </td>
-                                    <td class="center"> @if($user->laststream) {{ $user->laststream->name }} @else Never connected @endif </td>
+                                    <td class="center"> @if($user->laststream) {{ strtoupper($user->laststream->name) }} @else Never connected @endif </td>
                                     <td class="center">{{ $user->max_connections }}</td>
 
 
