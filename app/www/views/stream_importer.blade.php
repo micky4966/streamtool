@@ -5,7 +5,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Playlist importer</h2>
+                    <h2>Bulk import</h2>
 
                     <div class="clearfix"></div>
                 </div>
@@ -21,7 +21,7 @@
                         <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" role="form" action="" method="post">
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Paste your playlist here (remove header like #EXTM3U if any)
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Paste your playlist here <br/> (remove header like #EXTM3U if any)
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                       <textarea name="import"  lass="form-control col-md-7 col-xs-12"id=""  style="width: 100%;"  rows="10"
