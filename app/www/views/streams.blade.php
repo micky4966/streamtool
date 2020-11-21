@@ -85,15 +85,16 @@
                                         </td>
                                         <td class="center">
                                             @if($stream->status == 1)
-                                                <a class="btn btn-danger" title="STOP STREAM" href="streams.php?stop={{ $stream->id }}">Stop</a>
+                                                <a class="btn btn-outline-danger btn-sm" title="STOP STREAM" href="streams.php?stop={{ $stream->id }}">Stop</a>
                                             @elseif ($stream->status != 1)
-                                                <a class="btn btn-success" title="START STREAM" href="streams.php?start={{ $stream->id }}">Start</a>
+                                                <a class="btn btn-outline-success btn-sm" title="START STREAM" href="streams.php?start={{ $stream->id }}">Start</a>
                                             @endif
+                                            <a class="btn btn-outline-success btn-sm" title=RESTART STREAM" href="streams.php?start={{ $stream->id }}">Start</a>
 
-                                            <a class="btn btn-info" href="manage_stream.php?id={{ $stream->id }}" title="Edit">
+                                            <a class="btn btn-outline-info btn-sm" href="manage_stream.php?id={{ $stream->id }}" title="Edit">
                                                 Edit
                                             </a>
-                                            <a class="btn btn-danger" href="streams.php?delete={{ $stream->id }}" title="Delete" onclick="return confirm('Are you sure?')">
+                                            <a class="btn-outline-info btn-sm" href="streams.php?delete={{ $stream->id }}" title="Delete" onclick="return confirm('Are you sure?')">
                                                 Remove
                                             </a>
 

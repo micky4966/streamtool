@@ -57,6 +57,7 @@
                                 <select name="audio_codec" class="form-control" id="audio_codec">
                                     <option value="" {{ isset($_POST['audio_codec']) ?  $_POST['audio_codec']  == '' : $transcode->audio_codec  == '' ? "selected" : "" }}>Disable</option>
                                     <option value="aac" {{ isset($_POST['audio_codec']) ?  $_POST['audio_codec']  == 'aac' : $transcode->audio_codec  == 'aac' ? "selected" : "" }}>AAC</option>
+                                    <option value="libfdk_aac" {{ isset($_POST['audio_codec']) ?  $_POST['audio_codec']  == 'libfdk_aac' : $transcode->audio_codec  == 'libfdk_aac' ? "selected" : "" }}>FDK AAC</option>
                                     <option value="copy" {{ isset($_POST['audio_codec']) ?  $_POST['audio_codec']  == 'copy' : $transcode->audio_codec  == 'copy' ? "selected" : "" }}>Copy</option>
                                 </select>
                             </div>
