@@ -63,7 +63,7 @@
                                             <span class="label label-success">Unlimited</span>
                                         @endif
                                     </td>
-                                    <td class="center"><span class="label label-default">{{ $user->category_names }}</span></td>
+                                    <td class="center"><span class="label label-primary">{{ $user->category_names }}</span></td>
                                     <td class="center">
                                         <a href="getfile.php?m3u_hls=true&id={{ $user->id }}" title="GET HLS M3U8"><span class="label label-success">M3U8 HLS</span></a>
                                         <a href="getfile.php?m3u_mpegts=true&id={{ $user->id }}" title="GET MPEGTS M3U8"><span class="label label-success">M3U8 MPEGTS</span></a>
