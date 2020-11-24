@@ -1,4 +1,4 @@
-![Streamtool](https://github.com/NeySlim/streamtool/raw/master/app/www/img/streamtool.png "Streamtool")
+![Streamtool](https://github.com/micky4966/streamtool/raw/master/app/www/img/streamtool.png "Streamtool")
 
 A web software for managing and manipulating video streams.
 
@@ -23,7 +23,7 @@ A web software for managing and manipulating video streams.
  **SUPPORTED DISTRIBUTION : Ubuntu 20.04 64 BIT**
   As administrator execute:
 ```bash
-curl -s https://raw.githubusercontent.com/NeySlim/streamtool/master/install/st-11.20.sh | sudo bash
+curl -s https://raw.githubusercontent.com/micky4966/streamtool/master/install/st-11.20.sh | sudo bash
 ```
   Visit : http://streamtool-adress:9001/ login with 
  Default Username Password: admin
